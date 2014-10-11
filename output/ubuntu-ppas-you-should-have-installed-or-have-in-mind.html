@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Ubuntu: PPAs you should have installed or have in mind</title>
+        <meta charset="utf-8" />
+        <link href="https://syndbg.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anton Antonov's mindspace Full Atom Feed" />
+        <link href="https://syndbg.github.io/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Anton Antonov's mindspace Categories Atom Feed" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type= "text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" >
+        <link rel="stylesheet" type="text/css" href="https://syndbg.github.io/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="https://syndbg.github.io/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://syndbg.github.io/theme/pygment.css" />
+
+        <script src="https://syndbg.github.io/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="https://syndbg.github.io/">Anton Antonov's mindspace <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+
+              <ul class="columns">
+                <li><a href="https://syndbg.github.io/">Home</a></li>
+
+                <li><a href="https://syndbg.github.io/pages/about.html">About</a></li>
+                <li><a href="https://syndbg.github.io/pages/books.html">Books</a></li>
+                <li><a href="https://syndbg.github.io/pages/cheatsheet.html">Cheatsheet</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="https://syndbg.github.io/ubuntu-ppas-you-should-have-installed-or-have-in-mind.html" rel="bookmark"
+                   title="Permalink to Ubuntu: PPAs you should have installed or have in mind">Ubuntu: PPAs you should have installed or have in mind</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2014-02-20T00:00:00">
+                чт 20 февруари 2014
+              </abbr>
+              <address class="vcard author">By
+                <a class="url fn" href="https://syndbg.github.io/author/anton-antonov.html"> Anton Antonov</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h2><a href="http://syndbg.wordpress.com/2014/02/20/making-the-switch-to-ubuntu-how-to-install-ppas/">How to install PPAs</a></h2>
+
+<h2>Faster updates and installs: apt-fast</h2>
+
+<h3>What is apt-fast:</h3>
+
+<p>A script that uses command line download accelerators. It drastically
+improves updating and installing</p>
+
+<h3>How to install:</h3>
+
+<p><code>sudo add-apt-repository ppa:apt-fast/stable sudo apt-get update sudo apt-get install apt-fast</code></p>
+
+<p>In future you use apt-fast everywhere you would've typed apt-get</p>
+
+<h3>Example</h3>
+
+<p><code>sudo apt-fast update sudo apt-fast upgrade sudo apt-fast install sudo apt-fast autoremove</code></p>
+
+<h2>Manage PPAs easily: y-ppa-manager</h2>
+
+<h3>What is y-ppa-manager:</h3>
+
+<p>A tool for easy management of PPAs. You can remove/purge, update and
+edit source, as in the screenshot.</p>
+
+<p><a href="http://syndbg.files.wordpress.com/2014/02/y-ppa-manager.png"><img alt="y-ppa-manager" src="http://syndbg.files.wordpress.com/2014/02/y-ppa-manager.png?w=300" /></a></p>
+
+<h3>How to install:</h3>
+
+<p><code>sudo add-apt-repository ppa:webupd8team/y-ppa-manager sudo apt-get update sudo apt-get install y-ppa-manager</code></p>
+
+<h2>Extend battery life: tlp</h2>
+
+<h3>What is tlp:</h3>
+
+<p>A command line tool that automatically applies tweaks to reduce your
+battery usage</p>
+
+<h3>How to install:</h3>
+
+<p><code>sudo add-apt-repository ppa:linrunner/tlp sudo apt-get update sudo apt-get install tlp tlp-rdw</code></p>
+
+<p>It will automatically start at system start-up after you restart for the
+first time. However if you want to start it as fast as possible:</p>
+
+<p>\&lt;code<em>sudo tlp start</em></p>
+
+<h2>Java7: oracle-java7-installer or openjdk-7-jdk</h2>
+
+<h3>What is the difference between JRE and JDK:</h3>
+
+<p><strong>JRE (Java Runtime Environment)</strong> installs the Java Virtual Machine and
+enables you to use any java program on your machine</p>
+
+<p><strong>JDK (Java Development Kit)</strong> does everything JRE does and also
+installs the development tools to compile, debug and document your java
+programs.</p>
+
+<p>Installing JDK from the get-go is better, so I'll show you how to
+install JDK in case you decide to develop java programs in the future.</p>
+
+<h3><a href="http://stackoverflow.com/a/1977354">What is the difference between openjdk and oracle jdk?</a></h3>
+
+<h3>How to install Oracle Java7 JDK:</h3>
+
+<p><code>sudo add-apt-repository ppa:webupd8team/java sudo apt-get update sudo apt-get install oracle-java7-installer</code></p>
+
+<h3>How to install OpenJDK Java7 JDK:</h3>
+
+<p><code>sudo apt-get install openjdk-7-jdk</code></p>
+
+<h3>How to test if it's installed correctly:</h3>
+
+<p><strong>Try running:</strong></p>
+
+<p><code>java -version</code></p>
+
+<p><strong>It should return something similar to:</strong>  </p>
+
+<p><code>java version "1.7.0_51" OpenJDK Runtime Environment (IcedTea 2.4.4) (7u51-2.4.4-0ubuntu0.13.10.1) OpenJDK 64-Bit Server VM (build 24.45-b08, mixed mode)</code></p>
+
+<h2>Development with Sublime Text: sublime-text-2 or sublime-text-3</h2>
+
+<h3>Difference between ST2 and ST3:</h3>
+
+<p>Some plugins don't have support for ST3 yet. If you're just starting to
+use Sublime Text you won't care about the support of plugins you don't
+know, so go for ST3.<br />
+But if you're already a ST2 user, wondering if you can switch to ST3
+-> check with <a href="http://www.caniswitchtosublimetext3.com/">Can I switch to Sublime Text
+3?</a></p>
+
+<h3>How to install ST2 anyway</h3>
+
+<p><code>sudo add-apt-repository ppa:webupd8team/sublime-text-2 sudo apt-get update sudo apt-get install sublime-text-installer</code></p>
+
+<h3>How to install ST3:</h3>
+
+<p><code>sudo add-apt-repository ppa:webupd8team/sublime-text-3 sudo apt-get update sudo apt-get install sublime-text-installer</code></p>
+
+<h2>Stop hurting your eyes, use Redshift/f.lux: gtk-redshift or fluxgui</h2>
+
+<h3>What do both programs do?</h3>
+
+<p>They adjust the color temperature of the screen to adapt to the day
+time. If you're an early rise or a night owl (like me), you should stop
+blinding yourself and use Redshift or f.lux</p>
+
+<h3>What to install</h3>
+
+<p>I suggest Redshift because f.lux isn't supporting Ubuntu 13.10 and
+probably won't support future versions (if not updated by the developer)</p>
+
+<h3>How to install</h3>
+
+<p><code>sudo add-apt-repository ppa:jonls/redshift-ppa sudo apt-get update sudo apt-get install gtk-redshift</code></p>
+
+<p>I suggest gtk-redshift over redshift. gtk-redshift has a toggle tray so
+you can toggle it on/off and quit it at any time</p>
+
+<h3>How to use it</h3>
+
+<p><a href="http://www.latlong.net/">Get your latitude and longitude</a><br />
+<strong>Example command:</strong>  </p>
+
+<p><code>gtk-redshift -l YOUR_LATITUDE:YOUR_LONGITUDE -t DAY_TEMP:NIGHT_TEMP -g GAMMA -v</code><br />
+<strong>You can use my settings replaced with your latitude/longitude:</strong><br />
+<code>gtk-redshift -l 42.697839:23.321670 -t 5700:3600 -g 0.8 -v</code></p>
+
+<h3>That's all. If you have any suggestions, comment and I'll add them</h3>
+            </div><!-- /.entry-content -->
+
+            <section>
+                <p id="post-share-links">
+                    <h4>Share on:</h4>
+                    <a href="http://twitter.com/home?status=Ubuntu%3A%20PPAs%20you%20should%20have%20installed%20or%20have%20in%20mind%20 https%3A//syndbg.github.io/ubuntu-ppas-you-should-have-installed-or-have-in-mind.html" target="_blank" title="Share on Twitter"><span class="fa fa-twitter"</span> Twitter</a>
+                    <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]=https%3A//syndbg.github.io/ubuntu-ppas-you-should-have-installed-or-have-in-mind.html&p[images][0]=&p[title]=Ubuntu%3A%20PPAs%20you%20should%20have%20installed%20or%20have%20in%20mind%20&p[summary]=%3Ch2%3E%3Ca%20href%3D%22http%3A//syndbg.wordpress.com/2014/02/20/making-the-switch-to-ubuntu-how-to-install-ppas/%22%3EHow%20to%20install%20PPAs%3C/a%3E%3C/h2%3E%0A%0A%3Ch2%3EFaster%20updates%20and%20installs%3A%20apt-fast%3C/h2%3E%0A%0A%3Ch3%3EWhat%20is%20apt-fast%3A%3C/h3%3E%0A%0A%3Cp%3EA%20script%20that%20uses%20command%20line%20download%20accelerators.%20It%20drastically%0Aimproves%20updating%20and%20installing%3C/p%3E%0A%0A%3Ch3%3EHow%20to%20install%3A%3C/h3%3E%0A%0A%3Cp%3E%3Ccode%3Esudo%20add-apt-repository%20ppa%3Aapt-fast/stable%20sudo%20apt-get%20update%20sudo%20apt-get%20install%20apt-fast%3C/code%3E%3C/p%3E%0A%0A%3Cp%3EIn%20future%20you%20use%20apt-fast%20everywhere%20you%20would%27ve%20...%3C/p%3E" target="_blank" title="Share on Facebook"><span class="fa fa-facebook-square"</span> Facebook</a>
+                    <a href="https://plus.google.com/share?url=https%3A//syndbg.github.io/ubuntu-ppas-you-should-have-installed-or-have-in-mind.html" target="_blank" title="Share on Google Plus"><span class="fa fa-google-plus-square"</span> Google+</a>
+                    <a href="mailto:?subject=Ubuntu%3A%20PPAs%20you%20should%20have%20installed%20or%20have%20in%20mind%20&body=https%3A//syndbg.github.io/ubuntu-ppas-you-should-have-installed-or-have-in-mind.html" target="_blank" title="Share via Email"><span class="fa fa-share"</span> Email</a>
+                </p>
+            </section>
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "ubuntu-ppas-you-should-have-installed-or-have-in-mind.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://syndbg.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="https://syndbg.github.io/pages/about.html">About</a></li>
+      <li><a href="https://syndbg.github.io/pages/books.html">Books</a></li>
+      <li><a href="https://syndbg.github.io/pages/cheatsheet.html">Cheatsheet</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="https://syndbg.github.io/category/misc.html">misc</a></li>
+</ul>
+
+
+<!-- <h4>Tags</h4>
+	<ul>
+	    <li class="tag-1"><a href="https://syndbg.github.io/tag/.html"></a></li>
+</ul>
+ -->
+
+
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="http://github.com/syndbg/" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'syndbg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="https://syndbg.github.io/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="https://syndbg.github.io/theme/js/libs/gumby.min.js"></script>
+  <script src="https://syndbg.github.io/theme/js/plugins.js"></script>
+</body>
+</html>

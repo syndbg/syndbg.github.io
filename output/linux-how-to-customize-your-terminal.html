@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Linux: How to customize your terminal</title>
+        <meta charset="utf-8" />
+        <link href="https://syndbg.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anton Antonov's mindspace Full Atom Feed" />
+        <link href="https://syndbg.github.io/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Anton Antonov's mindspace Categories Atom Feed" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type= "text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" >
+        <link rel="stylesheet" type="text/css" href="https://syndbg.github.io/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="https://syndbg.github.io/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://syndbg.github.io/theme/pygment.css" />
+
+        <script src="https://syndbg.github.io/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="https://syndbg.github.io/">Anton Antonov's mindspace <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+
+              <ul class="columns">
+                <li><a href="https://syndbg.github.io/">Home</a></li>
+
+                <li><a href="https://syndbg.github.io/pages/about.html">About</a></li>
+                <li><a href="https://syndbg.github.io/pages/books.html">Books</a></li>
+                <li><a href="https://syndbg.github.io/pages/cheatsheet.html">Cheatsheet</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="https://syndbg.github.io/linux-how-to-customize-your-terminal.html" rel="bookmark"
+                   title="Permalink to Linux: How to customize your terminal">Linux: How to customize your terminal</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2014-03-13T00:00:00">
+                чт 13 март 2014
+              </abbr>
+              <address class="vcard author">By
+                <a class="url fn" href="https://syndbg.github.io/author/anton-antonov.html"> Anton Antonov</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <p>In this short tutorial, I'll tell you how to modify your bash into
+something more useful for you.</p>
+
+<p>You can customize your terminal's colors, background, title, cursor and
+bash prompt.</p>
+
+<h3><strong>To customize your colors:</strong></h3>
+
+<p>​1) Open the Terminal Menu</p>
+
+<p>​2) Navigate to <strong>Edit Profiles</strong></p>
+
+<p>3 ) Create a new profile and <strong>Edit</strong> it</p>
+
+<p>​4) After you've done editing it, make sure you set <strong>Profile used when
+launching a new terminal</strong> to your new profile's name.<strong><br />
+</strong></p>
+
+<h3>To customize your bash prompt (PS1):</h3>
+
+<p>We'll use the great <a href="http://bashrcgenerator.com/">bashrcgenerator.com</a></p>
+
+<p>​1) Open bashgenerator and make your dream PS1</p>
+
+<p>​2) After you're done, open the terminal's settings. Write <strong>sudo gedit
+\~/.bashrc</strong></p>
+
+<p>​3) First of all save your current <strong>.bashrc</strong> to <strong>.bashrc_backup
+, </strong>just in case things don't work out from the first time.</p>
+
+<p>​4) Find PS1 in .bashrc and replace it with <strong><em>*Your generated .bashrc
+PS1 and additional functions</em></strong>* from bashgenerator.</p>
+
+<p>​5) Close any terminal instances</p>
+
+<p>​6) Open a new terminal and rejoice.</p>
+
+<p>If things didn't work from the first time, replace the non-working
+<strong>.bashrc</strong> with the <strong>.bashrc_backup</strong> and try again!</p>
+
+<p>If you just want ready to use, awesome PS1, and the colors are Tango:<br />
+<a href="http://syndbg.files.wordpress.com/2014/03/screenshot-from-2014-03-13-132054.png"><img alt="Screenshot from 2014-03-13
+13:20:54" src="http://syndbg.files.wordpress.com/2014/03/screenshot-from-2014-03-13-132054.png?w=300" /></a></p>
+
+<p><code>PS1="\[\e[00;33m\]\u\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;31m\]@\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\]\n\[\e[0m\]\[\e[00;31m\]&gt;\[\e[0m\]"</code></p>
+
+<h3><strong>Extra round: Show current git branch</strong></h3>
+
+<p>Add an extra function in the .bashrc file  </p>
+
+<p><code># show git branch parse_git_branch() {   git branch 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' }</code></p>
+
+<p>And somewhere in the PS1 add the following: <code>\\$(parse_git_branch)</code></p>
+
+<p>Complete PS1:  </p>
+
+<p><code>PS1="\[\e[00;33m\]\u\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;31m\]@\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] \$(parse_git_branch) \n\[\e[0m\]\[\e[00;31m\]&gt;\[\e[0m\]"</code></p>
+            </div><!-- /.entry-content -->
+
+            <section>
+                <p id="post-share-links">
+                    <h4>Share on:</h4>
+                    <a href="http://twitter.com/home?status=Linux%3A%20How%20to%20customize%20your%20terminal%20 https%3A//syndbg.github.io/linux-how-to-customize-your-terminal.html" target="_blank" title="Share on Twitter"><span class="fa fa-twitter"</span> Twitter</a>
+                    <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]=https%3A//syndbg.github.io/linux-how-to-customize-your-terminal.html&p[images][0]=&p[title]=Linux%3A%20How%20to%20customize%20your%20terminal%20&p[summary]=%3Cp%3EIn%20this%20short%20tutorial%2C%20I%27ll%20tell%20you%20how%20to%20modify%20your%20bash%20into%0Asomething%20more%20useful%20for%20you.%3C/p%3E%0A%0A%3Cp%3EYou%20can%20customize%20your%20terminal%27s%20colors%2C%20background%2C%20title%2C%20cursor%20and%0Abash%20prompt.%3C/p%3E%0A%0A%3Ch3%3E%3Cstrong%3ETo%20customize%20your%20colors%3A%3C/strong%3E%3C/h3%3E%0A%0A%3Cp%3E%E2%80%8B1%29%20Open%20the%20Terminal%20Menu%3C/p%3E%0A%0A%3Cp%3E%E2%80%8B2%29%20Navigate%20to%20%3Cstrong%3EEdit%20Profiles%3C/strong%3E%3C/p%3E%0A%0A%3Cp%3E3%20%29%20Create%20a%20new%20...%3C/p%3E" target="_blank" title="Share on Facebook"><span class="fa fa-facebook-square"</span> Facebook</a>
+                    <a href="https://plus.google.com/share?url=https%3A//syndbg.github.io/linux-how-to-customize-your-terminal.html" target="_blank" title="Share on Google Plus"><span class="fa fa-google-plus-square"</span> Google+</a>
+                    <a href="mailto:?subject=Linux%3A%20How%20to%20customize%20your%20terminal%20&body=https%3A//syndbg.github.io/linux-how-to-customize-your-terminal.html" target="_blank" title="Share via Email"><span class="fa fa-share"</span> Email</a>
+                </p>
+            </section>
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "linux-how-to-customize-your-terminal.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://syndbg.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="https://syndbg.github.io/pages/about.html">About</a></li>
+      <li><a href="https://syndbg.github.io/pages/books.html">Books</a></li>
+      <li><a href="https://syndbg.github.io/pages/cheatsheet.html">Cheatsheet</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="https://syndbg.github.io/category/misc.html">misc</a></li>
+</ul>
+
+
+<!-- <h4>Tags</h4>
+	<ul>
+	    <li class="tag-1"><a href="https://syndbg.github.io/tag/.html"></a></li>
+</ul>
+ -->
+
+
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="http://github.com/syndbg/" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'syndbg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="https://syndbg.github.io/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="https://syndbg.github.io/theme/js/libs/gumby.min.js"></script>
+  <script src="https://syndbg.github.io/theme/js/plugins.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Programming tips: Avoiding unbalanced parentheses errors</title>
+        <meta charset="utf-8" />
+        <link href="https://syndbg.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Anton Antonov's mindspace Full Atom Feed" />
+        <link href="https://syndbg.github.io/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Anton Antonov's mindspace Categories Atom Feed" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type= "text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" >
+        <link rel="stylesheet" type="text/css" href="https://syndbg.github.io/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="https://syndbg.github.io/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://syndbg.github.io/theme/pygment.css" />
+
+        <script src="https://syndbg.github.io/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="https://syndbg.github.io/">Anton Antonov's mindspace <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+
+              <ul class="columns">
+                <li><a href="https://syndbg.github.io/">Home</a></li>
+
+                <li><a href="https://syndbg.github.io/pages/about.html">About</a></li>
+                <li><a href="https://syndbg.github.io/pages/books.html">Books</a></li>
+                <li><a href="https://syndbg.github.io/pages/cheatsheet.html">Cheatsheet</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="https://syndbg.github.io/programming-tips-avoiding-unbalanced-parentheses-errors.html" rel="bookmark"
+                   title="Permalink to Programming tips: Avoiding unbalanced parentheses errors">Programming tips: Avoiding unbalanced parentheses errors</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2014-02-09T00:00:00">
+                нд 09 февруари 2014
+              </abbr>
+              <address class="vcard author">By
+                <a class="url fn" href="https://syndbg.github.io/author/anton-antonov.html"> Anton Antonov</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <p>It's very common for people to have unbalanced parenthesis after hours
+of work and hundreds of lines of code.<br />
+Also it's one of the more common questions in exams, find the
+error/errors in the following code "...." and they give you way too many
+parentheses.</p>
+
+<p>One of the more popular solutions is to use a pencil and paper to follow
+the code and see the mistake, but this takes resources and much more
+time than it should.</p>
+
+<p>The easier and better way is to count. Count what? Count the
+parentheses.<br />
+Any opening/left parenthesis is +1, any closing/right parenthesis is
+-1. The result should always be 0 and never negative!<br />
+So let's put this into examples.</p>
+
+<div class="highlight"><pre><span class="p">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span>
+<span class="mi">1</span> <span class="mi">1</span>    <span class="o">-</span><span class="mi">1</span>           <span class="mi">1</span>    <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+
+<p>And we notice that we have 1 remaining, which means the code is wrong.</p>
+
+<p>Next example</p>
+
+<div class="highlight"><pre><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span>
+           <span class="err">↑</span>
+<span class="o">+</span><span class="mi">1</span>   <span class="o">-</span><span class="mi">1</span>    <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+
+<p>.... wait what? We get -1. If we get -1 the code is 100% wrong.</p>
+
+<p>Good, now the time needed to track and correct parentheses is greatly
+reduced!</p>
+            </div><!-- /.entry-content -->
+
+            <section>
+                <p id="post-share-links">
+                    <h4>Share on:</h4>
+                    <a href="http://twitter.com/home?status=Programming%20tips%3A%20Avoiding%20unbalanced%20parentheses%20errors%20 https%3A//syndbg.github.io/programming-tips-avoiding-unbalanced-parentheses-errors.html" target="_blank" title="Share on Twitter"><span class="fa fa-twitter"</span> Twitter</a>
+                    <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]=https%3A//syndbg.github.io/programming-tips-avoiding-unbalanced-parentheses-errors.html&p[images][0]=&p[title]=Programming%20tips%3A%20Avoiding%20unbalanced%20parentheses%20errors%20&p[summary]=%3Cp%3EIt%27s%20very%20common%20for%20people%20to%20have%20unbalanced%20parenthesis%20after%20hours%0Aof%20work%20and%20hundreds%20of%20lines%20of%20code.%3Cbr%20/%3E%0AAlso%20it%27s%20one%20of%20the%20more%20common%20questions%20in%20exams%2C%20find%20the%0Aerror/errors%20in%20the%20following%20code%20%22....%22%20and%20they%20give%20you%20way%20too%20many%0Aparentheses.%3C/p%3E%0A%0A%3Cp%3EOne%20of%20the%20...%3C/p%3E" target="_blank" title="Share on Facebook"><span class="fa fa-facebook-square"</span> Facebook</a>
+                    <a href="https://plus.google.com/share?url=https%3A//syndbg.github.io/programming-tips-avoiding-unbalanced-parentheses-errors.html" target="_blank" title="Share on Google Plus"><span class="fa fa-google-plus-square"</span> Google+</a>
+                    <a href="mailto:?subject=Programming%20tips%3A%20Avoiding%20unbalanced%20parentheses%20errors%20&body=https%3A//syndbg.github.io/programming-tips-avoiding-unbalanced-parentheses-errors.html" target="_blank" title="Share via Email"><span class="fa fa-share"</span> Email</a>
+                </p>
+            </section>
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "programming-tips-avoiding-unbalanced-parentheses-errors.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://syndbg.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="https://syndbg.github.io/pages/about.html">About</a></li>
+      <li><a href="https://syndbg.github.io/pages/books.html">Books</a></li>
+      <li><a href="https://syndbg.github.io/pages/cheatsheet.html">Cheatsheet</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="https://syndbg.github.io/category/misc.html">misc</a></li>
+</ul>
+
+
+<!-- <h4>Tags</h4>
+	<ul>
+	    <li class="tag-1"><a href="https://syndbg.github.io/tag/.html"></a></li>
+</ul>
+ -->
+
+
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="http://github.com/syndbg/" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'syndbg';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="https://syndbg.github.io/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="https://syndbg.github.io/theme/js/libs/gumby.min.js"></script>
+  <script src="https://syndbg.github.io/theme/js/plugins.js"></script>
+</body>
+</html>
