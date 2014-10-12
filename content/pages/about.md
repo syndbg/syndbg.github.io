@@ -15,6 +15,6 @@ profile](https://github.com/syndbg/).
 
 
 And I love to read and practice with IT books. You can see my list
-[here](/books.md)
+[here](/pages/books)
 
 Feel free to email me about books, life, work - `anton.synd.antonov@gmail.com`
