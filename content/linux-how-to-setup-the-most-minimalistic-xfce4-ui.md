@@ -27,11 +27,11 @@ Apps neatly hide their app bar and integrate their menu with Unity's top bar.
 However this is not the same for other desktop environments.
 
 Here's how Atom looks in Unity:
-[![Unity Atom](http://i.imgur.com/h01xaFN.png)]
+[![Unity Atom](http://i.imgur.com/h01xaFN.png)](http://i.imgur.com/h01xaFN.png)
 
 
 And here's how Atom looks in non-Unity (Cinnamon in this screenshot
-[![Non-Unity Atom](http://i.imgur.com/0daTsbr.png)]
+[![Non-Unity Atom](http://i.imgur.com/0daTsbr.png)](http://i.imgur.com/0daTsbr.png)
 
 
 
@@ -52,7 +52,7 @@ I suggest the second, since it's the easiest.
 
 The final result is:
 
-[![Xfce4 Atom](http://i.imgur.com/RmXbTfx.png)]
+[![Xfce4 Atom](http://i.imgur.com/RmXbTfx.png)](http://i.imgur.com/RmXbTfx.png)
 
 
 
@@ -61,5 +61,3 @@ The final result is:
 Is still a persistent issue :(
 
 I tried my luck with Arch's [gnome-globalmenu-xfce4 ](https://aur.archlinux.org/packages/gnome-globalmenu-xfce4/), compiled from source, but to no avail.
-
-2.
