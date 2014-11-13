@@ -45,7 +45,7 @@ Slug: books
 8.August
 
 * [Getting started with Django / Django Essentials, Samuel Dauzon (June 2014)](https://www.packtpub.com/web-development/getting-started-django)
-* [Pro Git, Scott Chacon](http://git-scm.com/book)
+* [Pro Git (1st Edition), Scott Chacon](http://git-scm.com/book/en/v1)
 
 9.September
 
@@ -55,3 +55,5 @@ Slug: books
 10.October
 
 * [Test-Driven Development with Python (June 2014)](http://shop.oreilly.com/product/0636920029533.do)
+* [Clean Code: A Handbook of Agile Software Craftmanship(August
+2008)](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
