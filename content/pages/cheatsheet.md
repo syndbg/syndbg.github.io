@@ -17,3 +17,7 @@ Slug: cheatsheet
 * [Markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 * [Git cheatsheet](http://scotch.io/bar-talk/git-cheat-sheet)
 * [Learn Vim Progressively](http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/)
+* [Ten Reasons Developers Hate Your
+API](http://www.slideshare.net/jmusser/ten-reasons-developershateyourapi)
+* [Why Task
+Queues](http://www.slideshare.net/bryanhelmig/task-queues-comorichweb-12962619)
