@@ -4,6 +4,10 @@ Tags:
 Slug: review-97-things-every-programmer-should-know
 
 
+![97 Things Every Programmer Should Know cover](http://akamaicovers.oreilly.com/images/9780596809492/lrg.jpg "97 Things Every Programmer Should Know cover")
+
+
+
 The book [97 Things Every Programmer Should Know](http://shop.oreilly.com/product/9780596809492.do) by Kevlin Henney is a fine collection of programming essays. It combines the technical and philosophical aspect of the programming job.
 
 
