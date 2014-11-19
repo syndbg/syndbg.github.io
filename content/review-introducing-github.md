@@ -24,7 +24,7 @@ So how can this book improve?
 * 3. Get out of the non-technical zone.
 
 
-My verdict is that this book should focus more on the technical part if it wants to attract developers attention.
+My verdict is that this book should focus more on the technical part if it wants to attract developers' attention.
 
 
 Still, you can buy and read it for yourself at [O'Reilly](http://shop.oreilly.com/product/0636920033059.do#).
