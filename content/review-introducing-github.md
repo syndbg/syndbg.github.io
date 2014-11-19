@@ -19,9 +19,9 @@ My personal issue with this book is the lack of terminal commands. In a real dev
 
 So how can this book improve?
 
-* Chapters should be in this order - `Creating your own repository`, `Viewing`, `Editing`, `Downloading` and just then, `Contributing`,
-* Book should include terminal Git commands and less focus on the Web UI for editing,
-* Get out of the non-technical zone.
+* 1. Chapters should be in this order - `Creating your own repository`, `Viewing`, `Editing`, `Downloading` and just then, `Contributing`,
+* 2. Book should include terminal Git commands and less focus on the Web UI for editing,
+* 3. Get out of the non-technical zone.
 
 
 My verdict is that this book should focus more on the technical part if it wants to attract developers attention.
