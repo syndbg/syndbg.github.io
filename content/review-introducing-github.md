@@ -10,7 +10,7 @@ Slug: review-introducing-github
 [Introducing Github](http://shop.oreilly.com/product/0636920033059.do) is a book by [Peter Bell](http://www.oreilly.com/pub/au/6204) and [Brent Beer](http://www.oreilly.com/pub/au/6247), members of the [Github Training Team](https://github.com/githubtraining).
 
 
-The book is intendend to be the introduction to Github and it's explicitly said that it's intended for developers too, but is it really?
+The book is intended to be the introduction to Github and it's explicitly said that it's intended for developers too, but is it really?
 
 The book suffers a lot from the authors' inexperience in writing books and keeping people's interest (in my opinion). If you're a newcomer to Git and Github, the first thing you would like to know is how to create your own repository and start uploading your code. However you'll learn this only in the second-to-last chapter - fifth chapter. Before that you'll learn how to View, Edit and Collaborate and that's not going to keep someone's interest. It's well-known that developers care for their own code the most. Hence the other negative reviews have one complain in common - the create your own repository chapter is too late and almost neglected.
 
