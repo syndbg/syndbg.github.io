@@ -12,7 +12,7 @@ from pelicanconf import *
 
 SITEURL = 'https://syndbg.github.io'
 RELATIVE_URLS = False
-
+GOOGLE_ANALYTICS_ID = 'UA-52395557-1'
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
 
