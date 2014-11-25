@@ -4,6 +4,8 @@ Tags:
 Slug: review-the-pomodoro-technique
 
 
+![Pomodoro Technique cover](http://pomodorotechnique.com/wp-content/themes/pomodoro/img/photos/book-phototop1.jpg "Pomodoro Technique cover")
+
 The [Pomodoro Technique](http://pomodorotechnique.com/book/) is a book by Francesco Cirillo, who inventend the technique in the late 1980s, during his university years.
 
 
