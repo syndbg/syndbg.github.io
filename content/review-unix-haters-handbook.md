@@ -9,7 +9,7 @@ Slug: review-unix-haters-handbook
 The Unix Haters Handbook is a rather interesting compilation of messages and issues with the Unix operating system, edited by Simson Garfinkel.
 
 
-Reading this now, in 2014, is really refreshing. You see a lot of Unix problems explained in details, most of which are just pure hate, but anyway it's somewhat accurate. The author really gave his best to reach the Guiness Record for most emails quoted in a book. I think he might've won!
+Reading this now, in 2014, is really refreshing. You see a lot of Unix problems explained in details, most of which are just pure hate, but anyway it's somewhat accurate. The author really gave his best to reach the Guinness Record for most emails quoted in a book. I think he might've won!
 
 
 So, as you guessed, this book isn't all that relevant in 2014. The `Security` and `rm forever` problems may still be considered relevant by some, even today, but as the GUI progressed a lot, the latter isn't an issue for the casual user.
@@ -22,4 +22,4 @@ In the end, this book will surely lead many people away from Unix even nowadays,
 
 
 
-Still, you can find and read the book here -> http://richard.esplins.org/static/downloads/unix-haters-handbook.pdf 
+Still, you can find and read the book here -> http://richard.esplins.org/static/downloads/unix-haters-handbook.pdf
