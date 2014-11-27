@@ -19,3 +19,7 @@ The most controversial, to me and probably to many more, is the C and C++ hate p
 
 
 In the end, this book will surely lead many people away from Unix even nowadays, even though the OS is much different from back then. But for experienced/seasoned/hardened Unix users, this is a lesson for all, not to give up on something. "Whatever the problem is, be part of the solution"!
+
+
+
+Still, you can find and read the book here -> http://richard.esplins.org/static/downloads/unix-haters-handbook.pdf 
