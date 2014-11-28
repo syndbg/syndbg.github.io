@@ -1,4 +1,4 @@
-Date: 2014-11-25
+Date: 2014-11-27
 Title: Python: Modules vs Packages
 Tags:
 Slug: python-modules-vs-packages
@@ -119,7 +119,7 @@ Packages can contain other packages.
 
 If we want to keep everything tidy and use SoC (seperation of concerns), we would like to have our own folder for tests. And it'll look like this.
 
-```python
+```
 ├── tests
 │   ├── __init__.py
 │   ├── test_authentication.py
@@ -132,6 +132,7 @@ If we want to keep everything tidy and use SoC (seperation of concerns), we woul
 
 The whole picture:
 
+```
 ├── admin.py
 ├── authentication.py
 ├── __init__.py
@@ -147,7 +148,7 @@ The whole picture:
 │   └── test_views.py
 ├── urls.py
 └── views.py
-
+```
 
 ## Verdict
 
