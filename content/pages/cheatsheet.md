@@ -21,3 +21,4 @@ Slug: cheatsheet
 API](http://www.slideshare.net/jmusser/ten-reasons-developershateyourapi)
 * [Why Task
 Queues](http://www.slideshare.net/bryanhelmig/task-queues-comorichweb-12962619)
+* [SaaS vs Paas vs IaaS by engineyard](https://www.engineyard.com/platform-as-a-service)
