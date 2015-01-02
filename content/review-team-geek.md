@@ -21,7 +21,7 @@ The Humility-Respect-Trust mantra is something we all know well, but the situati
 
 
 
-So, do yourself, your team, your manager, a favor and read [Team Geek by Brian W. Fitzpatrick, Ben Collins-Sussman](shop.oreilly.com/product/0636920018025.do).
+So, do yourself, your team, your manager, a favor and read [Team Geek by Brian W. Fitzpatrick, Ben Collins-Sussman](https://shop.oreilly.com/product/0636920018025.do).
 
 
 P.S The authors may have advertised Google a bit too much :D
