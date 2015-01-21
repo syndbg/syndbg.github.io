@@ -7,7 +7,7 @@ Slug: evaluating-a-languages-teaching-and-learning-worth
 
 ## Disclaimer
 
-This post is inspired by [James Hague's Retiring Python as a Teaching Language blog post](http://prog21.dadgum.com/203.html) and it shows my opinion, not my employer's.
+This post is inspired by [James Hague's Retiring Python as a Teaching Language blog post](http://prog21.dadgum.com/203.html) and it shows my opinion, not my employer's. It isn't a direct message to James Hague, his opinion is valid based on his long-term experience. This blog post is about helping newcomers in general.
 
 
 ## State
