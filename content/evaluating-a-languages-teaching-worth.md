@@ -12,7 +12,7 @@ This post is inspired by [James Hague's Retiring Python as a Teaching Language b
 
 ## State
 
-I've gone through the process of learning programming, becoming employeed, becoming a mentor and lecturer myself in the past 12 months. But this is a long topic for an other blog post.
+I've gone through the process of learning programming, becoming employed, becoming a mentor and lecturer myself in the past 12 months. But this is a long topic for an other blog post.
 
 
 So let's start this.
