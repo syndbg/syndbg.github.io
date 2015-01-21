@@ -1,4 +1,4 @@
-ate: 2015-01-21
+Date: 2015-01-21
 Title: Evaluating a Language's Teaching and Learning Worth
 Tags:
 Slug: evaluating-a-languages-teaching-and-learning-worth
