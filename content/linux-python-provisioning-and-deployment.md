@@ -307,7 +307,9 @@ Flask and other web frameworks have that too.
 
 
 To elaborate more, WSGI - Webserver Gateway Interface. And the `wsgi.py` file exposes the WSGI callable as a module-level variable named `application`.
-We use that as `app-name.wsgi:application`
+We use that as `app-name.wsgi:application` in older than Django 1.7. But in Django 1.7 (and newer probably) we can just use `app-name.wsgi`.
+
+**In both cases app-name is the Django web app's name. Also known as project.**
 
 
 **6. Last touches before everything is running**
