@@ -2,7 +2,9 @@
 __pycache__/
 *.py[cod]
 cache/
-output/
+pelican.pid
+srv.pid
+themes/
 
 # C extensions
 *.so
