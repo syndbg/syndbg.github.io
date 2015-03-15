@@ -11,8 +11,9 @@
 
 	{% block meta %}{% endblock %}
 
+    <link rel="stylesheet" href="/pneumatic/static/pygment.css">
 	<!-- Stylesheets and Web Fonts -->
-	{% assets filters="scss, cssmin", output="style.min.css", "pneumatic.scss", "pygments.css" %}
+	{% assets filters="scss, cssmin", output="style.min.css", "pneumatic.scss", "pygment.css" %}
 	<link href="/{{ ASSET_URL }}" rel="stylesheet">
 	{% endassets %}
 	{% if GOOGLE_FONTS %}
