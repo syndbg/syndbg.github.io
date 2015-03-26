@@ -59,5 +59,5 @@ You'll quickly realize that adding a JS frontend to your web app involves the sa
 
 **Notes**:
 
-*At the time of writing this, the latest stable release of Django is 1.7.*
-*Note: In Django Model-View-Controller translates to Model-Template-View.*
+* At the time of writing this, the latest stable release of Django is 1.7.
+* In Django Model-View-Controller translates to Model-Template-View.
