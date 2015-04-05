@@ -6,7 +6,7 @@ Slug: publishing-to-pypi-can-be-a-nightmare
 
 ## Intro
 
-Yesterday (04.04) I was having the most ridiculous issues with PyPi - from not being able to publish my package, to already publishing a verson and not being able to update and at last - deleting my package from PyPi wouldn't actually delete it.
+Yesterday (04.04) I was having the most ridiculous issues with PyPi - from not being able to publish my package, to already publishing a version and not being able to update and at last - deleting my package from PyPi wouldn't actually delete it.
 
 
 **This makes me ask why would you make PyPi so overengineered and quirky?**
