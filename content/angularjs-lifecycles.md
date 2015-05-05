@@ -28,16 +28,16 @@ and life cycles.
 Understanding them is understanding Angular.
 
 
-### The initial cycle
+# The initial cycle
 
 ![The initial cycle](http://www.gliffy.com/go/publish/image/8003305/L.png "The initial cycle")
 
 
-### The digest cycle
+# The digest cycle
 
 ![The digest cycle](http://www.gliffy.com/go/publish/image/8015461/L.png "The digest cycle")
 
 
-### The directive cycle
+# The directive cycle
 
 ![The directive cycle](https://www.gliffy.com/go/publish/image/8016399/L.png "The directive cycle")
