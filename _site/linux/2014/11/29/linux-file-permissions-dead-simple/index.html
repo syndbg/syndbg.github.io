@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Linux: File Permissions, dead simple &#8211; Anton Antonov's mindspace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Linux File Permissions">
+    <meta name="author" content="Anton Antonov">
+    <meta name="keywords" content="linux">
+    <link rel="canonical" href="http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Anton Antonov's mindspace" href="/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201507172353" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Linux: File Permissions, dead simple">
+    <meta property="og:description" content="Open-source developer and an eternal apprentice.">
+    <meta property="og:url" content="http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/">
+    <meta property="og:site_name" content="Anton Antonov&#39;s mindspace">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+        <meta name="twitter:site" content="@syndbg" />
+    
+    <meta name="twitter:title" content="Linux: File Permissions, dead simple" />
+    <meta name="twitter:description" content="Linux File Permissions" />
+    <meta name="twitter:url" content="http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+        
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-52395557-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+</head>
+
+<body class="site animated fade-in-down">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://blog.syndbg.com" class="site-title">Anton Antonov's mindspace</a>
+      <nav class="site-nav">
+        <a href="/about/">About</a>
+<a href="https://www.goodreads.com/user/show/36949456-anton-antonov">Reads</a>
+<a href="https://github.com/pulls?q=is%3Aopen+is%3Apr+author%3Asyndbg">Open-Source contributions</a>
+
+      </nav>
+      <div class="clearfix"></div>
+
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Linux: File Permissions, dead simple</h1>
+  <span class="post-meta">Nov 29, 2014</span><br>
+    
+  <span class="post-meta small">
+  
+    3 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <h2 id="intro">Intro</h2>
+
+<p>As every new Linux user may wonder, what do the file permissions means. What does file permissions as 777, 644 or 200 mean? How do I calculate that?</p>
+
+<p>In this article, I’ll try to explain this, <strong>dead simple</strong>.</p>
+
+<h2 id="the-bits-and-bats">The bits and bats</h2>
+
+<p>So file permissions as the name suggest, decide if you can <strong>read</strong>, <strong>write</strong> and <strong>execute</strong> the given file. But what do the numbers and single letter characters mean, you might ask? They’re represented in bits.</p>
+
+<p>Each permission bit adds a number to its total:</p>
+
+<ul>
+  <li>4 = Read (R)</li>
+  <li>2 = Write (W)</li>
+  <li>1 = Execute (X)</li>
+</ul>
+
+<p>The possible permissions scenarios are:</p>
+
+<ul>
+  <li>7 (R+W+X) - all permissions. Very dangerous unless you know what you’re doing.</li>
+  <li>6 (R+W) - common scenario for non-bash scripts that must not be executed. For example Python scripts are like that.</li>
+  <li>5 (R+X) - useful for bash scripts that must be immutable, yet executable.</li>
+  <li>4 (R) - when you want your Python, Ruby scripts to work and remain immutable.</li>
+  <li>3 (W+X) - I honestly can’t think of an usage with these permission bits.</li>
+  <li>2 (W) - useful if you have multi-accounts that you want to log into one file, but not know what the others wrote.</li>
+  <li>1 (X) - meaningless on non-binary files, since the shell needs to read the file to know what to do before executing it. Run binary files just fine with <code>./foo</code></li>
+</ul>
+
+<h2 id="practical">Practical</h2>
+
+<p>Let’s create a blank file and see its permissions with <code>ls -l</code> (just <code>l</code> in zsh).</p>
+
+<p><code>bash
+$ touch afile
+$ l afile
+-rw-rw-r-- 1 syndbg syndbg 0 дек  4 00:39 afile
+</code></p>
+
+<p><code>-rw-rw-r--</code> are the permissions, but wait, why are they so many?</p>
+
+<p>They’re exactly 10 characters. The first one is the file type (I’ll explain it in a bit) and the other 9 are separated in 3 triads. The first one is __u__ser (file owner) permissions, __g__roup (members from owner’s group) permissions and last - __o__ther (world) permissions.</p>
+
+<p>This means the file is readable and writeable for the owner and group, but only readable for others.</p>
+
+<h3 id="the-file-type">The file type</h3>
+
+<p><strong>The most common ones</strong>:</p>
+
+<ul>
+  <li><code>-</code> is a normal file,</li>
+  <li><code>d</code> is a directory,</li>
+  <li><code>l</code> is a symbolic link,</li>
+</ul>
+
+<p><strong>The interesting ones:</strong></p>
+
+<p>Following the Unix mantra, everything is a file, even a device (actually it’s the device’s interface).</p>
+
+<ul>
+  <li><code>s</code> is a socket device (unix socket),</li>
+  <li><code>b</code> is a block device (disk),</li>
+  <li><code>c</code> is a character device (stream),</li>
+  <li><code>p</code> is a pipe device (named pipe),</li>
+</ul>
+
+<h3 id="changing-permissions">Changing permissions</h3>
+
+<p>… is really easy! There are two ways, the first one is using the numbers, which I find easier to understand and the second is using characters.</p>
+
+<p>In both cases we’ll use <code>chmod</code>. So let’s change our example <code>afile</code>’s permissions.</p>
+
+<p>Currently they are <code>-rw-rw-r--</code>. Let’s start with the first way, using numbers.</p>
+
+<p><code>bash
+$ l afile
+-rw-rw-r-- 1 syndbg syndbg 0 дек  4 00:39 afile
+$ chmod 644 afile
+$ l afile
+-rw-r--r-- 1 syndbg syndbg 0 дек  4 00:39 afile
+</code></p>
+
+<p>And the second way requires more commands understanding and less math.</p>
+
+<p>chmod works like this - <code>chmod &lt;triad&gt;(operator)&lt;permissions&gt; filename</code></p>
+
+<ul>
+  <li>triad options are a(ll), u(ser), g(roup), o(ther) or empty (also means all). They can be combined as <code>go</code>, <code>ug</code>, <code>uo</code> or <code>ugo</code> (meaningless).</li>
+  <li>operator options are <code>+</code> or <code>-</code>. As expected, addition adds permissions, substraction - removes.</li>
+  <li>characters - <code>r</code>, <code>w</code>, <code>x</code>.</li>
+</ul>
+
+<p>(Before that we restore the file back to its previous permissions <code>-rw-rw-r--</code>)</p>
+
+<p><code>bash
+$ chmod +x afile
+# or
+$ chmod a+x afile
+# CHANGES PERMISSIONS FOR EVERYONE (user, group ,other)!_!_1-1
+# Number one mistake that everyone makes!
+$ l afile
+-rwxrw-r-- 1 syndbg syndbg 0 дек  4 00:39 afile
+# Changing just user permissions
+$ chmod u-x afile
+</code></p>
+
+<p>That’s it folks, I hope you found this useful.</p>
+
+</article>
+
+
+  <div class="share-page">
+  Spread the word!
+
+  <div class="share-links">
+    
+      <a class = "fa fa-facebook" href="https://facebook.com/sharer.php?u=http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/" rel="nofollow" target="_blank" title="Share on Facebook"></a>
+    
+
+    
+      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Linux: File Permissions, dead simple&url=http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/" rel="nofollow" target="_blank" title="Share on Twitter"></a>
+    
+
+    
+
+    
+      <a class="fa fa-linkedin" href="http://www.linkedin.com/shareArticle?url=http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/&title=Linux: File Permissions, dead simple" rel="nofollow" target="_blank" title="Share on LinkedIn"></a>
+    
+
+    
+
+    
+
+    
+      <a class="fa fa-reddit" href="http://reddit.com/submit?url=http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/&title=Linux: File Permissions, dead simple" rel="nofollow" target="_blank" title="Share on Reddit"></a>
+    
+
+    
+      <a class="fa fa-stumbleupon" href="http://www.stumbleupon.com/submit?url=http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/&title=Linux: File Permissions, dead simple" rel="nofollow" target="_blank" title="Share on StumbleUpon"></a>
+    
+
+    
+      <a class = "fa fa-hacker-news" onclick="parent.postMessage('submit','*')" href="https://news.ycombinator.com/submitlink?u=http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/&t=Linux: File Permissions, dead simple" rel="nofollow" target="_blank" title="Share on Hacker News"></a>
+    
+
+
+  </div>
+</div>
+
+
+
+
+
+
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname  = 'syndbg';
+    var disqus_identifier = '/linux/2014/11/29/linux-file-permissions-dead-simple';
+    var disqus_title      = '';
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  
+    <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/syndbg"></a>
+    
+    
+      <a class="fa fa-stack-overflow" href="https://stackoverflow.com/users/2980299"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/syndbg"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:anton.synd.antonov@gmail.com"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/syndbg"></a>
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+  
+  <br />
+  <div class="measure">
+    <small>
+      Theme crafted with &lt;3 by <a href="http://johnotander.com">John Otander</a> (<a href="https://twitter.com/4lpine">@4lpine</a>).<br>
+      &lt;/&gt; available on <a href="https://github.com/johnotander/pixyll">Github</a>. Props to John!
+    </small>
+  </div>
+</footer>
+
+</body>
+</html>

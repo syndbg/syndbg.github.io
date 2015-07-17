@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Linux: Python(Django) Provisioning and Deployment &#8211; Anton Antonov's mindspace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Open-source developer and an eternal apprentice.">
+    <meta name="author" content="Anton Antonov">
+    <meta name="keywords" content="linux, python, django">
+    <link rel="canonical" href="http://blog.syndbg.com/linux/python/django/2014/10/12/linux-python-provisioning-and-deployment/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Anton Antonov's mindspace" href="/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201507172353" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Linux: Python(Django) Provisioning and Deployment">
+    <meta property="og:description" content="Open-source developer and an eternal apprentice.">
+    <meta property="og:url" content="http://blog.syndbg.com/linux/python/django/2014/10/12/linux-python-provisioning-and-deployment/">
+    <meta property="og:site_name" content="Anton Antonov&#39;s mindspace">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+        <meta name="twitter:site" content="@syndbg" />
+    
+    <meta name="twitter:title" content="Linux: Python(Django) Provisioning and Deployment" />
+    <meta name="twitter:description" content="Open-source developer and an eternal apprentice." />
+    <meta name="twitter:url" content="http://blog.syndbg.com/linux/python/django/2014/10/12/linux-python-provisioning-and-deployment/" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+        
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-52395557-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+</head>
+
+<body class="site animated fade-in-down">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://blog.syndbg.com" class="site-title">Anton Antonov's mindspace</a>
+      <nav class="site-nav">
+        <a href="/about/">About</a>
+<a href="https://www.goodreads.com/user/show/36949456-anton-antonov">Reads</a>
+<a href="https://github.com/pulls?q=is%3Aopen+is%3Apr+author%3Asyndbg">Open-Source contributions</a>
+
+      </nav>
+      <div class="clearfix"></div>
+
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Linux: Python(Django) Provisioning and Deployment</h1>
+  <span class="post-meta">Oct 12, 2014</span><br>
+    
+  <span class="post-meta small">
+  
+    8 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>In the following tutorial/guide/article I’ll explain how to provision and deploy a Django app.</p>
+
+<p>Before all you should have:</p>
+
+<ul>
+  <li>A domain (GoDaddy, Namecheap, Hover, ICN.bg, superhosting and etc)</li>
+  <li>VPS/Cloud host with SSH (digitalocean.com is my pick)</li>
+</ul>
+
+<h2 id="domain-vps-cloud-setup">Domain, VPS, Cloud setup</h2>
+
+<p><strong>If you bought a domain, but didn’t configure it yet:</strong></p>
+
+<p>You should change the DNS Name Servers (NS in short) to DigitalOcean’s or your VPS/Cloud provider’s (if they have such).</p>
+
+<p>To do so:</p>
+
+<ul>
+  <li>Sign in your domain provider’s site</li>
+  <li>Change the NS to ns1.digitalocean.com, ns2.digitalocean.com, ns3.digitalocean.com or your VPS/Cloud provider’s.</li>
+  <li>Save and forget the domain provider’s site, hopefully.</li>
+</ul>
+
+<p><strong>Now in your VPS/Cloud provider’s website, DigitalOcean in my case:</strong></p>
+
+<ul>
+  <li>Login</li>
+  <li>Go to the DNS page and add your domain name there.</li>
+  <li>(If you don’t have one yet) Create a container with latest Ubuntu/Debian and copy the container IP address</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Create an A record with your</td>
+          <td>domain name you bought</td>
+          <td>and</td>
+          <td>container IP address that you copied</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>(Optional) you can also point every sub-domain to your container, to do so create a CNAME</td>
+          <td>*</td>
+          <td>and</td>
+          <td>@</td>
+          <td>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p>In the end you should have something like</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Record Type</th>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>@</td>
+      <td>Your Container IP</td>
+    </tr>
+    <tr>
+      <td>CNAME</td>
+      <td>*</td>
+      <td>@</td>
+    </tr>
+    <tr>
+      <td>NS</td>
+      <td>ns1.digitalocean.com</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>NS</td>
+      <td>ns1.digitalocean.com</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>NS</td>
+      <td>ns1.digitalocean.com</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>CNAME is optional!</li>
+</ul>
+
+<p><strong>Now a zone file should be generated for your domain. While the file is generated, we can move to the provisioning part.</strong></p>
+
+<h2 id="provisioning">Provisioning</h2>
+
+<p><strong>Requirements:</strong></p>
+
+<ul>
+  <li>Python 2/3 (Python 3 is preferred nowadays)</li>
+  <li>nginx (reverse proxy server you should use to serve static files <em>fast</em>)</li>
+  <li>virtualenv (the python tool for isolated virtual environments)</li>
+  <li>pip (the python package manager)</li>
+  <li>gunicorn (python HTTP server you should be using in production)</li>
+</ul>
+
+<p><strong>1. Connect through SSH to your container</strong></p>
+
+<p>To do so - <code>ssh root@containerIP</code></p>
+
+<p>You should be asked for password. Enter the password you set during container creation or the password you had automatically generated for your container.</p>
+
+<p>After the first successful login, you should use SSH keys.</p>
+
+<ul>
+  <li>To generate a SSH keys pair, follow <a href="https://help.github.com/articles/generating-ssh-keys/">Github’s tutorial</a> until Step 3.</li>
+  <li>Then just copy your public key with <code>ssh-copy-id root@containerIP</code></li>
+  <li>You should see a prompt that says your identity is unknown, do you want to continue: type yes.</li>
+  <li>Logout from your SSH and try login again with <code>ssh root@containerIP</code>. Now you shouldn’t be asked for a password at all!</li>
+</ul>
+
+<p><strong>2. Install the above requirements. In Debian/Ubuntu it should look like this. (else, replace apt-get,
+with your distro’s package manager):</strong></p>
+
+<p><code>shell
+sudo apt-get update
+sudo apt-get install python3, nginx, python3-pip
+sudo pip3 install virtualenv
+</code></p>
+
+<p><strong>3. Create a sudo user:</strong></p>
+
+<p>You should never ever use root to deploy your apps. Instead create new sudo users for each app you deploy.</p>
+
+<p>To create an user:
+<code>shell
+useradd -m -s /bin/bash USERNAME
+</code>
+* <code>-m</code> creates a home folder for the user, ex. /home/USERNAME, <code>-s</code> sets the new user’s preferred shell.</p>
+
+<p>To make him a sudo user:
+<code>shell
+usermod -a -G sudo USERNAME
+</code>
+* <code>-a</code> tells to append, <code>-G</code> specifies a group, in our case that’s group <code>sudo</code>.</p>
+
+<p><strong>4. Create the folder structure:</strong></p>
+
+<p>This is what I recommend. If you know what you’re doing, you can use your own, but the DEPLOYMENT steps will differ a lot!</p>
+
+<ul>
+  <li>A sites folder that contains all our domain names</li>
+  <li>A database, source, static and virtualenv folder for each domain name.</li>
+</ul>
+
+<p><code>database</code> - our database usage instructions and files will be there</p>
+
+<p><code>source</code> - our app code for that domain code will be there. In our case, our Django app will be there</p>
+
+<p><code>static</code> - the HTML/CSS/JS files that our app needs. These are the files that nginx will serve.</p>
+
+<p><code>virtualenv</code> - our python2/3 virtualenv with the packages we need, one of them is gunicorn, the others are what you have in your PIP requirements.txt file.</p>
+
+<p><strong>Our folder structure should look like this:</strong></p>
+
+<p><code>
+/home/USERNAME
+├── sites
+│   └── your-domain.com
+│       ├── database
+│       ├── source
+│       ├── static
+│       └── virtualenv
+</code></p>
+
+<p>So create the above folders.
+<code>shell
+mkdir -p sites/your-domain.com/database
+cd sites/your-domain.com
+mkdir source
+mkdir static
+mkdir virtualenv
+</code></p>
+
+<h2 id="deployment">Deployment:</h2>
+
+<p>If you disconnected from your container, connect again.</p>
+
+<p>By now your domain name should be correctly pointing to your container’s IP address.</p>
+
+<p>Try now to connect with <code>ssh yourNewUsername@domain-name.com</code>.
+If it still fails, consider contacting the domain provider and VPS/Cloud hosting provider supports.
+It’s probably a problem on their ends.</p>
+
+<p>If everything is good now, continue.</p>
+
+<p><strong>1. Clone your code:</strong></p>
+
+<p><em>If you have your code hosted in Github:</em></p>
+
+<ul>
+  <li>Install git on your container -<code>sudo apt-get install git</code></li>
+  <li>Clone your app’s github repo in <code>sites/your-domain.com/source</code> - <code>git clone git@github.com:yourGitUsername/yourGithubRepoName.git</code></li>
+</ul>
+
+<p><em>If you’ve downloaded your app to your local PC from git, SVN, hg or wherever:</em></p>
+
+<ul>
+  <li>In your local PC, go to your app’s folder, ex. <code>cd ~/apps/django-app</code></li>
+  <li>From your local PC, copy the folder contents to your container’s <code>sites/your-domain.com/source</code> - <code>scp -r * yourNewUsername@domain-name.com:~/sites/domain-name.com/source/</code></li>
+</ul>
+
+<p><strong>2. Create a Python virtual environment:</strong></p>
+
+<p>Replace <code>python_version</code> with python2.7 or python3, depending on what you need for your app.</p>
+
+<ul>
+  <li>
+    <p>Go to <code>sites/domain-name.com/</code></p>
+  </li>
+  <li>
+    <p>Create a virtualenv - <code>virtualenv --python=python_version virtualenv/</code></p>
+  </li>
+</ul>
+
+<p>You should have your virtualenv folder populated with the virtualenv you just created.</p>
+
+<p>At last, activate the virtualenv <code>source virtualenv/bin/activate</code></p>
+
+<p><strong>3. Install your app’s requirements</strong></p>
+
+<p>I assume you’re still in the virtualenv.</p>
+
+<p><em>If you have a requirements file</em> - <code>pip install -r requirements.txt</code></p>
+
+<p><em>If you don’t, manually install every app like</em> -<code>pip install app-name</code></p>
+
+<p><strong>install gunicorn, the HTTP server we’ll use:</strong></p>
+
+<p><code>pip install gunicorn</code></p>
+
+<p>*Finally, see if everything you need, incl. gunicorn is installed * - <code>pip freeze</code></p>
+
+<p>For me that is:
+<code>shell
+% pip freeze
+Django==1.7
+gunicorn==19.1.1
+</code></p>
+
+<p><strong>3. Adjust our Django app settings.py to our deploy folder structure</strong></p>
+
+<ul>
+  <li>Go to <code>sites/domain-name.com/source/app_name/</code></li>
+  <li>Modify <code>settings.py</code> - <code>vim settings.py</code></li>
+</ul>
+
+<p>You should modify the following lines</p>
+
+<p>```python
+import os
+BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(<strong>file</strong>)))</p>
+
+<h1 id="security-warning-dont-run-with-debug-turned-on-in-production">SECURITY WARNING: don’t run with debug turned on in production!</h1>
+<p>DEBUG = False
+TEMPLATE_DEBUG = DEBUG</p>
+
+<h1 id="needed-when-debugfalse">Needed when DEBUG=False</h1>
+<p>ALLOWED_HOSTS = [‘domain-name.com’]
+## ^ However for me it doesn’t work all the time,
+## so it’s ok to just replace it with [‘*’]</p>
+
+<p>DATABASES = {
+    ‘default’: {
+        # For other DBs ‘django.db.backends.X’, X = ‘postgresql_psycopg2’, ‘django_mongodb_engine’, ‘mysql’, ‘sqlite3’ or ‘oracle’.
+        ‘ENGINE’: ‘django.db.backends.sqlite3’,
+        ‘NAME’: os.path.join(BASE_DIR, ‘../database/db.sqlite3’), # or DB name
+        # If using sqlite3, delete the following lines
+        ‘USER’: ‘db_user’,
+        ‘PASSWORD’: ‘db_password’,
+        # Empty for localhost through domain sockets or ‘127.0.0.1’ for localhost through TCP.
+        ‘HOST’: ‘’,
+        ‘PORT’: ‘’,  # Empty for default
+    }
+}</p>
+
+<p>STATIC_ROOT = os.path.join(BASE_DIR, ‘../static’)
+```</p>
+
+<p><strong>4. Configure nginx</strong></p>
+
+<ul>
+  <li>Create an nginx settings file for our domain. - <code>vim /etc/nginx/sites-available/domain-name.com</code></li>
+</ul>
+
+<p>```shell
+server {
+    listen 80;
+    server_name domain-name.com;</p>
+
+<pre><code>location /static {
+    alias /home/USERNAME/sites/domain-name.com/static;
+}
+
+# We'll use UNIX domain socket's that can be used by nginx and gunicorn
+location / {
+    proxy_set_header Host $host;
+    proxy_pass http://unix:/tmp/domain-name.com.socket/
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>** 5. Create an Upstart file**</p>
+
+<p>This will make sure our nginx and gunicorn servers are running automatically.</p>
+
+<p>So let’s create it - <code>vim /etc/init/domain-name.com.conf</code>
+```shell
+description “Our gunicorn server for domain-name.com”</p>
+
+<p>start on net-device-up
+stop on shutdown</p>
+
+<p>respawn</p>
+
+<p>setuid yourNewUsername
+chdir /home/yourNewUsername/sites/domain-name.com/source</p>
+
+<p>exec ../virtualenv/bin/gunicorn –bind unix:/tmp/domain-name.com.socket app-name.wsgi:application
+```</p>
+
+<p>What did we just write?</p>
+
+<ul>
+  <li><code>description</code> - is a description, ok.</li>
+  <li><code>start on net-device-up</code> - starts when we have internet.</li>
+  <li><code>stop on shutdown</code> - stops on shutdown, as we want to.</li>
+  <li><code>respawn</code> - makes sure to keep it alive. When the process dies it will automatically try to start it again.</li>
+  <li><code>setuid</code> - makes the process run as our username we use to deploy our app.</li>
+  <li><code>chdir</code> - sets the working dir to our domain-name.com’s source folder.</li>
+  <li><code>exec</code> - lauches our gunicorn HTTP server and binds it to the Unix domain socket we used in our nginx config.</li>
+</ul>
+
+<p><strong>Important!</strong> If you have a Django app, you would have a <code>wsgi.py</code> file, that is Python’s primary web deployment platform.
+Flask and other web frameworks have that too.</p>
+
+<p>To elaborate more, WSGI - Webserver Gateway Interface. And the <code>wsgi.py</code> file exposes the WSGI callable as a module-level variable named <code>application</code>.
+We use that as <code>app-name.wsgi:application</code> in older than Django 1.7. But in Django 1.7 (and newer probably) we can just use <code>app-name.wsgi</code>.</p>
+
+<p><strong>In both cases app-name is the Django web app’s name. Also known as project.</strong></p>
+
+<p><strong>6. Last touches before everything is running</strong></p>
+
+<p>So assuming we wrote everything correctly, last thing we need is:</p>
+
+<ul>
+  <li>Source in your domain-name.com’s virtualenv - <code>source virtualenv/bin/activate</code></li>
+  <li>To migrate our database - for Django earlier than 1.7 - <code>python manage.py syncdb -all;python manage.py migrate --fake</code>.
+For Django 1.7 - <code>python manage.py migrate</code></li>
+  <li>Generate staticfiles <code>python manage.py collectstatic</code></li>
+</ul>
+
+<p><strong>7. Run everything!</strong></p>
+
+<ul>
+  <li>Start/restart nginx - <code>sudo service nginx restart</code></li>
+  <li>Start/restart the gunicorn job - <code>sudo restart gunicorn-domain-name.com</code></li>
+  <li>Open a browser on your local PC and try to open <code>Your container IP address</code> and <code>domain-name.com</code>.
+Both should show your app that you just deployed.</li>
+</ul>
+
+<p>Congrats!</p>
+
+</article>
+
+
+  <div class="share-page">
+  Spread the word!
+
+  <div class="share-links">
+    
+      <a class = "fa fa-facebook" href="https://facebook.com/sharer.php?u=http://blog.syndbg.com/linux/python/django/2014/10/12/linux-python-provisioning-and-deployment/" rel="nofollow" target="_blank" title="Share on Facebook"></a>
+    
+
+    
+      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Linux: Python(Django) Provisioning and Deployment&url=http://blog.syndbg.com/linux/python/django/2014/10/12/linux-python-provisioning-and-deployment/" rel="nofollow" target="_blank" title="Share on Twitter"></a>
+    
+
+    
+
+    
+      <a class="fa fa-linkedin" href="http://www.linkedin.com/shareArticle?url=http://blog.syndbg.com/linux/python/django/2014/10/12/linux-python-provisioning-and-deployment/&title=Linux: Python(Django) Provisioning and Deployment" rel="nofollow" target="_blank" title="Share on LinkedIn"></a>
+    
+
+    
+
+    
+
+    
+      <a class="fa fa-reddit" href="http://reddit.com/submit?url=http://blog.syndbg.com/linux/python/django/2014/10/12/linux-python-provisioning-and-deployment/&title=Linux: Python(Django) Provisioning and Deployment" rel="nofollow" target="_blank" title="Share on Reddit"></a>
+    
+
+    
+      <a class="fa fa-stumbleupon" href="http://www.stumbleupon.com/submit?url=http://blog.syndbg.com/linux/python/django/2014/10/12/linux-python-provisioning-and-deployment/&title=Linux: Python(Django) Provisioning and Deployment" rel="nofollow" target="_blank" title="Share on StumbleUpon"></a>
+    
+
+    
+      <a class = "fa fa-hacker-news" onclick="parent.postMessage('submit','*')" href="https://news.ycombinator.com/submitlink?u=http://blog.syndbg.com/linux/python/django/2014/10/12/linux-python-provisioning-and-deployment/&t=Linux: Python(Django) Provisioning and Deployment" rel="nofollow" target="_blank" title="Share on Hacker News"></a>
+    
+
+
+  </div>
+</div>
+
+
+
+
+
+
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname  = 'syndbg';
+    var disqus_identifier = '/linux/python/django/2014/10/12/linux-python-provisioning-and-deployment';
+    var disqus_title      = '';
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  
+    <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/syndbg"></a>
+    
+    
+      <a class="fa fa-stack-overflow" href="https://stackoverflow.com/users/2980299"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/syndbg"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:anton.synd.antonov@gmail.com"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/syndbg"></a>
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+  
+  <br />
+  <div class="measure">
+    <small>
+      Theme crafted with &lt;3 by <a href="http://johnotander.com">John Otander</a> (<a href="https://twitter.com/4lpine">@4lpine</a>).<br>
+      &lt;/&gt; available on <a href="https://github.com/johnotander/pixyll">Github</a>. Props to John!
+    </small>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Publishing to PyPi Can Be A Nightmare &#8211; Anton Antonov's mindspace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Open-source developer and an eternal apprentice.">
+    <meta name="author" content="Anton Antonov">
+    <meta name="keywords" content="python, pypi">
+    <link rel="canonical" href="http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Anton Antonov's mindspace" href="/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201507172353" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Publishing to PyPi Can Be A Nightmare">
+    <meta property="og:description" content="Open-source developer and an eternal apprentice.">
+    <meta property="og:url" content="http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/">
+    <meta property="og:site_name" content="Anton Antonov&#39;s mindspace">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+        <meta name="twitter:site" content="@syndbg" />
+    
+    <meta name="twitter:title" content="Publishing to PyPi Can Be A Nightmare" />
+    <meta name="twitter:description" content="Open-source developer and an eternal apprentice." />
+    <meta name="twitter:url" content="http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+        
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-52395557-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+</head>
+
+<body class="site animated fade-in-down">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://blog.syndbg.com" class="site-title">Anton Antonov's mindspace</a>
+      <nav class="site-nav">
+        <a href="/about/">About</a>
+<a href="https://www.goodreads.com/user/show/36949456-anton-antonov">Reads</a>
+<a href="https://github.com/pulls?q=is%3Aopen+is%3Apr+author%3Asyndbg">Open-Source contributions</a>
+
+      </nav>
+      <div class="clearfix"></div>
+
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Publishing to PyPi Can Be A Nightmare</h1>
+  <span class="post-meta">Apr 5, 2015</span><br>
+    
+  <span class="post-meta small">
+  
+    2 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <h2 id="intro">Intro</h2>
+
+<p>Yesterday (04.04) I was having the most ridiculous issues with PyPi - from not being able to publish my package, to already publishing a version and not being able to update and at last - deleting my package from PyPi wouldn’t actually delete it.</p>
+
+<p><strong>This makes me ask why would you make PyPi so overengineered and quirky?</strong></p>
+
+<h2 id="i-want-to-publish-a-package">I want to publish a package</h2>
+
+<p>No reliable PyPi publishing tutorial. I have to rely on users’ blogs to learn how to publish my package.</p>
+
+<p>If it was my first PyPi package, I would’ve had to rely on unofficial tutorials, since the official ones are at best, <strong>horrible</strong>. Compare https://wiki.python.org/moin/CheeseShopTutorial to http://guides.rubygems.org/make-your-own-gem/ or https://docs.npmjs.com/getting-started/creating-node-modules .</p>
+
+<p>It’s obvious which is more concise and understandable. Not to mention way fewer steps needed.</p>
+
+<h2 id="i-want-to-delete-a-specific-version">I want to delete a specific version</h2>
+
+<p>It’s mostly just a visual thing. I published version <code>1.0.0</code> of my package on PyPi and I delete it from the Web UI. Does this means it’s really deleted? No!</p>
+
+<p>If I try to upload my package anew, I would get the message below, even though I deleted it from the PyPi’s web UI.</p>
+
+<p><code>
+Upload failed (400): This filename has previously been used, you should use a different version.
+</code></p>
+
+<h2 id="i-want-to-delete-my-project">I want to delete my project</h2>
+
+<p>Same problem as above. Deleting my project completely, still doesn’t delete the versions from PyPi. It would hide them from users therefore rendering it impossible to install anything with <code>pip install my_package</code>, but the files would stil persist on PyPi servers.</p>
+
+<h2 id="i-just-want-my-package-to-be-reachable-by-people-damn-it">I just want my package to be reachable by people, damn it!</h2>
+
+<p>If you already published a version once and deleted it from the Web UI, chances are that you can never EVER again use that version number and you must settle with another one. Don’t do my mistake and publish starting with <code>1.0.0</code> even if your package is ~100% test covered. It’s not PyPi covered. Yeah, we have to cover that too.</p>
+
+<p>The only workaround is when uploading to specify explicitly to upload as <code>zip</code>. Why it works? Cause by default it gets uploaded as <code>tar.gz</code>. So if you have already uploaded version <code>1.0.0</code>, it exists as <code>{package-name}-1.0.0.tar.gz</code> and you can upload it as <code>{package-name}-1.0.0.zip</code> if you write:</p>
+
+<p><code>
+python setup.py sdist --formats=zip upload
+</code></p>
+
+<p>However you should read a bit about <code>setup.py</code>’s <code>zip_safe</code> setting https://pythonhosted.org/setuptools/setuptools.html#setting-the-zip-safe-flag .</p>
+
+<p>If you uploaded it as <code>zip</code> first, just do the reverse and upload with <code>formats=tar.gz</code> .</p>
+
+<h2 id="is-there-a-future">Is there a future?</h2>
+
+<p>There are two sides of the coin, as seen in the articles:</p>
+
+<ul>
+  <li>Alex Clark’s http://blog.aclark.net/2011/01/31/in-defense-of-pypi/</li>
+  <li>Peter Fein’s http://i.wearpants.org/blog/elitism-and-the-importance-of-pypi/</li>
+</ul>
+
+<p>I was willing to accept this situation if we were still in 2010-2012, but it’s 2015 and PyPi isn’t getting any better. Not at all, while JS, Ruby and the newer languages Rust and Go, all have better package publishing and management.</p>
+
+<p>If Python wants to move forward and keep up with the other languages, being the best starter programming language isn’t enough to keep people coding in Python. We need to fix the <code>Python 3 port</code> and <code>PyPi</code> problem as soon as possible.</p>
+
+<p>Sincerely, a Pythonista.</p>
+
+</article>
+
+
+  <div class="share-page">
+  Spread the word!
+
+  <div class="share-links">
+    
+      <a class = "fa fa-facebook" href="https://facebook.com/sharer.php?u=http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/" rel="nofollow" target="_blank" title="Share on Facebook"></a>
+    
+
+    
+      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Publishing to PyPi Can Be A Nightmare&url=http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/" rel="nofollow" target="_blank" title="Share on Twitter"></a>
+    
+
+    
+
+    
+      <a class="fa fa-linkedin" href="http://www.linkedin.com/shareArticle?url=http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/&title=Publishing to PyPi Can Be A Nightmare" rel="nofollow" target="_blank" title="Share on LinkedIn"></a>
+    
+
+    
+
+    
+
+    
+      <a class="fa fa-reddit" href="http://reddit.com/submit?url=http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/&title=Publishing to PyPi Can Be A Nightmare" rel="nofollow" target="_blank" title="Share on Reddit"></a>
+    
+
+    
+      <a class="fa fa-stumbleupon" href="http://www.stumbleupon.com/submit?url=http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/&title=Publishing to PyPi Can Be A Nightmare" rel="nofollow" target="_blank" title="Share on StumbleUpon"></a>
+    
+
+    
+      <a class = "fa fa-hacker-news" onclick="parent.postMessage('submit','*')" href="https://news.ycombinator.com/submitlink?u=http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/&t=Publishing to PyPi Can Be A Nightmare" rel="nofollow" target="_blank" title="Share on Hacker News"></a>
+    
+
+
+  </div>
+</div>
+
+
+
+
+
+
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname  = 'syndbg';
+    var disqus_identifier = '/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare';
+    var disqus_title      = '';
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  
+    <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/syndbg"></a>
+    
+    
+      <a class="fa fa-stack-overflow" href="https://stackoverflow.com/users/2980299"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/syndbg"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:anton.synd.antonov@gmail.com"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/syndbg"></a>
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+  
+  <br />
+  <div class="measure">
+    <small>
+      Theme crafted with &lt;3 by <a href="http://johnotander.com">John Otander</a> (<a href="https://twitter.com/4lpine">@4lpine</a>).<br>
+      &lt;/&gt; available on <a href="https://github.com/johnotander/pixyll">Github</a>. Props to John!
+    </small>
+  </div>
+</footer>
+
+</body>
+</html>

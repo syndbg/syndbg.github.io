@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Anton Antonov&#39;s mindspace</title>
+    <description>Open-source developer and an eternal apprentice.</description>
+    <link>http://blog.syndbg.com/</link>
+    <atom:link href="http://blog.syndbg.com/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>AngularJS: Life cycles</title>
+        <description>&lt;h2 id=&quot;angularjs&quot;&gt;AngularJS&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://angularjs.org/img/AngularJS-large.png&quot; alt=&quot;Angular logo&quot; title=&quot;Angular logo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;AngularJS is the de facto standard MVW Framework at the moment.
+ReactJS may look promising, but AngularJS is still the most used.&lt;/p&gt;
+
+&lt;p&gt;So what really makes AngularJS that complex? Of course it took great engineering minds to create something
+so powerful, yet so simple to understand once you got the basics down.&lt;/p&gt;
+
+&lt;p&gt;And in AngularJS the two most important concepts to understand is directives, since AngularJS is all about directives&lt;/p&gt;
+
+&lt;p&gt;and life cycles.&lt;/p&gt;
+
+&lt;h2 id=&quot;ill-look-at-the-initial-digest-and-directive-cycles&quot;&gt;I’ll look at the &lt;code&gt;initial&lt;/code&gt;, &lt;code&gt;digest&lt;/code&gt; and &lt;code&gt;directive&lt;/code&gt; cycles.&lt;/h2&gt;
+
+&lt;p&gt;Understanding them is understanding Angular.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-initial-cycle&quot;&gt;The initial cycle&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.gliffy.com/go/publish/image/8003305/L.png&quot; alt=&quot;The initial cycle&quot; title=&quot;The initial cycle&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;the-digest-cycle&quot;&gt;The digest cycle&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.gliffy.com/go/publish/image/8015461/L.png&quot; alt=&quot;The digest cycle&quot; title=&quot;The digest cycle&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;the-directive-cycle&quot;&gt;The directive cycle&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.gliffy.com/go/publish/image/8016399/L.png&quot; alt=&quot;The directive cycle&quot; title=&quot;The directive cycle&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 04 May 2015 11:21:29 +0000</pubDate>
+        <link>http://blog.syndbg.com/angularjs/javascript/2015/05/04/angularjs-lifecycles/</link>
+        <guid isPermaLink="true">http://blog.syndbg.com/angularjs/javascript/2015/05/04/angularjs-lifecycles/</guid>
+      </item>
+    
+      <item>
+        <title>Publishing to PyPi Can Be A Nightmare</title>
+        <description>&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;/h2&gt;
+
+&lt;p&gt;Yesterday (04.04) I was having the most ridiculous issues with PyPi - from not being able to publish my package, to already publishing a version and not being able to update and at last - deleting my package from PyPi wouldn’t actually delete it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;This makes me ask why would you make PyPi so overengineered and quirky?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;i-want-to-publish-a-package&quot;&gt;I want to publish a package&lt;/h2&gt;
+
+&lt;p&gt;No reliable PyPi publishing tutorial. I have to rely on users’ blogs to learn how to publish my package.&lt;/p&gt;
+
+&lt;p&gt;If it was my first PyPi package, I would’ve had to rely on unofficial tutorials, since the official ones are at best, &lt;strong&gt;horrible&lt;/strong&gt;. Compare https://wiki.python.org/moin/CheeseShopTutorial to http://guides.rubygems.org/make-your-own-gem/ or https://docs.npmjs.com/getting-started/creating-node-modules .&lt;/p&gt;
+
+&lt;p&gt;It’s obvious which is more concise and understandable. Not to mention way fewer steps needed.&lt;/p&gt;
+
+&lt;h2 id=&quot;i-want-to-delete-a-specific-version&quot;&gt;I want to delete a specific version&lt;/h2&gt;
+
+&lt;p&gt;It’s mostly just a visual thing. I published version &lt;code&gt;1.0.0&lt;/code&gt; of my package on PyPi and I delete it from the Web UI. Does this means it’s really deleted? No!&lt;/p&gt;
+
+&lt;p&gt;If I try to upload my package anew, I would get the message below, even though I deleted it from the PyPi’s web UI.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+Upload failed (400): This filename has previously been used, you should use a different version.
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;i-want-to-delete-my-project&quot;&gt;I want to delete my project&lt;/h2&gt;
+
+&lt;p&gt;Same problem as above. Deleting my project completely, still doesn’t delete the versions from PyPi. It would hide them from users therefore rendering it impossible to install anything with &lt;code&gt;pip install my_package&lt;/code&gt;, but the files would stil persist on PyPi servers.&lt;/p&gt;
+
+&lt;h2 id=&quot;i-just-want-my-package-to-be-reachable-by-people-damn-it&quot;&gt;I just want my package to be reachable by people, damn it!&lt;/h2&gt;
+
+&lt;p&gt;If you already published a version once and deleted it from the Web UI, chances are that you can never EVER again use that version number and you must settle with another one. Don’t do my mistake and publish starting with &lt;code&gt;1.0.0&lt;/code&gt; even if your package is ~100% test covered. It’s not PyPi covered. Yeah, we have to cover that too.&lt;/p&gt;
+
+&lt;p&gt;The only workaround is when uploading to specify explicitly to upload as &lt;code&gt;zip&lt;/code&gt;. Why it works? Cause by default it gets uploaded as &lt;code&gt;tar.gz&lt;/code&gt;. So if you have already uploaded version &lt;code&gt;1.0.0&lt;/code&gt;, it exists as &lt;code&gt;{package-name}-1.0.0.tar.gz&lt;/code&gt; and you can upload it as &lt;code&gt;{package-name}-1.0.0.zip&lt;/code&gt; if you write:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+python setup.py sdist --formats=zip upload
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;However you should read a bit about &lt;code&gt;setup.py&lt;/code&gt;’s &lt;code&gt;zip_safe&lt;/code&gt; setting https://pythonhosted.org/setuptools/setuptools.html#setting-the-zip-safe-flag .&lt;/p&gt;
+
+&lt;p&gt;If you uploaded it as &lt;code&gt;zip&lt;/code&gt; first, just do the reverse and upload with &lt;code&gt;formats=tar.gz&lt;/code&gt; .&lt;/p&gt;
+
+&lt;h2 id=&quot;is-there-a-future&quot;&gt;Is there a future?&lt;/h2&gt;
+
+&lt;p&gt;There are two sides of the coin, as seen in the articles:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Alex Clark’s http://blog.aclark.net/2011/01/31/in-defense-of-pypi/&lt;/li&gt;
+  &lt;li&gt;Peter Fein’s http://i.wearpants.org/blog/elitism-and-the-importance-of-pypi/&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I was willing to accept this situation if we were still in 2010-2012, but it’s 2015 and PyPi isn’t getting any better. Not at all, while JS, Ruby and the newer languages Rust and Go, all have better package publishing and management.&lt;/p&gt;
+
+&lt;p&gt;If Python wants to move forward and keep up with the other languages, being the best starter programming language isn’t enough to keep people coding in Python. We need to fix the &lt;code&gt;Python 3 port&lt;/code&gt; and &lt;code&gt;PyPi&lt;/code&gt; problem as soon as possible.&lt;/p&gt;
+
+&lt;p&gt;Sincerely, a Pythonista.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 05 Apr 2015 11:21:29 +0000</pubDate>
+        <link>http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/</link>
+        <guid isPermaLink="true">http://blog.syndbg.com/python/pypi/2015/04/05/publishing-to-pypi-can-be-a-nightmare/</guid>
+      </item>
+    
+      <item>
+        <title>Learning Django</title>
+        <description>&lt;p&gt;Django is the go-to batteries included web framework for Pythonista.&lt;/p&gt;
+
+&lt;p&gt;However starting to create web apps with Django is a bit rough,
+if you don’t have the comfort of someone mentoring you.&lt;/p&gt;
+
+&lt;p&gt;From my experience as a Django developer for 1 year, 3-4 projects and close to 3 versions of the framework,
+I will share the materials that helped me start with Django without
+prior web and MVC pattern experience.&lt;/p&gt;
+
+&lt;p&gt;First of all I am a book guy, I like books. I think books are the best tutorials since they’re better structured than blog tutorials who cover only small portions of the greater picture.&lt;/p&gt;
+
+&lt;h2 id=&quot;my-recommendations-are&quot;&gt;My recommendations are:&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;You’re not confident you know Python?&lt;/strong&gt;. Kein problem. Months ago I was amazed by &lt;a href=&quot;http://shop.oreilly.com/product/0636920028659.do&quot;&gt;Bill Lubanovic’s Introducing Python&lt;/a&gt; and how clear, concise and practical the book is. The book I wish I had when I started writing Python. You’ll learn to express yourself in Python code faster than you can speak in &lt;a href=&quot;http://harrypotter.wikia.com/wiki/Parseltongue&quot;&gt;Parseltongue&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;If you have no web or MVC pattern experience start with Flask.&lt;/strong&gt; Yep, Flask the microframework. You need to understand how a really basic web app works and how to achieve things in a non-pattern enforced way.&lt;/p&gt;
+
+&lt;p&gt;Flask gives you the freedom to mimic MVC or structure your web app the way it makes sense to you. Either way, it’s a web microframework that doesn’t overwhelm you at first.&lt;/p&gt;
+
+&lt;p&gt;Go for Miguel Grinberg’s amazing &lt;a href=&quot;http://flaskbook.com/&quot;&gt;Flask Web Development Book&lt;/a&gt;. It’s the best web development starter book you can wish for!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;But if you won’t settle with anything different than Django or have web experience or experience with MVC&lt;/strong&gt;,&lt;/p&gt;
+
+&lt;p&gt;Go for the playful &lt;a href=&quot;http://www.tangowithdjango.com/&quot;&gt;Tango with Django tutorial&lt;/a&gt;. It’s updated for Django 1.7 and touches upon everything you’ll need to know (at least as basics) if you want to create a Django web app from start to finish.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ok you have the basics down, you look to improve and master Django&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here are the latest and greatest (in my eyes) books that you should read - &lt;a href=&quot;http://shop.oreilly.com/product/0636920029533.do&quot;&gt;Test-Driven Development with Python&lt;/a&gt;. The best book I’ve read on TDD and the book that taught me the most on how to develop and ship quality software. Author Harry J.W Percival is a TDD beast and will have you learn how to test every tiny bit of Django. Doing unit and integration tests, you’ll learn the most about the framework. Also great benefits are learning how to deploy, add a bit of JS fanciness and automate the deployment process of your web app. Definitely one of the best books I’ve read about Python.&lt;/p&gt;
+
+&lt;p&gt;After you woke up in your new self as TDD(iddy), take a look at the tasty &lt;a href=&quot;http://twoscoopspress.org/&quot;&gt;Two Scoops of Django&lt;/a&gt;, available for 1.5/1.6 at the time of writing. But don’t let that stop you, it’s experts Daniel Greenfeld and Audrey Roy’s advice for Django developers. Even being 1-2-3 versions behind won’t change the fact that it’s still a MVC framework that functions in the same way but with new features. You might even learn more by seeing how experts dealt with specific problems in earlier versions and how (maybe/hopefully) Django project core devs made that easier/better.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;You got the JS hype and you need to combine it with Django without causing a nuclear reaction&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;We all have been there. But since November 2014 we have a book that teaches you all the things you need to know to make JS and Django behave under 1 roof.
+The book is &lt;a href=&quot;http://shop.oreilly.com/product/0636920032502.do&quot;&gt;Lightweight Django&lt;/a&gt;. Buuuut no AngularJS? I got you, check out thinkerster.io’s &lt;a href=&quot;https://thinkster.io/django-angularjs-tutorial/&quot;&gt;Building Web Applications with Django and AngularJS&lt;/a&gt; and their other AngularJS oriented tutorials for Rails and Firebase.
+You’ll quickly realize that adding a JS frontend to your web app involves the same abstract steps in most web frameworks.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Useful resources&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://rnevius.github.io/django_request_response_cycle.png&quot; alt=&quot;request response cycle&quot; title=&quot;request response cycle&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;At the time of writing this, the latest stable release of Django is 1.7.&lt;/li&gt;
+  &lt;li&gt;In Django Model-View-Controller translates to Model-Template-View.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 26 Mar 2015 11:21:29 +0000</pubDate>
+        <link>http://blog.syndbg.com/django/python/2015/03/26/learning-django/</link>
+        <guid isPermaLink="true">http://blog.syndbg.com/django/python/2015/03/26/learning-django/</guid>
+      </item>
+    
+      <item>
+        <title>Intro AngularJS</title>
+        <description>&lt;p&gt;During the recent week, I had to write front-end using AngularJS.
+This is a work in progress article, as I explore different AngularJS books and resources.&lt;/p&gt;
+
+&lt;p&gt;Currently, I recommend books:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://shop.oreilly.com/product/0636920033486.do&quot;&gt;&lt;img src=&quot;http://akamaicovers.oreilly.com/images/0636920033486/lrg.jpg&quot; alt=&quot;AngularJS: Up and Running&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Links:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 25 Mar 2015 11:21:29 +0000</pubDate>
+        <link>http://blog.syndbg.com/angularjs/javascript/2015/03/25/intro-angularjs/</link>
+        <guid isPermaLink="true">http://blog.syndbg.com/angularjs/javascript/2015/03/25/intro-angularjs/</guid>
+      </item>
+    
+      <item>
+        <title>Python: Decorators gotchas</title>
+        <description>&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;/h2&gt;
+
+&lt;p&gt;In Python, decorators are one of the most misunderstood features and one of the most blogged topic,
+due to the their gotcha nature.&lt;/p&gt;
+
+&lt;p&gt;What’s a gotcha:
+&amp;gt; In programming, a gotcha is a feature of a system, a program or a programming language that works in the way it is
+&amp;gt; documented but is counter-intuitive and almost invites mistakes because it is both enticingly easy to invoke and
+&amp;gt; completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;If you’re not familiar with the idea behind decorators, head to &lt;a href=&quot;https://www.python.org/dev/peps/pep-0318/&quot;&gt;PEP-0318&lt;/a&gt;.
+It’ll help understand and be able to write simple decorators.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;however-some-of-the-gotchas-ive-faced-are&quot;&gt;However, some of the gotchas I’ve faced are:&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;How do I pass args and kwargs to the decorator?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The obvious approach (not working)&lt;/p&gt;
+
+&lt;p&gt;```python
+def exposed(func, &lt;em&gt;attrs_to_expose):
+    def _callable(&lt;/em&gt;args, &lt;em&gt;*kwargs):
+        for attr in attrs_to_expose:
+            print(getattr(func, attr))
+        return func(&lt;/em&gt;args, **kwargs)
+    return _callable&lt;/p&gt;
+
+&lt;p&gt;@exposed(‘&lt;strong&gt;name&lt;/strong&gt;’, ‘&lt;strong&gt;name&lt;/strong&gt;’)
+def decorated_fn(*args):
+    ….&lt;/p&gt;
+
+&lt;h1 id=&quot;results-into&quot;&gt;Results into&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;decorated_fn(‘1’, ‘2’, ‘3’)
+decorated_func
+&lt;strong&gt;main&lt;/strong&gt;
+….
+```&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And the naive working non-obvious at first approach&lt;/p&gt;
+
+&lt;p&gt;```python
+def exposed(&lt;em&gt;attrs_to_expose):
+    def decorator(func):
+        def _callable(&lt;/em&gt;args, &lt;em&gt;*kwargs):
+            for attr in attrs_to_expose:
+                print(getattr(func, attr))
+            return func(&lt;/em&gt;args, **kwargs)
+        return _callable
+    return decorator&lt;/p&gt;
+
+&lt;h1 id=&quot;results-into-1&quot;&gt;Results into&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;decorated_fn(‘1’, ‘2’, ‘3’)
+totally_working
+&lt;strong&gt;main&lt;/strong&gt;
+yep
+```&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Same idea carries over for kwargs. BUT PLEASE, don’t use &lt;code&gt;getattr&lt;/code&gt; like that.&lt;/strong&gt; I mention the &lt;code&gt;functools.wraps&lt;/code&gt; bug and how Django devs solved it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Why do we use functools.wraps?&lt;/strong&gt; Mainly legacy&lt;/p&gt;
+
+&lt;p&gt;To make debugging decorators way easier. It updates function attributes mentioned in &lt;code&gt;functools.WRAPPER_ASSIGNMENTS&lt;/code&gt;, which at the time of writing this are &lt;code&gt;&#39;__module__&#39;, &#39;__name__&#39;, &#39;__qualname__&#39;, &#39;__doc__&#39;,
+                       &#39;__annotations__&#39;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In code for earlier than Python 2.7:&lt;/p&gt;
+
+&lt;p&gt;```python
+def exposed(func):
+    def _callable(&lt;em&gt;args, **kwargs):
+        print(func.&lt;strong&gt;name&lt;/strong&gt;)
+        print(func.&lt;strong&gt;doc&lt;/strong&gt;)
+        return func(&lt;/em&gt;args, **kwargs)
+    return _callable&lt;/p&gt;
+
+&lt;h1 id=&quot;when-we-use-it-on&quot;&gt;When we use it on:&lt;/h1&gt;
+&lt;p&gt;@exposed
+def totally_working(*args, **kwargs):
+    “&quot;”I lied”””
+    raise Exception&lt;/p&gt;
+
+&lt;h1 id=&quot;in-python-versions-earlier-than-27&quot;&gt;In Python versions earlier than 2.7&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;totally_working(‘d’, 3, ‘c’, 0, ‘rators’)
+# nothing printed&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;in-python-versions-278-or-and-33-and-newer&quot;&gt;In Python versions 2.7.8 or and 3.3 and newer&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;totally_working(‘d’, 3, ‘c’, 0, ‘rators’)
+totally_working
+I lied
+```&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Why do we implement our own &lt;code&gt;functools.wraps&lt;/code&gt; solutions?&lt;/strong&gt; Again legacy&lt;/p&gt;
+
+&lt;p&gt;Nothing is without bugs and &lt;code&gt;functools.wraps&lt;/code&gt; had a pretty long lasting bug that was reported http://bugs.python.org/issue3445 and fixed way later in Python3.3 and later.&lt;/p&gt;
+
+&lt;p&gt;Basically the &lt;code&gt;functools.WRAPPER_ASSIGNMENTS&lt;/code&gt; at that time was aggressively trying to update a function’s attributes, not taking into consideration the chances of them not existing.&lt;/p&gt;
+
+&lt;p&gt;The issue had Python developers think about ways to solve it. And from my limited experience, Django developers have the most elegant workaround. As seen https://github.com/django/django/blob/master/django/utils/decorators.py#L82&lt;/p&gt;
+
+&lt;h3 id=&quot;in-newer-python-27x-and-3x-the-use-functoolswraps-is-redundant&quot;&gt;In newer Python 2.7.x and 3.x the use &lt;code&gt;functools.wraps&lt;/code&gt; is redundant&lt;/h3&gt;
+</description>
+        <pubDate>Sat, 14 Mar 2015 11:21:29 +0000</pubDate>
+        <link>http://blog.syndbg.com/python/2015/03/14/python-decorators-gotchas/</link>
+        <guid isPermaLink="true">http://blog.syndbg.com/python/2015/03/14/python-decorators-gotchas/</guid>
+      </item>
+    
+      <item>
+        <title>Hello world... duh!</title>
+        <description>&lt;p&gt;Finally decided to make a blog.&lt;/p&gt;
+
+&lt;p&gt;Why did I do this now and not earlier/later/never ? NO CLUE. Let’s see where this goes!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 21 Jan 2015 11:21:29 +0000</pubDate>
+        <link>http://blog.syndbg.com/2015/01/21/hello-world-duh/</link>
+        <guid isPermaLink="true">http://blog.syndbg.com/2015/01/21/hello-world-duh/</guid>
+      </item>
+    
+      <item>
+        <title>Evaluating a Language&#39;s Teaching and Learning Worth</title>
+        <description>&lt;h2 id=&quot;disclaimer&quot;&gt;Disclaimer&lt;/h2&gt;
+
+&lt;p&gt;This post is inspired by &lt;a href=&quot;http://prog21.dadgum.com/203.html&quot;&gt;James Hague’s Retiring Python as a Teaching Language blog post&lt;/a&gt; and it shows my opinion, not my employer’s. It isn’t a direct message to James Hague, his opinion is valid based on his long-term experience. This blog post is about helping newcomers in general.&lt;/p&gt;
+
+&lt;h2 id=&quot;state&quot;&gt;State&lt;/h2&gt;
+
+&lt;p&gt;I’ve gone through the process of learning programming, becoming employed, becoming a mentor and lecturer myself in the past 12 months. But this is a long topic for an other blog post.&lt;/p&gt;
+
+&lt;p&gt;So let’s start this.
+Looking at language’s and their worth, there are many debates what’s good and what’s bad. People promote languages that define the web like JS, that define low-level programming like C or just define a general-purpose language that works for most of the stuff you’ll want to write - like Ruby.&lt;/p&gt;
+
+&lt;p&gt;This is all a big bias war and Python gets the shortest stick because it’s labeled as a learning language and a stepping stone towards a ‘more serious’ language. This is expected due to the language’s major influence - the ABC language and Python’s author, Guido van Rossum working on the ABC system before creating Python.&lt;/p&gt;
+
+&lt;p&gt;But in all this mess from where should new programmers start? Looking at history, for the most part formal education, universities and colleges, favored languages like Lisp and C/C++. Nowadays Python gains a bit more popularity in USA education. Does this even matter? The same cycle of teaching and learning will repeat many more times in various languages. We will see X language becoming popular, colleges will respond fast and create a new iteration of the same material, but this time in a different language.&lt;/p&gt;
+
+&lt;h2 id=&quot;change&quot;&gt;Change&lt;/h2&gt;
+
+&lt;p&gt;What I am trying to say is - learning programming isn’t about a language’s syntax or about a language’s features. You get familiar with these, but the greater thing you learn is &lt;code&gt;Thinking, Problem Solving, Patterns and Programming paradigms&lt;/code&gt; and most importantly, loving to program. People fail to learn programming because they lack motivation or purpose to learn it, not because a language has stopped them.&lt;/p&gt;
+
+&lt;p&gt;Why are we alienating newcoming people by pushing them to different languages? Instead, we could help them with whatever they code at the moment. They need an experienced person’s coding help, not an experienced person’s programming languages bias. That might matter after the newcomer has some months of experience, but in the start it’s only confusion to him/hers.&lt;/p&gt;
+
+&lt;h2 id=&quot;help&quot;&gt;Help&lt;/h2&gt;
+
+&lt;p&gt;And still if we really want to help a person pick the best, best, best programming language according to our opinions, you might ask.&lt;/p&gt;
+
+&lt;p&gt;Then pick the language with the most:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;complete books,&lt;/li&gt;
+  &lt;li&gt;tutorials,&lt;/li&gt;
+  &lt;li&gt;helpful people you can find,&lt;/li&gt;
+  &lt;li&gt;open-source projects you can learn from.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Is this surprising to anyone? We can all agree that if we started with the language with least information we could get, we wouldn’t be programmers nowadays.&lt;/p&gt;
+
+&lt;p&gt;And how should we help a person with his/her particular problem?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Algorithm help,&lt;/li&gt;
+  &lt;li&gt;Design help,&lt;/li&gt;
+  &lt;li&gt;Coding help.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Just disregarding a person’s problem with an opinion like “Oh, it’s that X language. It’s really bad for Y thing that you’re doing, you should stop programming with it and immediately start coding in Z, cause it’s better.” - THIS IS UNHELPFUL!&lt;/p&gt;
+
+&lt;p&gt;Most modern programming languages can solve the same problems, but in different manners. That depends on the programming paradigms supported by that language. You can’t expect an &lt;code&gt;imperative&lt;/code&gt; and &lt;code&gt;functional&lt;/code&gt; language to be the same.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-constants&quot;&gt;The constants&lt;/h2&gt;
+
+&lt;p&gt;After all the talk about change, you might become obsessed with changing newer and newer sources of information, disregarding the older ones who actually taught generations of successful programmers to date.&lt;/p&gt;
+
+&lt;p&gt;I’m talking about books like &lt;code&gt;Clean Code&lt;/code&gt;, &lt;code&gt;Code Complete&lt;/code&gt;, &lt;code&gt;The Pragmatic Programmer&lt;/code&gt;, &lt;code&gt;GoF Design Patterns&lt;/code&gt;, &lt;code&gt;Algorithms CLRS&lt;/code&gt;, &lt;code&gt;TCP/IP Illustrated&lt;/code&gt; and plethora more.&lt;/p&gt;
+
+&lt;p&gt;These books aren’t going to get a new iteration each one or two years, but the knowledge they pass is something that is still relevant.&lt;/p&gt;
+
+&lt;h1 id=&quot;extras&quot;&gt;Extras&lt;/h1&gt;
+
+&lt;h2 id=&quot;confusion&quot;&gt;Confusion&lt;/h2&gt;
+
+&lt;p&gt;I don’t want to say bad things to fellow lecturers/teachers, but sometimes your opinion is hurting more than helping. When teaching people serious programming for the first time, really, really carefully pick your words. Whatever you say, will surely stick in that person’s mind for the next year, until he/she gets mentored by someone else and that person may or may not change his/her mind.&lt;/p&gt;
+
+&lt;h2 id=&quot;closing-tldr&quot;&gt;Closing (tl;dr)&lt;/h2&gt;
+
+&lt;p&gt;When people ask for help, give them help if you can - else don’t confuse them with your programming language bias. If you can’t help a person in the given X language than most likely you’ll only confuse him and set him back from his/her goal.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Be more helpful and less opinionated.&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I could be here telling you write in X language because it’s the new and cool thing and you might agree with me or not. Unless people explicitly ask what to start programming with then our opinions aren’t worth much to them.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 21 Jan 2015 11:21:29 +0000</pubDate>
+        <link>http://blog.syndbg.com/language/teaching/learning/2015/01/21/evaluating-a-languages-teaching-worth/</link>
+        <guid isPermaLink="true">http://blog.syndbg.com/language/teaching/learning/2015/01/21/evaluating-a-languages-teaching-worth/</guid>
+      </item>
+    
+      <item>
+        <title>Review: Team Geek</title>
+        <description>&lt;p&gt;&lt;img src=&quot;http://akamaicovers.oreilly.com/images/0636920018025/lrg.jpg&quot; alt=&quot;Team Geek cover&quot; title=&quot;Team Geek cover&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Team Geek is a perfect read for every software engineer, no matter whether working in a big or small company.&lt;/p&gt;
+
+&lt;p&gt;The book revolves around authors’ careers as a software developers and later as a team leads/managers. As the authors’ careers, the book also progresses from team work to managing people (a lot on that).&lt;/p&gt;
+
+&lt;p&gt;People may disagree with this book’s title since it says it’s focused on a software developer’s point of view, but actually focus a lot more on managers, but is that a bad thing?&lt;/p&gt;
+
+&lt;p&gt;All employed software developers have someone responsible for managing them. Understanding that person’s job and the meaning behind his/hers actions will help you build a better relationship with your manager and ease the work.&lt;/p&gt;
+
+&lt;p&gt;Also, you’ll be a much more responsible team member if you can micromanage yourself and not make that your manager’s job. I mean, everybody hates being extensively micromanaged by others or doing that to others. And people working in smaller companies can’t have the luxury of someone watching over your back all the time, so being a manager to yourself is a win-win situation.&lt;/p&gt;
+
+&lt;p&gt;The Humility-Respect-Trust mantra is something we all know well, but the situations described through the chapters, make us give it all a second thought. Ben and Brian have faced more than most people have/will. Learning from their experience is a sure way to make the right call in more situations.&lt;/p&gt;
+
+&lt;p&gt;So, do yourself, your team, your manager, a favor and read &lt;a href=&quot;https://shop.oreilly.com/product/0636920018025.do&quot;&gt;Team Geek by Brian W. Fitzpatrick, Ben Collins-Sussman&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;P.S The authors may have advertised Google a bit too much :D&lt;/p&gt;
+</description>
+        <pubDate>Fri, 02 Jan 2015 11:21:29 +0000</pubDate>
+        <link>http://blog.syndbg.com/book/review/2015/01/02/review-team-geek/</link>
+        <guid isPermaLink="true">http://blog.syndbg.com/book/review/2015/01/02/review-team-geek/</guid>
+      </item>
+    
+      <item>
+        <title>Review: How Linux Works 2nd Edition</title>
+        <description>&lt;p&gt;&lt;img src=&quot;http://akamaicovers.oreilly.com/images/9781593275679/lrg.jpg&quot; alt=&quot;How Linux Works, 2nd Edition, What Every Superuser Should Know&quot; title=&quot;How Linux Works, 2nd Edition, What Every Superuser Should Know&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://shop.oreilly.com/product/9781593275679.do&quot;&gt;How Linux Works, 2nd Edition, What Every Superuser Should Know&lt;/a&gt; by &lt;a href=&quot;http://www.oreilly.com/pub/au/1403&quot;&gt;Brian Ward&lt;/a&gt;, is a brilliant introductionary to advanced level, book for people who want to understand Linux.&lt;/p&gt;
+
+&lt;p&gt;Whether you’re a enthusiast, student, employeed software developer or sys admin - this book will do you good. As a software developer, I loved the shell scripting and networking chapters. I learnt a lot in a well organized way and know what else to read, since through the chapters, you’ll find a lot of paragraphs where the author recommends books that will help you learn more about the topic(s).&lt;/p&gt;
+
+&lt;p&gt;Verdict: With this book you’ll learn a lot and build good foundations to deepen your knowledge in many more topics later. If you’re participating in a course like &lt;a href=&quot;https://courses.edx.org/courses/LinuxFoundationX/LFS101x/2T2014/&quot;&gt;Linux Software Foundation’s Introduction to Linux(LFS101x)&lt;/a&gt;, this book will ‘overteach’ you (in a good way).&lt;/p&gt;
+</description>
+        <pubDate>Wed, 17 Dec 2014 11:21:29 +0000</pubDate>
+        <link>http://blog.syndbg.com/book/review/linux/2014/12/17/review-how-linux-works-2nd-edition/</link>
+        <guid isPermaLink="true">http://blog.syndbg.com/book/review/linux/2014/12/17/review-how-linux-works-2nd-edition/</guid>
+      </item>
+    
+      <item>
+        <title>Linux: File Permissions, dead simple</title>
+        <description>&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;/h2&gt;
+
+&lt;p&gt;As every new Linux user may wonder, what do the file permissions means. What does file permissions as 777, 644 or 200 mean? How do I calculate that?&lt;/p&gt;
+
+&lt;p&gt;In this article, I’ll try to explain this, &lt;strong&gt;dead simple&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-bits-and-bats&quot;&gt;The bits and bats&lt;/h2&gt;
+
+&lt;p&gt;So file permissions as the name suggest, decide if you can &lt;strong&gt;read&lt;/strong&gt;, &lt;strong&gt;write&lt;/strong&gt; and &lt;strong&gt;execute&lt;/strong&gt; the given file. But what do the numbers and single letter characters mean, you might ask? They’re represented in bits.&lt;/p&gt;
+
+&lt;p&gt;Each permission bit adds a number to its total:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;4 = Read (R)&lt;/li&gt;
+  &lt;li&gt;2 = Write (W)&lt;/li&gt;
+  &lt;li&gt;1 = Execute (X)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The possible permissions scenarios are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;7 (R+W+X) - all permissions. Very dangerous unless you know what you’re doing.&lt;/li&gt;
+  &lt;li&gt;6 (R+W) - common scenario for non-bash scripts that must not be executed. For example Python scripts are like that.&lt;/li&gt;
+  &lt;li&gt;5 (R+X) - useful for bash scripts that must be immutable, yet executable.&lt;/li&gt;
+  &lt;li&gt;4 (R) - when you want your Python, Ruby scripts to work and remain immutable.&lt;/li&gt;
+  &lt;li&gt;3 (W+X) - I honestly can’t think of an usage with these permission bits.&lt;/li&gt;
+  &lt;li&gt;2 (W) - useful if you have multi-accounts that you want to log into one file, but not know what the others wrote.&lt;/li&gt;
+  &lt;li&gt;1 (X) - meaningless on non-binary files, since the shell needs to read the file to know what to do before executing it. Run binary files just fine with &lt;code&gt;./foo&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;practical&quot;&gt;Practical&lt;/h2&gt;
+
+&lt;p&gt;Let’s create a blank file and see its permissions with &lt;code&gt;ls -l&lt;/code&gt; (just &lt;code&gt;l&lt;/code&gt; in zsh).&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bash
+$ touch afile
+$ l afile
+-rw-rw-r-- 1 syndbg syndbg 0 дек  4 00:39 afile
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-rw-rw-r--&lt;/code&gt; are the permissions, but wait, why are they so many?&lt;/p&gt;
+
+&lt;p&gt;They’re exactly 10 characters. The first one is the file type (I’ll explain it in a bit) and the other 9 are separated in 3 triads. The first one is __u__ser (file owner) permissions, __g__roup (members from owner’s group) permissions and last - __o__ther (world) permissions.&lt;/p&gt;
+
+&lt;p&gt;This means the file is readable and writeable for the owner and group, but only readable for others.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-file-type&quot;&gt;The file type&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;The most common ones&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;-&lt;/code&gt; is a normal file,&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;d&lt;/code&gt; is a directory,&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;l&lt;/code&gt; is a symbolic link,&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;The interesting ones:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Following the Unix mantra, everything is a file, even a device (actually it’s the device’s interface).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;s&lt;/code&gt; is a socket device (unix socket),&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;b&lt;/code&gt; is a block device (disk),&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;c&lt;/code&gt; is a character device (stream),&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;p&lt;/code&gt; is a pipe device (named pipe),&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;changing-permissions&quot;&gt;Changing permissions&lt;/h3&gt;
+
+&lt;p&gt;… is really easy! There are two ways, the first one is using the numbers, which I find easier to understand and the second is using characters.&lt;/p&gt;
+
+&lt;p&gt;In both cases we’ll use &lt;code&gt;chmod&lt;/code&gt;. So let’s change our example &lt;code&gt;afile&lt;/code&gt;’s permissions.&lt;/p&gt;
+
+&lt;p&gt;Currently they are &lt;code&gt;-rw-rw-r--&lt;/code&gt;. Let’s start with the first way, using numbers.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bash
+$ l afile
+-rw-rw-r-- 1 syndbg syndbg 0 дек  4 00:39 afile
+$ chmod 644 afile
+$ l afile
+-rw-r--r-- 1 syndbg syndbg 0 дек  4 00:39 afile
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And the second way requires more commands understanding and less math.&lt;/p&gt;
+
+&lt;p&gt;chmod works like this - &lt;code&gt;chmod &amp;lt;triad&amp;gt;(operator)&amp;lt;permissions&amp;gt; filename&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;triad options are a(ll), u(ser), g(roup), o(ther) or empty (also means all). They can be combined as &lt;code&gt;go&lt;/code&gt;, &lt;code&gt;ug&lt;/code&gt;, &lt;code&gt;uo&lt;/code&gt; or &lt;code&gt;ugo&lt;/code&gt; (meaningless).&lt;/li&gt;
+  &lt;li&gt;operator options are &lt;code&gt;+&lt;/code&gt; or &lt;code&gt;-&lt;/code&gt;. As expected, addition adds permissions, substraction - removes.&lt;/li&gt;
+  &lt;li&gt;characters - &lt;code&gt;r&lt;/code&gt;, &lt;code&gt;w&lt;/code&gt;, &lt;code&gt;x&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(Before that we restore the file back to its previous permissions &lt;code&gt;-rw-rw-r--&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bash
+$ chmod +x afile
+# or
+$ chmod a+x afile
+# CHANGES PERMISSIONS FOR EVERYONE (user, group ,other)!_!_1-1
+# Number one mistake that everyone makes!
+$ l afile
+-rwxrw-r-- 1 syndbg syndbg 0 дек  4 00:39 afile
+# Changing just user permissions
+$ chmod u-x afile
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s it folks, I hope you found this useful.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 29 Nov 2014 11:21:29 +0000</pubDate>
+        <link>http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/</link>
+        <guid isPermaLink="true">http://blog.syndbg.com/linux/2014/11/29/linux-file-permissions-dead-simple/</guid>
+      </item>
+    
+  </channel>
+</rss>

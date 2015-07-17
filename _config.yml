@@ -1,0 +1,60 @@
+# Site settings
+title:       Anton Antonov's mindspace
+email:       anton.synd.antonov@gmail.com
+author:      Anton Antonov
+description: Open-source developer and an eternal apprentice.
+baseurl:     ""
+url:         "http://blog.syndbg.com"
+timezone:    Etc/UTC
+encoding:    utf-8
+highlighter: pygments
+
+# Google analytics
+google_analytics: UA-52395557-1
+
+# Optional features
+animated:           true
+show_related_posts: false
+show_post_footers:  false
+show_social_icons:  true
+
+# Disqus post comments
+# (leave blank to disable Disqus)
+disqus_shortname: syndbg
+
+# Social icons
+github_username: syndbg
+stackoverflow_id: 2980299
+twitter_username: syndbg
+google_plus_id:
+linkedin_username: syndbg
+angellist_username:
+bitcoin_url:
+paypal_url:
+flattr_button:
+
+# Post sharing icons
+show_sharing_icons: true
+share_text: 'Spread the word!'
+# Change to 'true' to enable individual icons
+share_facebook: true
+share_twitter: true
+share_googleplus: false
+share_linkedin: true
+share_digg: false
+share_tumblr: false
+share_reddit: true
+share_stumbleupon: true
+share_hackernews: true
+
+# Build settings
+markdown:     kramdown
+redcarpet:
+  extensions: ['smart', 'tables', 'with_toc_data']
+permalink:    pretty
+paginate:     5
+paginate_path: '/page/:num'
+sass:
+  compressed: true
+gems:
+  - jekyll-sitemap
