@@ -36,7 +36,14 @@ Go for Miguel Grinberg's amazing [Flask Web Development Book](http://flaskbook.c
 
 **But if you won't settle with anything different than Django or have web experience or experience with MVC**,
 
-Go for the playful [Tango with Django tutorial](http://www.tangowithdjango.com/). It's updated for Django 1.7 and touches upon everything you'll need to know (at least as basics) if you want to create a Django web app from start to finish.
+Before going into a full Django book, you should checkout:
+
+[Udemy's Django tutorial](https://blog.udemy.com/django-tutorial-getting-started-with-django/) - it's a "bird's-eye view" tutorial on Django. It'll show you how to write a real simple Django app in few steps and start right away with the good practices of virtualizing your Python environment, visualizing the SQL queries Django generates for you and deploying your newly made app.
+
+The [official Django tutorial](https://docs.djangoproject.com/en/1.8/intro/). It's a more-advanced Django app. I personally couldn't get my head around it when I first started with Django, but it might work for you!
+
+
+Definitely checkout the playful [Tango with Django tutorial](http://www.tangowithdjango.com/). It's updated for Django 1.7 and touches upon everything you'll need to know (at least as basics) if you want to create a Django web app from start to finish. It taught me the most about Django when I was a newcomer.
 
 
 **Ok you have the basics down, you look to improve and master Django**.
