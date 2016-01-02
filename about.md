@@ -6,10 +6,10 @@ permalink: /about/
 
 ![profile picture](http://i.imgur.com/dm2H6ut.jpg)
 
-I'm a junior software developer, fan of asian culture,
+I'm a software developer, fan of asian culture,
 and just a super tryhard guy.
 
-I write mostly in dynamic languages - Python, JS and Ruby. I also have a heart for Java and Go. But I suck with Go, sorry!
+I write mostly in dynamic languages - Python, JS and Ruby. I also have a heart for Clojure and Go!
 
 I support the open-source movement, use Linux and contribute to open-source projects, some of which you can find in my [github
 profile](https://github.com/syndbg/).
