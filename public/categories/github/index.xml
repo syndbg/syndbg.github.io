@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 19 Nov 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1315/categories/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Review: Introducing Github</title>
-      <link>http://localhost:1315/posts/review-introducing-github/</link>
+      <link>http://localhost:1315/posts/2014-11-19-review-introducing-github/</link>
       <pubDate>Wed, 19 Nov 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1315/posts/review-introducing-github/</guid>
+      <guid>http://localhost:1315/posts/2014-11-19-review-introducing-github/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/0636920033059/lrg.jpg&#34; alt=&#34;Introducing Github cover&#34; title=&#34;Introducing Github cover&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://shop.oreilly.com/product/0636920033059.do&#34;&gt;Introducing Github&lt;/a&gt; is a book by &lt;a href=&#34;http://www.oreilly.com/pub/au/6204&#34;&gt;Peter Bell&lt;/a&gt; and &lt;a href=&#34;http://www.oreilly.com/pub/au/6247&#34;&gt;Brent Beer&lt;/a&gt;, members of the &lt;a href=&#34;https://github.com/githubtraining&#34;&gt;Github Training Team&lt;/a&gt;.&lt;/p&gt;
@@ -23,10 +23,10 @@
     
     <item>
       <title>Python: Introduction to working with the Bitbucket/Github API</title>
-      <link>http://localhost:1315/posts/python-working-with-the-bitbucket-github-api/</link>
+      <link>http://localhost:1315/posts/2014-08-14-python-working-with-the-bitbucket-github-api/</link>
       <pubDate>Thu, 14 Aug 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1315/posts/python-working-with-the-bitbucket-github-api/</guid>
+      <guid>http://localhost:1315/posts/2014-08-14-python-working-with-the-bitbucket-github-api/</guid>
       
       <description>&lt;p&gt;Nowdays Bitbucket and Github are the places to store your projects in an organized manner.&lt;/p&gt;
 &lt;p&gt;They have their pros and cons but both are irreplaceable. They offer RESTful Web APIs.&lt;/p&gt;

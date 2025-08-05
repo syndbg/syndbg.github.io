@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 14 Aug 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1315/categories/api/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python: Introduction to working with the Bitbucket/Github API</title>
-      <link>http://localhost:1315/posts/python-working-with-the-bitbucket-github-api/</link>
+      <link>http://localhost:1315/posts/2014-08-14-python-working-with-the-bitbucket-github-api/</link>
       <pubDate>Thu, 14 Aug 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1315/posts/python-working-with-the-bitbucket-github-api/</guid>
+      <guid>http://localhost:1315/posts/2014-08-14-python-working-with-the-bitbucket-github-api/</guid>
       
       <description>&lt;p&gt;Nowdays Bitbucket and Github are the places to store your projects in an organized manner.&lt;/p&gt;
 &lt;p&gt;They have their pros and cons but both are irreplaceable. They offer RESTful Web APIs.&lt;/p&gt;

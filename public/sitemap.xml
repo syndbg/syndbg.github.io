@@ -11,7 +11,7 @@
     <loc>http://localhost:1315/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/2015/</loc>
+    <loc>http://localhost:1315/posts/2016-01-01-2015-retrospective/</loc>
     <lastmod>2016-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/book/</loc>
@@ -23,7 +23,7 @@
     <loc>http://localhost:1315/categories/review/</loc>
     <lastmod>2015-08-01T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/review-the-well-grounded-rubyist-2nd-edition/</loc>
+    <loc>http://localhost:1315/posts/2015-08-01-review-the-well-grounded-rubyist-2nd-edition/</loc>
     <lastmod>2015-08-01T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/ruby/</loc>
@@ -32,13 +32,13 @@
     <loc>http://localhost:1315/categories/angularjs/</loc>
     <lastmod>2015-05-04T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/angularjs-lifecycles/</loc>
+    <loc>http://localhost:1315/posts/2015-05-04-angularjs-lifecycles/</loc>
     <lastmod>2015-05-04T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/javascript/</loc>
     <lastmod>2015-05-04T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/publishing-to-pypi-can-be-a-nightmare/</loc>
+    <loc>http://localhost:1315/posts/2015-04-05-publishing-to-pypi-can-be-a-nightmare/</loc>
     <lastmod>2015-04-05T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/pypi/</loc>
@@ -50,19 +50,19 @@
     <loc>http://localhost:1315/categories/django/</loc>
     <lastmod>2015-03-26T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/learning-django/</loc>
+    <loc>http://localhost:1315/posts/2015-03-26-learning-django/</loc>
     <lastmod>2015-03-26T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/intro-angularjs/</loc>
+    <loc>http://localhost:1315/posts/2015-03-25-intro-angularjs/</loc>
     <lastmod>2015-03-25T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/python-decorators-gotchas/</loc>
+    <loc>http://localhost:1315/posts/2015-03-14-python-decorators-gotchas/</loc>
     <lastmod>2015-03-14T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/evaluating-a-languages-teaching-worth/</loc>
+    <loc>http://localhost:1315/posts/2015-01-21-evaluating-a-languages-teaching-worth/</loc>
     <lastmod>2015-01-21T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/hello-world-duh/</loc>
+    <loc>http://localhost:1315/posts/2015-01-21-hello-world-duh/</loc>
     <lastmod>2015-01-21T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/language/</loc>
@@ -74,61 +74,61 @@
     <loc>http://localhost:1315/categories/teaching/</loc>
     <lastmod>2015-01-21T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/review-team-geek/</loc>
+    <loc>http://localhost:1315/posts/2015-01-02-review-team-geek/</loc>
     <lastmod>2015-01-02T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/linux/</loc>
     <lastmod>2014-12-17T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/review-how-linux-works-2nd-edition/</loc>
+    <loc>http://localhost:1315/posts/2014-12-17-review-how-linux-works-2nd-edition/</loc>
     <lastmod>2014-12-17T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/linux-file-permissions-dead-simple/</loc>
+    <loc>http://localhost:1315/posts/2014-11-29-linux-file-permissions-dead-simple/</loc>
     <lastmod>2014-11-29T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/review-introducing-python/</loc>
+    <loc>http://localhost:1315/posts/2014-11-28-review-introducing-python/</loc>
     <lastmod>2014-11-28T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/python-modules-vs-packages/</loc>
+    <loc>http://localhost:1315/posts/2014-11-27-python-modules-vs-packages/</loc>
     <lastmod>2014-11-27T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/review-unix-haters-handbook/</loc>
+    <loc>http://localhost:1315/posts/2014-11-26-review-unix-haters-handbook/</loc>
     <lastmod>2014-11-26T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/pomodoro/</loc>
     <lastmod>2014-11-25T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/review-the-pomodoro-technique/</loc>
+    <loc>http://localhost:1315/posts/2014-11-25-review-the-pomodoro-technique/</loc>
     <lastmod>2014-11-25T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/review-python-for-kids/</loc>
+    <loc>http://localhost:1315/posts/2014-11-21-review-python-for-kids/</loc>
     <lastmod>2014-11-21T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/github/</loc>
     <lastmod>2014-11-19T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/review-introducing-github/</loc>
+    <loc>http://localhost:1315/posts/2014-11-19-review-introducing-github/</loc>
     <lastmod>2014-11-19T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/review-97-things-every-programmer-should-know/</loc>
+    <loc>http://localhost:1315/posts/2014-11-17-review-97-things-every-programmer-should-know/</loc>
     <lastmod>2014-11-17T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/review-test-driven-development-with-python/</loc>
+    <loc>http://localhost:1315/posts/2014-11-16-review-test-driven-development-with-python/</loc>
     <lastmod>2014-11-16T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</loc>
+    <loc>http://localhost:1315/posts/2014-10-14-linux-how-to-setup-the-most-minimalistic-xfce4-ui/</loc>
     <lastmod>2014-10-14T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/xfce4/</loc>
     <lastmod>2014-10-14T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/linux-python-provisioning-and-deployment/</loc>
+    <loc>http://localhost:1315/posts/2014-10-12-linux-python-provisioning-and-deployment/</loc>
     <lastmod>2014-10-12T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/atom/</loc>
     <lastmod>2014-08-23T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/atom-setting-up-for-python-development/</loc>
+    <loc>http://localhost:1315/posts/2014-08-23-atom-setting-up-for-python-development/</loc>
     <lastmod>2014-08-23T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/development/</loc>
@@ -140,13 +140,13 @@
     <loc>http://localhost:1315/categories/bitbucket/</loc>
     <lastmod>2014-08-14T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/python-working-with-the-bitbucket-github-api/</loc>
+    <loc>http://localhost:1315/posts/2014-08-14-python-working-with-the-bitbucket-github-api/</loc>
     <lastmod>2014-08-14T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/migrating-the-blog-from-wordpress-to-github-pages/</loc>
+    <loc>http://localhost:1315/posts/2014-06-27-migrating-the-blog-from-wordpress-to-github-pages/</loc>
     <lastmod>2014-06-27T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/atom-a-potential-replacement-of-sublime-text-2-3/</loc>
+    <loc>http://localhost:1315/posts/2014-05-20-atom-a-potential-replacement-of-sublime-text-2-3/</loc>
     <lastmod>2014-05-20T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/editor/</loc>
@@ -158,7 +158,7 @@
     <loc>http://localhost:1315/categories/text/</loc>
     <lastmod>2014-05-20T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/python-3-how-to-write-unit-tests-unittest-pytest-nose/</loc>
+    <loc>http://localhost:1315/posts/2014-04-20-python-3-how-to-write-unit-tests-unittest-pytest-nose/</loc>
     <lastmod>2014-04-20T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/testing/</loc>
@@ -167,16 +167,16 @@
     <loc>http://localhost:1315/categories/coverage/</loc>
     <lastmod>2014-04-15T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/python-3-how-to-code-coverage-nose-included/</loc>
+    <loc>http://localhost:1315/posts/2014-04-15-python-3-how-to-code-coverage-nose-included/</loc>
     <lastmod>2014-04-15T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/linux-how-to-customize-your-terminal/</loc>
+    <loc>http://localhost:1315/posts/2014-03-13-linux-how-to-customize-your-terminal/</loc>
     <lastmod>2014-03-13T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/terminaal/</loc>
     <lastmod>2014-03-13T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/linux-setting-up-sublime-text-3-for-python-development/</loc>
+    <loc>http://localhost:1315/posts/2014-03-04-linux-setting-up-sublime-text-3-for-python-development/</loc>
     <lastmod>2014-03-04T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/git/</loc>
@@ -185,28 +185,28 @@
     <loc>http://localhost:1315/categories/ubuntu/</loc>
     <lastmod>2014-02-25T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/ubuntu-setting-up-git-in-under-10minutes/</loc>
+    <loc>http://localhost:1315/posts/2014-02-25-ubuntu-setting-up-git-in-under-10minutes/</loc>
     <lastmod>2014-02-25T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</loc>
+    <loc>http://localhost:1315/posts/2014-02-20-making-the-switch-to-ubuntu-how-to-install-ppas/</loc>
     <lastmod>2014-02-20T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/ppa/</loc>
     <lastmod>2014-02-20T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</loc>
+    <loc>http://localhost:1315/posts/2014-02-20-ubuntu-horror-stories-keyboard-modifier-keys-solution/</loc>
     <lastmod>2014-02-20T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</loc>
+    <loc>http://localhost:1315/posts/2014-02-20-ubuntu-ppas-you-should-have-installed-or-have-in-mind/</loc>
     <lastmod>2014-02-20T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/ubuntu-horror-stories-no-headphones-sound/</loc>
+    <loc>http://localhost:1315/posts/2014-02-11-ubuntu-horror-stories-no-headphones-sound/</loc>
     <lastmod>2014-02-11T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/parentheses/</loc>
     <lastmod>2014-02-09T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/programming-tips-avoiding-unbalanced-parentheses-errors/</loc>
+    <loc>http://localhost:1315/posts/2014-02-09-programming-tips-avoiding-unbalanced-parentheses-errors/</loc>
     <lastmod>2014-02-09T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/tip/</loc>
@@ -215,7 +215,7 @@
     <loc>http://localhost:1315/categories/css3/</loc>
     <lastmod>2014-01-30T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/quick-reference-csscss3-attribute-selectors/</loc>
+    <loc>http://localhost:1315/posts/2014-01-30-quick-reference-csscss3-attribute-selectors/</loc>
     <lastmod>2014-01-30T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/101/</loc>
@@ -224,16 +224,16 @@
     <loc>http://localhost:1315/categories/colors/</loc>
     <lastmod>2014-01-29T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/css3-the-147-color-names-you-might-find-useful-to-know/</loc>
+    <loc>http://localhost:1315/posts/2014-01-29-css3-the-147-color-names-you-might-find-useful-to-know/</loc>
     <lastmod>2014-01-29T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/fonts/</loc>
     <lastmod>2014-01-29T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/fonts-101-meet-the-font-typefaces-and-differentiate-them-easily/</loc>
+    <loc>http://localhost:1315/posts/2014-01-29-fonts-101-meet-the-font-typefaces-and-differentiate-them-easily/</loc>
     <lastmod>2014-01-29T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/css3-tip-of-the-day-responsive-web-design-font-sizing-with-rem/</loc>
+    <loc>http://localhost:1315/posts/2014-01-25-css3-tip-of-the-day-responsive-web-design-font-sizing-with-rem/</loc>
     <lastmod>2014-01-25T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/categories/font/</loc>
@@ -242,10 +242,10 @@
     <loc>http://localhost:1315/categories/sizing/</loc>
     <lastmod>2014-01-25T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/work-enhancement-finding-the-right-font/</loc>
+    <loc>http://localhost:1315/posts/2014-01-24-work-enhancement-finding-the-right-font/</loc>
     <lastmod>2014-01-24T11:21:29+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1315/posts/python-development-in-visual-studio/</loc>
+    <loc>http://localhost:1315/posts/2014-01-23-python-development-in-visual-studio/</loc>
     <lastmod>2014-01-23T11:21:29+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1315/about/</loc>

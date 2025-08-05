@@ -9,10 +9,10 @@
     <lastBuildDate>Tue, 20 May 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1315/categories/sublime/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Atom: a potential replacement of Sublime Text 2/3</title>
-      <link>http://localhost:1315/posts/atom-a-potential-replacement-of-sublime-text-2-3/</link>
+      <link>http://localhost:1315/posts/2014-05-20-atom-a-potential-replacement-of-sublime-text-2-3/</link>
       <pubDate>Tue, 20 May 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1315/posts/atom-a-potential-replacement-of-sublime-text-2-3/</guid>
+      <guid>http://localhost:1315/posts/2014-05-20-atom-a-potential-replacement-of-sublime-text-2-3/</guid>
       
       <description>&lt;h3&gt;&lt;strong&gt;&lt;a href=&#34;https://atom.io/&#34;&gt;Github Atom&#39;s website&lt;/a&gt; and &lt;a href=&#34;www.webupd8.org/2014/05/atom-text-editor-ubuntu-ppa-update.html&#34;&gt;How to get Atom for Linux&lt;/a&gt;&lt;/strong&gt;&lt;/h3&gt;
 &lt;h3&gt;&lt;a href=&#34;http://www.sublimetext.com/3&#34;&gt;&lt;strong&gt;Sublime Text 3&#39;s website&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;http://syndbg.wordpress.com/2014/03/04/linux-setting-up-sublime-text-3-for-python-development/&#34;&gt;How to get Sublime Text 3 for Linux&lt;/a&gt;&lt;/h3&gt;
@@ -27,10 +27,10 @@ contribute through the &lt;a href=&#34;https://github.com/atom/atom&#34;&gt;atom
     
     <item>
       <title>Linux: Setting up Sublime Text 3 for Python development</title>
-      <link>http://localhost:1315/posts/linux-setting-up-sublime-text-3-for-python-development/</link>
+      <link>http://localhost:1315/posts/2014-03-04-linux-setting-up-sublime-text-3-for-python-development/</link>
       <pubDate>Tue, 04 Mar 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1315/posts/linux-setting-up-sublime-text-3-for-python-development/</guid>
+      <guid>http://localhost:1315/posts/2014-03-04-linux-setting-up-sublime-text-3-for-python-development/</guid>
       
       <description>&lt;h2&gt;I assume you have already installed Sublime Text 3, if not:&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;sudo add-apt-repository ppa:webupd8team/sublime-text-3 sudo apt-get update sudo apt-get install sublime-text-installer&lt;/code&gt;&lt;/p&gt;

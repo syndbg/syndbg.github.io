@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1315&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">Linux: How to setup the most minimalistic Xfce4 UI | Anton Antonov&#39;s mindspace</title>
+<meta property="og:title" content="Linux: How to setup the most minimalistic Xfce4 UI | Anton Antonov&#39;s mindspace" />
+<meta name="twitter:title" content="Linux: How to setup the most minimalistic Xfce4 UI | Anton Antonov&#39;s mindspace" />
+<meta itemprop="name" content="Linux: How to setup the most minimalistic Xfce4 UI | Anton Antonov&#39;s mindspace" />
+<meta name="application-name" content="Linux: How to setup the most minimalistic Xfce4 UI | Anton Antonov&#39;s mindspace" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="Open-source developer and an eternal apprentice.">
+<meta itemprop="description" content="Open-source developer and an eternal apprentice." />
+<meta property="og:description" content="Open-source developer and an eternal apprentice." />
+<meta name="twitter:description" content="Open-source developer and an eternal apprentice." />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="http://localhost:1315/posts/2014-10-14-linux-how-to-setup-the-most-minimalistic-xfce4-ui/" title="" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2014-10-14T11:21:29Z />
+    <meta property="article:published_time" content=2014-10-14T11:21:29Z />
+    <meta property="og:url" content="http://localhost:1315/posts/2014-10-14-linux-how-to-setup-the-most-minimalistic-xfce4-ui/" />
+
+    
+    <meta property="og:article:author" content="Anton Antonov" />
+    <meta property="article:author" content="Anton Antonov" />
+    <meta name="author" content="Anton Antonov" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Linux: How to setup the most minimalistic Xfce4 UI",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2014-10-14",
+        "description": "",
+        "wordCount":  240 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2014-10-14",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Anton Antonov\u0027s mindspace"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.148.2">
+
+    
+    <meta property="og:url" content="http://localhost:1315/posts/2014-10-14-linux-how-to-setup-the-most-minimalistic-xfce4-ui/">
+  <meta property="og:site_name" content="Anton Antonov&#39;s mindspace">
+  <meta property="og:title" content="Linux: How to setup the most minimalistic Xfce4 UI">
+  <meta property="og:description" content="Most of us adore the minimalistic Unity. But we hate it for the memory hog it is.
+So the only reasonable solution is to replace Unity with the rising in popularity, Xfce4.
+Xfce is a lightweight desktop environment and that’s all we need to know for this article. (Read here).
+Xfce 4/latest installation: It comes preinstalled with Mint Xfce and Xubuntu. If you already have an Ubuntu you can’t let go of, just sudo apt-get install xubuntu-desktop. It will install all the xfce4 candy and widgets you’ll need. If you come from an other distro, please check the packages you have available and search for xfce4*. The problem: Apps neatly hide their app bar and integrate their menu with Unity’s top bar. However this is not the same for other desktop environments.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2014-10-14T11:21:29+00:00">
+    <meta property="article:modified_time" content="2014-10-14T11:21:29+00:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Linux: How to setup the most minimalistic Xfce4 UI">
+  <meta name="twitter:description" content="Most of us adore the minimalistic Unity. But we hate it for the memory hog it is.
+So the only reasonable solution is to replace Unity with the rising in popularity, Xfce4.
+Xfce is a lightweight desktop environment and that’s all we need to know for this article. (Read here).
+Xfce 4/latest installation: It comes preinstalled with Mint Xfce and Xubuntu. If you already have an Ubuntu you can’t let go of, just sudo apt-get install xubuntu-desktop. It will install all the xfce4 candy and widgets you’ll need. If you come from an other distro, please check the packages you have available and search for xfce4*. The problem: Apps neatly hide their app bar and integrate their menu with Unity’s top bar. However this is not the same for other desktop environments.">
+
+
+    
+
+    <link rel="canonical" href="http://localhost:1315/posts/2014-10-14-linux-how-to-setup-the-most-minimalistic-xfce4-ui/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1315/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.js"></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1315/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Linux: How to setup the most minimalistic Xfce4 UI</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2014-10-14T11:21:29&#43;00:00" itemprop="datePublished"> Oct 14, 2014 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>Most of us adore the minimalistic Unity. But we hate it for the memory hog it is.</p>
+<p>So the only reasonable solution is to replace Unity with the rising in popularity, Xfce4.</p>
+<p>Xfce is a lightweight desktop environment and that&rsquo;s all we need to know for this article. <a href="http://www.xfce.org/">(Read here)</a>.</p>
+<h2 id="xfce-4latest-installation">Xfce 4/latest installation:</h2>
+<ul>
+<li>It comes preinstalled with <a href="http://www.linuxmint.com/download.php">Mint Xfce</a> and <a href="http://xubuntu.org/">Xubuntu</a>.</li>
+<li>If you already have an Ubuntu you can&rsquo;t let go of, just <code>sudo apt-get install xubuntu-desktop</code>. It will install all the xfce4 candy and widgets you&rsquo;ll need.</li>
+<li>If you come from an other distro, please check the packages you have available and search for <code>xfce4*</code>.</li>
+</ul>
+<h2 id="the-problem">The problem:</h2>
+<p>Apps neatly hide their app bar and integrate their menu with Unity&rsquo;s top bar.
+However this is not the same for other desktop environments.</p>
+<p>Here&rsquo;s how Atom looks in Unity:
+<a href="http://i.imgur.com/h01xaFN.png"><img src="http://i.imgur.com/h01xaFN.png" alt="Unity Atom"></a></p>
+<p>And here&rsquo;s how Atom looks in non-Unity (Cinnamon in this screenshot
+<a href="http://i.imgur.com/0daTsbr.png"><img src="http://i.imgur.com/0daTsbr.png" alt="Non-Unity Atom"></a></p>
+<p>As you can see from miles away, we get a big fat app bar that takes away precious space.
+Even more precious if we&rsquo;re limited on display size.</p>
+<h2 id="the-solution-for-the-app-barmaximized-windows-problem">The solution for the app bar/maximized windows problem:</h2>
+<ol>
+<li>The first solution is to compile from source <a href="https://github.com/cedl38/xfwm4-titleless">xfwm4-titleless</a>.</li>
+<li>The second is to install <code>maximus</code>. <code>sudo apt-get install maximus</code>.</li>
+</ol>
+<p>I suggest the second, since it&rsquo;s the easiest.</p>
+<p>The final result is:</p>
+<p><a href="http://i.imgur.com/RmXbTfx.png"><img src="http://i.imgur.com/RmXbTfx.png" alt="Xfce4 Atom"></a></p>
+<h2 id="global-menu-bar">Global Menu bar</h2>
+<p>Is still a persistent issue :(</p>
+<p>I tried my luck with Arch&rsquo;s <a href="https://aur.archlinux.org/packages/gnome-globalmenu-xfce4/">gnome-globalmenu-xfce4 </a>, compiled from source, but to no avail.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/syndbg" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://linkedin.com/in/syndbg" target="_blank" rel="noopener noreferrer me"
+    title="Linkedin">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Anton Antonov.
+        
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script async src="http://localhost:1315/js/main.js" ></script>
+
+    
+
+</body>
+</html>
