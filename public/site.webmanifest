@@ -1,7 +1,7 @@
 {
     "name": "Anton Antonov's mindspace",
     "short_name": "Anton Antonov's mindspace",
-    "start_url": "http://localhost:1313/",
+    "start_url": "http://localhost:1315/",
     "theme_color": "#434648",
     "background_color": "#ffffff",
     "display": "standalone",
