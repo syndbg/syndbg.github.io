@@ -8,27 +8,6 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 01 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1315/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About</title>
-      <link>http://localhost:1315/about/</link>
-      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1315/about/</guid>
-      
-      <description>&lt;h1 id=&#34;-hi-im-anton&#34;&gt;👋 Hi, I&amp;rsquo;m Anton&lt;/h1&gt;
-&lt;p&gt;🏷️ &lt;strong&gt;Engineering Manager &amp;amp; Principal Software Engineer&lt;/strong&gt; of Least Surprise Software&lt;/p&gt;
-&lt;h2 id=&#34;-about-me&#34;&gt;🚀 About Me&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Go Practitioner&lt;/strong&gt; for many years - Building high-performant distributed systems with Go, sometimes with RAFT consensus too.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Kubernetes Practitioner&lt;/strong&gt; — Focused on modern cluster ops, multi-cloud, and security (cert-manager &amp;amp; PKI automation).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Developer Experience &amp;amp; Platform Engineering&lt;/strong&gt; focused. I&amp;rsquo;ve built a few closed-source systems and open-sourced a few elements of them over the years.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;DevOps &amp;amp; Tooling&lt;/strong&gt; — Author of goenv, taskporter, and contributor to open-source workflow and security utilities for the Go and DevOps communities.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;-skills--tools&#34;&gt;🛠️ Skills &amp;amp; Tools&lt;/h2&gt;
-&lt;p&gt;By preference, solving problems with &lt;strong&gt;Go&lt;/strong&gt;, &lt;strong&gt;CockroachDB&lt;/strong&gt;, &lt;strong&gt;Redis&lt;/strong&gt;, &lt;strong&gt;Terraform&lt;/strong&gt;, and your favorite cloud or multi-cloud deployment environment.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
       <title>2015</title>
       <link>http://localhost:1315/posts/2015/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
@@ -1331,6 +1310,27 @@ Well, it is!&lt;/p&gt;
 2.0&lt;/a&gt;. It was available for previous
 version of the VS IDE, however since the 2013 version of VS, you can
 have it a lot easier.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://localhost:1315/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1315/about/</guid>
+      
+      <description>&lt;h1 id=&#34;-hi-im-anton&#34;&gt;👋 Hi, I&amp;rsquo;m Anton&lt;/h1&gt;
+&lt;p&gt;🏷️ &lt;strong&gt;Engineering Manager &amp;amp; Principal Software Engineer&lt;/strong&gt; of Least Surprise Software, or so I like to think when it&amp;rsquo;s about Developer Experience&lt;/p&gt;
+&lt;h2 id=&#34;-about-me&#34;&gt;🚀 About Me&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Go Practitioner&lt;/strong&gt; for many years - Building high-performant distributed systems with Go, sometimes with RAFT consensus too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Kubernetes Practitioner&lt;/strong&gt; — Focused on modern cluster ops, multi-cloud, and security (cert-manager &amp;amp; PKI automation).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Developer Experience &amp;amp; Platform Engineering&lt;/strong&gt; focused. I&amp;rsquo;ve built a few closed-source systems and open-sourced a few elements of them over the years.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DevOps &amp;amp; Tooling&lt;/strong&gt; — Author of goenv, taskporter, and contributor to open-source workflow and security utilities for the Go and DevOps communities.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-skills--tools&#34;&gt;🛠️ Skills &amp;amp; Tools&lt;/h2&gt;
+&lt;p&gt;By preference, solving problems with &lt;strong&gt;Go&lt;/strong&gt;, &lt;strong&gt;CockroachDB&lt;/strong&gt;, &lt;strong&gt;Redis&lt;/strong&gt;, &lt;strong&gt;Terraform&lt;/strong&gt;, and your favorite cloud or multi-cloud deployment environment.&lt;/p&gt;</description>
       
     </item>
     

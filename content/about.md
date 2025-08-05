@@ -1,12 +1,11 @@
 ---
 title: "About"
-date: 2025-01-01T00:00:00Z
 draft: false
 ---
 
 # 👋 Hi, I'm Anton
 
-🏷️ **Engineering Manager & Principal Software Engineer** of Least Surprise Software
+🏷️ **Engineering Manager & Principal Software Engineer** of Least Surprise Software, or so I like to think when it's about Developer Experience
 
 ## 🚀 About Me
 
@@ -43,7 +42,3 @@ Based in **Sofia, Bulgaria** 🇧🇬
 * **GitHub**: [github.com/syndbg](https://github.com/syndbg)
 * **LinkedIn**: [linkedin.com/in/syndbg](https://www.linkedin.com/in/syndbg)
 * **Blog**: You're reading it! 📖
-
----
-
-*Note: I'm notoriously bad with notifications, so if you need a quick response, LinkedIn might be your best bet!*

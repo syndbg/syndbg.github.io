@@ -9,16 +9,12 @@ title = "Anton Antonov's mindspace"
 [params]
   description = "Open-source developer and an eternal apprentice."
 
-  # Author configuration for Hugo Blog Awesome theme
+  # Hugo Blog Awesome theme configuration
   [params.author]
     name = "Anton Antonov"
+    intro = "Anton Antonov"
+    description = "Engineering Manager & Principal Software Engineer passionate about building high-performant distributed systems, developer experience, and platform engineering."
     avatar = "images/avatar.png"
-    bio = "Engineering Manager & Principal Software Engineer passionate about building high-performant distributed systems, developer experience, and platform engineering."
-
-  # Additional author display settings
-  showAuthor = true
-  showAuthorAvatar = true
-  showAuthorBio = true
 
   # Theme configuration
   [params.theme]
