@@ -2,28 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Welcome to my mindspace on Anton Antonov&#39;s mindspace</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:1315/</link>
     <description>Recent content in Welcome to my mindspace on Anton Antonov&#39;s mindspace</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Hello Hugo</title>
-      <link>http://localhost:1313/posts/hello-hugo-blog/</link>
-      <pubDate>Tue, 05 Aug 2025 23:52:05 +0300</pubDate>
-      
-      <guid>http://localhost:1313/posts/hello-hugo-blog/</guid>
-      
-      <description></description>
-      
-    </item>
-    
+    <lastBuildDate>Wed, 01 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1315/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
-      <link>http://localhost:1313/about/</link>
+      <link>http://localhost:1315/about/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/about/</guid>
+      <guid>http://localhost:1315/about/</guid>
       
       <description>&lt;h1 id=&#34;-hi-im-anton&#34;&gt;👋 Hi, I&amp;rsquo;m Anton&lt;/h1&gt;
 &lt;p&gt;🏷️ &lt;strong&gt;Engineering Manager &amp;amp; Principal Software Engineer&lt;/strong&gt; of Least Surprise Software&lt;/p&gt;
@@ -41,10 +30,10 @@
     
     <item>
       <title>2015</title>
-      <link>http://localhost:1313/posts/2015/</link>
+      <link>http://localhost:1315/posts/2015/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/2015/</guid>
+      <guid>http://localhost:1315/posts/2015/</guid>
       
       <description>&lt;h1 id=&#34;2015-retrospective&#34;&gt;2015 retrospective&lt;/h1&gt;
 &lt;p&gt;I haven&amp;rsquo;t blogged in a great while, but I figured I would at the end / start of the year.&lt;/p&gt;
@@ -58,10 +47,10 @@
     
     <item>
       <title>Review: The Well Grounded Rubyist, 2nd edition</title>
-      <link>http://localhost:1313/posts/review-the-well-grounded-rubyist-2nd-edition/</link>
+      <link>http://localhost:1315/posts/review-the-well-grounded-rubyist-2nd-edition/</link>
       <pubDate>Sat, 01 Aug 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/review-the-well-grounded-rubyist-2nd-edition/</guid>
+      <guid>http://localhost:1315/posts/review-the-well-grounded-rubyist-2nd-edition/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/51qtp4NzjRL._SX397_BO1,204,203,200_.jpg&#34; alt=&#34;The Well Grounded Rubyist, 2nd edition cover&#34; title=&#34;The Well Grounded Rubyist, 2nd edition cover&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
@@ -78,10 +67,10 @@
     
     <item>
       <title>AngularJS: Life cycles</title>
-      <link>http://localhost:1313/posts/angularjs-lifecycles/</link>
+      <link>http://localhost:1315/posts/angularjs-lifecycles/</link>
       <pubDate>Mon, 04 May 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/angularjs-lifecycles/</guid>
+      <guid>http://localhost:1315/posts/angularjs-lifecycles/</guid>
       
       <description>&lt;h2 id=&#34;angularjs&#34;&gt;AngularJS&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://angularjs.org/img/AngularJS-large.png&#34; alt=&#34;Angular logo&#34; title=&#34;Angular logo&#34;&gt;&lt;/p&gt;
@@ -95,10 +84,10 @@ so powerful, yet so simple to understand once you got the basics down.&lt;/p&gt;
     
     <item>
       <title>Publishing to PyPi Can Be A Nightmare</title>
-      <link>http://localhost:1313/posts/publishing-to-pypi-can-be-a-nightmare/</link>
+      <link>http://localhost:1315/posts/publishing-to-pypi-can-be-a-nightmare/</link>
       <pubDate>Sun, 05 Apr 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/publishing-to-pypi-can-be-a-nightmare/</guid>
+      <guid>http://localhost:1315/posts/publishing-to-pypi-can-be-a-nightmare/</guid>
       
       <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
 &lt;p&gt;Yesterday (04.04) I was having the most ridiculous issues with PyPi - from not being able to publish my package, to already publishing a version and not being able to update and at last - deleting my package from PyPi wouldn&amp;rsquo;t actually delete it.&lt;/p&gt;
@@ -110,10 +99,10 @@ so powerful, yet so simple to understand once you got the basics down.&lt;/p&gt;
     
     <item>
       <title>Learning Django</title>
-      <link>http://localhost:1313/posts/learning-django/</link>
+      <link>http://localhost:1315/posts/learning-django/</link>
       <pubDate>Thu, 26 Mar 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/learning-django/</guid>
+      <guid>http://localhost:1315/posts/learning-django/</guid>
       
       <description>&lt;p&gt;Django is the go-to batteries included web framework for Pythonista.&lt;/p&gt;
 &lt;p&gt;However starting to create web apps with Django is a bit rough,
@@ -126,10 +115,10 @@ prior web and MVC pattern experience.&lt;/p&gt;</description>
     
     <item>
       <title>Intro AngularJS</title>
-      <link>http://localhost:1313/posts/intro-angularjs/</link>
+      <link>http://localhost:1315/posts/intro-angularjs/</link>
       <pubDate>Wed, 25 Mar 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/intro-angularjs/</guid>
+      <guid>http://localhost:1315/posts/intro-angularjs/</guid>
       
       <description>&lt;p&gt;During the recent week, I had to write front-end using AngularJS.
 This is a work in progress article, as I explore different AngularJS books and resources.&lt;/p&gt;
@@ -144,10 +133,10 @@ This is a work in progress article, as I explore different AngularJS books and r
     
     <item>
       <title>Python: Decorators gotchas</title>
-      <link>http://localhost:1313/posts/python-decorators-gotchas/</link>
+      <link>http://localhost:1315/posts/python-decorators-gotchas/</link>
       <pubDate>Sat, 14 Mar 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/python-decorators-gotchas/</guid>
+      <guid>http://localhost:1315/posts/python-decorators-gotchas/</guid>
       
       <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
 &lt;p&gt;In Python, decorators are one of the most misunderstood features and one of the most blogged topic,
@@ -162,10 +151,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Evaluating a Language&#39;s Teaching and Learning Worth</title>
-      <link>http://localhost:1313/posts/evaluating-a-languages-teaching-worth/</link>
+      <link>http://localhost:1315/posts/evaluating-a-languages-teaching-worth/</link>
       <pubDate>Wed, 21 Jan 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/evaluating-a-languages-teaching-worth/</guid>
+      <guid>http://localhost:1315/posts/evaluating-a-languages-teaching-worth/</guid>
       
       <description>&lt;h2 id=&#34;disclaimer&#34;&gt;Disclaimer&lt;/h2&gt;
 &lt;p&gt;This post is inspired by &lt;a href=&#34;http://prog21.dadgum.com/203.html&#34;&gt;James Hague&amp;rsquo;s Retiring Python as a Teaching Language blog post&lt;/a&gt; and it shows my opinion, not my employer&amp;rsquo;s. It isn&amp;rsquo;t a direct message to James Hague, his opinion is valid based on his long-term experience. This blog post is about helping newcomers in general.&lt;/p&gt;
@@ -176,10 +165,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Hello world... duh!</title>
-      <link>http://localhost:1313/posts/hello-world-duh/</link>
+      <link>http://localhost:1315/posts/hello-world-duh/</link>
       <pubDate>Wed, 21 Jan 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/hello-world-duh/</guid>
+      <guid>http://localhost:1315/posts/hello-world-duh/</guid>
       
       <description>&lt;p&gt;Finally decided to make a blog.&lt;/p&gt;
 &lt;p&gt;Why did I do this now and not earlier/later/never ? NO CLUE. Let&amp;rsquo;s see where this goes!&lt;/p&gt;</description>
@@ -188,10 +177,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Review: Team Geek</title>
-      <link>http://localhost:1313/posts/review-team-geek/</link>
+      <link>http://localhost:1315/posts/review-team-geek/</link>
       <pubDate>Fri, 02 Jan 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/review-team-geek/</guid>
+      <guid>http://localhost:1315/posts/review-team-geek/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/0636920018025/lrg.jpg&#34; alt=&#34;Team Geek cover&#34; title=&#34;Team Geek cover&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Team Geek is a perfect read for every software engineer, no matter whether working in a big or small company.&lt;/p&gt;
@@ -202,10 +191,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Review: How Linux Works 2nd Edition</title>
-      <link>http://localhost:1313/posts/review-how-linux-works-2nd-edition/</link>
+      <link>http://localhost:1315/posts/review-how-linux-works-2nd-edition/</link>
       <pubDate>Wed, 17 Dec 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/review-how-linux-works-2nd-edition/</guid>
+      <guid>http://localhost:1315/posts/review-how-linux-works-2nd-edition/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/9781593275679/lrg.jpg&#34; alt=&#34;How Linux Works, 2nd Edition, What Every Superuser Should Know&#34; title=&#34;How Linux Works, 2nd Edition, What Every Superuser Should Know&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://shop.oreilly.com/product/9781593275679.do&#34;&gt;How Linux Works, 2nd Edition, What Every Superuser Should Know&lt;/a&gt; by &lt;a href=&#34;http://www.oreilly.com/pub/au/1403&#34;&gt;Brian Ward&lt;/a&gt;, is a brilliant introductionary to advanced level, book for people who want to understand Linux.&lt;/p&gt;
@@ -215,10 +204,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Linux: File Permissions, dead simple</title>
-      <link>http://localhost:1313/posts/linux-file-permissions-dead-simple/</link>
+      <link>http://localhost:1315/posts/linux-file-permissions-dead-simple/</link>
       <pubDate>Sat, 29 Nov 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/linux-file-permissions-dead-simple/</guid>
+      <guid>http://localhost:1315/posts/linux-file-permissions-dead-simple/</guid>
       
       <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
 &lt;p&gt;As every new Linux user may wonder, what do the file permissions means. What does file permissions as 777, 644 or 200 mean? How do I calculate that?&lt;/p&gt;
@@ -230,10 +219,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Review: Introducing Python</title>
-      <link>http://localhost:1313/posts/review-introducing-python/</link>
+      <link>http://localhost:1315/posts/review-introducing-python/</link>
       <pubDate>Fri, 28 Nov 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/review-introducing-python/</guid>
+      <guid>http://localhost:1315/posts/review-introducing-python/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/0636920028659/lrg.jpg&#34; alt=&#34;Introducing Python cover&#34; title=&#34;Introducing Python cover&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The book &lt;a href=&#34;http://shop.oreilly.com/product/0636920028659.do&#34;&gt;Introducing Python&lt;/a&gt; by Bill Lubavonic, is mix between an introductionary book and a cookbook. But does it find the perfect balance? It certainly  does!&lt;/p&gt;
@@ -243,10 +232,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Python: Modules vs Packages</title>
-      <link>http://localhost:1313/posts/python-modules-vs-packages/</link>
+      <link>http://localhost:1315/posts/python-modules-vs-packages/</link>
       <pubDate>Thu, 27 Nov 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/python-modules-vs-packages/</guid>
+      <guid>http://localhost:1315/posts/python-modules-vs-packages/</guid>
       
       <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
 &lt;p&gt;Coming from different language, the definition of a module and package may get mixed up. To confirm/clear up confusion, I wrote this article for myself and others who tend to mix modules and packages.&lt;/p&gt;
@@ -259,10 +248,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Review: Unix Haters Handbook</title>
-      <link>http://localhost:1313/posts/review-unix-haters-handbook/</link>
+      <link>http://localhost:1315/posts/review-unix-haters-handbook/</link>
       <pubDate>Wed, 26 Nov 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/review-unix-haters-handbook/</guid>
+      <guid>http://localhost:1315/posts/review-unix-haters-handbook/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://upload.wikimedia.org/wikipedia/en/7/77/UNIX-HATERS_Handbook_cover_ISBN_1-56884-203-1.png&#34; alt=&#34;UHH cover&#34; title=&#34;UHH cover&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The Unix Haters Handbook is a rather interesting compilation of messages and issues with the Unix operating system, edited by Simson Garfinkel.&lt;/p&gt;
@@ -272,10 +261,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Review: The Pomodoro Technique</title>
-      <link>http://localhost:1313/posts/review-the-pomodoro-technique/</link>
+      <link>http://localhost:1315/posts/review-the-pomodoro-technique/</link>
       <pubDate>Tue, 25 Nov 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/review-the-pomodoro-technique/</guid>
+      <guid>http://localhost:1315/posts/review-the-pomodoro-technique/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://pomodorotechnique.com/wp-content/themes/pomodoro/img/photos/book-phototop1.jpg&#34; alt=&#34;Pomodoro Technique cover&#34; title=&#34;Pomodoro Technique cover&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://pomodorotechnique.com/book/&#34;&gt;Pomodoro Technique&lt;/a&gt; is a book by Francesco Cirillo, who inventend the technique in the late 1980s, during his university years.&lt;/p&gt;
@@ -286,10 +275,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Review: Python for Kids</title>
-      <link>http://localhost:1313/posts/review-python-for-kids/</link>
+      <link>http://localhost:1315/posts/review-python-for-kids/</link>
       <pubDate>Fri, 21 Nov 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/review-python-for-kids/</guid>
+      <guid>http://localhost:1315/posts/review-python-for-kids/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/9781593274078/lrg.jpg&#34; alt=&#34;Python for Kids cover&#34; title=&#34;Python for Kids cover&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://shop.oreilly.com/product/9781593274078.do&#34;&gt;Python for Kids&lt;/a&gt; is a book by &lt;a href=&#34;https://github.com/hjwp&#34;&gt;Jason R. Briggs&lt;/a&gt;, a programmer since the age of eight, when he first learned BASIC on a Radio Shack TRS-80. Since then he has written software professionally as a developer and systems architect and served as Contributing Editor for Java Developer&amp;rsquo;s Journal.&lt;/p&gt;
@@ -299,10 +288,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Review: Introducing Github</title>
-      <link>http://localhost:1313/posts/review-introducing-github/</link>
+      <link>http://localhost:1315/posts/review-introducing-github/</link>
       <pubDate>Wed, 19 Nov 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/review-introducing-github/</guid>
+      <guid>http://localhost:1315/posts/review-introducing-github/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/0636920033059/lrg.jpg&#34; alt=&#34;Introducing Github cover&#34; title=&#34;Introducing Github cover&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://shop.oreilly.com/product/0636920033059.do&#34;&gt;Introducing Github&lt;/a&gt; is a book by &lt;a href=&#34;http://www.oreilly.com/pub/au/6204&#34;&gt;Peter Bell&lt;/a&gt; and &lt;a href=&#34;http://www.oreilly.com/pub/au/6247&#34;&gt;Brent Beer&lt;/a&gt;, members of the &lt;a href=&#34;https://github.com/githubtraining&#34;&gt;Github Training Team&lt;/a&gt;.&lt;/p&gt;
@@ -313,10 +302,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Review: 97 Things Every Programmer Should Know - Extended</title>
-      <link>http://localhost:1313/posts/review-97-things-every-programmer-should-know/</link>
+      <link>http://localhost:1315/posts/review-97-things-every-programmer-should-know/</link>
       <pubDate>Mon, 17 Nov 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/review-97-things-every-programmer-should-know/</guid>
+      <guid>http://localhost:1315/posts/review-97-things-every-programmer-should-know/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/9780596809492/lrg.jpg&#34; alt=&#34;97 Things Every Programmer Should Know cover&#34; title=&#34;97 Things Every Programmer Should Know cover&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The book &lt;a href=&#34;http://shop.oreilly.com/product/9780596809492.do&#34;&gt;97 Things Every Programmer Should Know&lt;/a&gt; by Kevlin Henney is a fine collection of programming essays. It combines the technical and philosophical aspect of the programming job.&lt;/p&gt;
@@ -326,10 +315,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Test-Driven-Development with Python</title>
-      <link>http://localhost:1313/posts/review-test-driven-development-with-python/</link>
+      <link>http://localhost:1315/posts/review-test-driven-development-with-python/</link>
       <pubDate>Sun, 16 Nov 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/review-test-driven-development-with-python/</guid>
+      <guid>http://localhost:1315/posts/review-test-driven-development-with-python/</guid>
       
       <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/0636920029533/lrg.jpg&#34; alt=&#34;TDD Python cover&#34; title=&#34;TDD Python cover&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://shop.oreilly.com/product/0636920029533.do#tab_03_2&#34;&gt;Test-Driven Development with Python&lt;/a&gt; is a book by &lt;a href=&#34;https://github.com/hjwp&#34;&gt;Harry J.W Percival&lt;/a&gt;, a software developer at &lt;a href=&#34;https://www.pythonanywhere.com/&#34;&gt;PythonAnywhere&lt;/a&gt;.&lt;/p&gt;
@@ -339,10 +328,10 @@ completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description
     
     <item>
       <title>Linux: How to setup the most minimalistic Xfce4 UI</title>
-      <link>http://localhost:1313/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</link>
+      <link>http://localhost:1315/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</link>
       <pubDate>Tue, 14 Oct 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</guid>
+      <guid>http://localhost:1315/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</guid>
       
       <description>&lt;p&gt;Most of us adore the minimalistic Unity. But we hate it for the memory hog it is.&lt;/p&gt;
 &lt;p&gt;So the only reasonable solution is to replace Unity with the rising in popularity, Xfce4.&lt;/p&gt;
@@ -361,10 +350,10 @@ However this is not the same for other desktop environments.&lt;/p&gt;</descript
     
     <item>
       <title>Linux: Python(Django) Provisioning and Deployment</title>
-      <link>http://localhost:1313/posts/linux-python-provisioning-and-deployment/</link>
+      <link>http://localhost:1315/posts/linux-python-provisioning-and-deployment/</link>
       <pubDate>Sun, 12 Oct 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/linux-python-provisioning-and-deployment/</guid>
+      <guid>http://localhost:1315/posts/linux-python-provisioning-and-deployment/</guid>
       
       <description>&lt;p&gt;In the following tutorial/guide/article I&amp;rsquo;ll explain how to provision and deploy a Django app.&lt;/p&gt;
 &lt;p&gt;Before all you should have:&lt;/p&gt;
@@ -380,10 +369,10 @@ However this is not the same for other desktop environments.&lt;/p&gt;</descript
     
     <item>
       <title>Atom: Setting up for Python Development</title>
-      <link>http://localhost:1313/posts/atom-setting-up-for-python-development/</link>
+      <link>http://localhost:1315/posts/atom-setting-up-for-python-development/</link>
       <pubDate>Sat, 23 Aug 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/atom-setting-up-for-python-development/</guid>
+      <guid>http://localhost:1315/posts/atom-setting-up-for-python-development/</guid>
       
       <description>&lt;h2&gt;1. Installation&lt;/h2&gt;
 &lt;p&gt;Taken from &lt;a href=&#34;http://www.webupd8.org/2014/06/atom-text-editor-available-for-linux.html&#34;&gt;http://www.webupd8.org/2014/06/atom-text-editor-available-for-linux.html&lt;/a&gt;&lt;/p&gt;
@@ -412,10 +401,10 @@ I recommend &lt;a href=&#34;https://bitbucket.org/tarek/flake8/src&#34;&gt;flake
     
     <item>
       <title>Python: Introduction to working with the Bitbucket/Github API</title>
-      <link>http://localhost:1313/posts/python-working-with-the-bitbucket-github-api/</link>
+      <link>http://localhost:1315/posts/python-working-with-the-bitbucket-github-api/</link>
       <pubDate>Thu, 14 Aug 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/python-working-with-the-bitbucket-github-api/</guid>
+      <guid>http://localhost:1315/posts/python-working-with-the-bitbucket-github-api/</guid>
       
       <description>&lt;p&gt;Nowdays Bitbucket and Github are the places to store your projects in an organized manner.&lt;/p&gt;
 &lt;p&gt;They have their pros and cons but both are irreplaceable. They offer RESTful Web APIs.&lt;/p&gt;
@@ -430,10 +419,10 @@ where do you send it to and what response and data do you get.&lt;/p&gt;</descri
     
     <item>
       <title>Migrating the blog from wordpress to github pages</title>
-      <link>http://localhost:1313/posts/migrating-the-blog-from-wordpress-to-github-pages/</link>
+      <link>http://localhost:1315/posts/migrating-the-blog-from-wordpress-to-github-pages/</link>
       <pubDate>Fri, 27 Jun 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/migrating-the-blog-from-wordpress-to-github-pages/</guid>
+      <guid>http://localhost:1315/posts/migrating-the-blog-from-wordpress-to-github-pages/</guid>
       
       <description>&lt;p&gt;After many, many weeks of planning and trying, I can &#39;officially&#39; start migrating away from wordpress.&lt;/p&gt;
 &lt;p&gt;This blog post will be updated in the following weeks.&lt;/p&gt;
@@ -446,10 +435,10 @@ where do you send it to and what response and data do you get.&lt;/p&gt;</descri
     
     <item>
       <title>Atom: a potential replacement of Sublime Text 2/3</title>
-      <link>http://localhost:1313/posts/atom-a-potential-replacement-of-sublime-text-2-3/</link>
+      <link>http://localhost:1315/posts/atom-a-potential-replacement-of-sublime-text-2-3/</link>
       <pubDate>Tue, 20 May 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/atom-a-potential-replacement-of-sublime-text-2-3/</guid>
+      <guid>http://localhost:1315/posts/atom-a-potential-replacement-of-sublime-text-2-3/</guid>
       
       <description>&lt;h3&gt;&lt;strong&gt;&lt;a href=&#34;https://atom.io/&#34;&gt;Github Atom&#39;s website&lt;/a&gt; and &lt;a href=&#34;www.webupd8.org/2014/05/atom-text-editor-ubuntu-ppa-update.html&#34;&gt;How to get Atom for Linux&lt;/a&gt;&lt;/strong&gt;&lt;/h3&gt;
 &lt;h3&gt;&lt;a href=&#34;http://www.sublimetext.com/3&#34;&gt;&lt;strong&gt;Sublime Text 3&#39;s website&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;http://syndbg.wordpress.com/2014/03/04/linux-setting-up-sublime-text-3-for-python-development/&#34;&gt;How to get Sublime Text 3 for Linux&lt;/a&gt;&lt;/h3&gt;
@@ -464,10 +453,10 @@ contribute through the &lt;a href=&#34;https://github.com/atom/atom&#34;&gt;atom
     
     <item>
       <title>Python 3 How to: Write Unit tests (PyUnit, pytest, nose)</title>
-      <link>http://localhost:1313/posts/python-3-how-to-write-unit-tests-unittest-pytest-nose/</link>
+      <link>http://localhost:1315/posts/python-3-how-to-write-unit-tests-unittest-pytest-nose/</link>
       <pubDate>Sun, 20 Apr 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/python-3-how-to-write-unit-tests-unittest-pytest-nose/</guid>
+      <guid>http://localhost:1315/posts/python-3-how-to-write-unit-tests-unittest-pytest-nose/</guid>
       
       <description>&lt;h3&gt;In the following blog post I&#39;ll cover the following frameworks for unit testing.&lt;/h3&gt;
 &lt;p&gt;​1) &lt;a href=&#34;http://pyunit.sourceforge.net/&#34; title=&#34;PyUnit &#34;&gt;PyUnit&lt;/a&gt;, also known as
@@ -485,10 +474,10 @@ unit tests file&lt;/p&gt;</description>
     
     <item>
       <title>Python 3 How to: Code coverage (nose way included)</title>
-      <link>http://localhost:1313/posts/python-3-how-to-code-coverage-nose-included/</link>
+      <link>http://localhost:1315/posts/python-3-how-to-code-coverage-nose-included/</link>
       <pubDate>Tue, 15 Apr 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/python-3-how-to-code-coverage-nose-included/</guid>
+      <guid>http://localhost:1315/posts/python-3-how-to-code-coverage-nose-included/</guid>
       
       <description>&lt;p&gt;&lt;strong&gt;First of all, you must download and install
 &lt;a href=&#34;https://pypi.python.org/pypi/coverage/3.7.1&#34;&gt;coverage.py&lt;/a&gt; with pip.&lt;/strong&gt;&lt;/p&gt;
@@ -509,10 +498,10 @@ coverage.&lt;/strong&gt;&lt;/p&gt;</description>
     
     <item>
       <title>Linux: How to customize your terminal</title>
-      <link>http://localhost:1313/posts/linux-how-to-customize-your-terminal/</link>
+      <link>http://localhost:1315/posts/linux-how-to-customize-your-terminal/</link>
       <pubDate>Thu, 13 Mar 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/linux-how-to-customize-your-terminal/</guid>
+      <guid>http://localhost:1315/posts/linux-how-to-customize-your-terminal/</guid>
       
       <description>&lt;p&gt;In this short tutorial, I&#39;ll tell you how to modify your bash into
 something more useful for you.&lt;/p&gt;
@@ -530,10 +519,10 @@ launching a new terminal&lt;/strong&gt; to your new profile&#39;s name.&lt;stro
     
     <item>
       <title>Linux: Setting up Sublime Text 3 for Python development</title>
-      <link>http://localhost:1313/posts/linux-setting-up-sublime-text-3-for-python-development/</link>
+      <link>http://localhost:1315/posts/linux-setting-up-sublime-text-3-for-python-development/</link>
       <pubDate>Tue, 04 Mar 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/linux-setting-up-sublime-text-3-for-python-development/</guid>
+      <guid>http://localhost:1315/posts/linux-setting-up-sublime-text-3-for-python-development/</guid>
       
       <description>&lt;h2&gt;I assume you have already installed Sublime Text 3, if not:&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;sudo add-apt-repository ppa:webupd8team/sublime-text-3 sudo apt-get update sudo apt-get install sublime-text-installer&lt;/code&gt;&lt;/p&gt;
@@ -556,10 +545,10 @@ development.&lt;/p&gt;
     
     <item>
       <title>Ubuntu: Setting up git in under 10minutes</title>
-      <link>http://localhost:1313/posts/ubuntu-setting-up-git-in-under-10minutes/</link>
+      <link>http://localhost:1315/posts/ubuntu-setting-up-git-in-under-10minutes/</link>
       <pubDate>Tue, 25 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/ubuntu-setting-up-git-in-under-10minutes/</guid>
+      <guid>http://localhost:1315/posts/ubuntu-setting-up-git-in-under-10minutes/</guid>
       
       <description>&lt;h2&gt;&lt;a href=&#34;http://cli.learncodethehardway.org/book/&#34;&gt;Become familiar with the Terminal beforehand.&lt;/a&gt;&lt;/h2&gt;
 &lt;h2&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Git_(software)&#34;&gt;What is git?&lt;/a&gt;&lt;/h2&gt;
@@ -578,10 +567,10 @@ development.&lt;/p&gt;
     
     <item>
       <title>Making the switch to Ubuntu. How to install PPAs</title>
-      <link>http://localhost:1313/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</link>
+      <link>http://localhost:1315/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</link>
       <pubDate>Thu, 20 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</guid>
+      <guid>http://localhost:1315/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</guid>
       
       <description>&lt;p&gt;If you want instructions how to make a liveCD/liveUSB and how to install
 Ubuntu head -
@@ -598,10 +587,10 @@ commands: &lt;/strong&gt;&lt;/p&gt;</description>
     
     <item>
       <title>Ubuntu bug solution: Keyboard&#39;s modifier keys aren&#39;t working</title>
-      <link>http://localhost:1313/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</link>
+      <link>http://localhost:1315/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</link>
       <pubDate>Thu, 20 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</guid>
+      <guid>http://localhost:1315/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</guid>
       
       <description>&lt;h2&gt;What are modifier keys?&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Alt&lt;/strong&gt;, &lt;strong&gt;Control&lt;/strong&gt;, &lt;strong&gt;Shift&lt;/strong&gt; and&lt;strong&gt;Windows key&lt;/strong&gt; are modifier keys.
@@ -622,10 +611,10 @@ may not work for you.&lt;/p&gt;</description>
     
     <item>
       <title>Ubuntu: PPAs you should have installed or have in mind</title>
-      <link>http://localhost:1313/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</link>
+      <link>http://localhost:1315/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</link>
       <pubDate>Thu, 20 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</guid>
+      <guid>http://localhost:1315/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</guid>
       
       <description>&lt;h2&gt;&lt;a href=&#34;http://syndbg.wordpress.com/2014/02/20/making-the-switch-to-ubuntu-how-to-install-ppas/&#34;&gt;How to install PPAs&lt;/a&gt;&lt;/h2&gt;
 &lt;h2&gt;Faster updates and installs: apt-fast&lt;/h2&gt;
@@ -646,10 +635,10 @@ edit source, as in the screenshot.&lt;/p&gt;</description>
     
     <item>
       <title>Ubuntu horror stories: No headphones sound?</title>
-      <link>http://localhost:1313/posts/ubuntu-horror-stories-no-headphones-sound/</link>
+      <link>http://localhost:1315/posts/ubuntu-horror-stories-no-headphones-sound/</link>
       <pubDate>Tue, 11 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/ubuntu-horror-stories-no-headphones-sound/</guid>
+      <guid>http://localhost:1315/posts/ubuntu-horror-stories-no-headphones-sound/</guid>
       
       <description>&lt;p&gt;I&#39;ll be starting this series of blog posts about my horrible experiences
 with Ubuntu.&lt;br /&gt;
@@ -666,10 +655,10 @@ and I notice that I have no sound.&lt;/p&gt;</description>
     
     <item>
       <title>Programming tips: Avoiding unbalanced parentheses errors</title>
-      <link>http://localhost:1313/posts/programming-tips-avoiding-unbalanced-parentheses-errors/</link>
+      <link>http://localhost:1315/posts/programming-tips-avoiding-unbalanced-parentheses-errors/</link>
       <pubDate>Sun, 09 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/programming-tips-avoiding-unbalanced-parentheses-errors/</guid>
+      <guid>http://localhost:1315/posts/programming-tips-avoiding-unbalanced-parentheses-errors/</guid>
       
       <description>&lt;p&gt;It&#39;s very common for people to have unbalanced parenthesis after hours
 of work and hundreds of lines of code.&lt;br /&gt;
@@ -684,10 +673,10 @@ time than it should.&lt;/p&gt;</description>
     
     <item>
       <title>Quick reference: CSS/CSS3 Attribute selectors</title>
-      <link>http://localhost:1313/posts/quick-reference-csscss3-attribute-selectors/</link>
+      <link>http://localhost:1315/posts/quick-reference-csscss3-attribute-selectors/</link>
       <pubDate>Thu, 30 Jan 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/quick-reference-csscss3-attribute-selectors/</guid>
+      <guid>http://localhost:1315/posts/quick-reference-csscss3-attribute-selectors/</guid>
       
       <description>&lt;p&gt;&lt;strong&gt;The basic syntax&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code style=&#34;background-color:salmon;font-size:1.1rem;color:white;&#34;&gt;selector[attribute]&lt;/code&gt;&lt;/p&gt;
@@ -714,10 +703,10 @@ strings&lt;/p&gt;</description>
     
     <item>
       <title>CSS3, the 147 color names you might find useful to know!</title>
-      <link>http://localhost:1313/posts/css3-the-147-color-names-you-might-find-useful-to-know/</link>
+      <link>http://localhost:1315/posts/css3-the-147-color-names-you-might-find-useful-to-know/</link>
       <pubDate>Wed, 29 Jan 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/css3-the-147-color-names-you-might-find-useful-to-know/</guid>
+      <guid>http://localhost:1315/posts/css3-the-147-color-names-you-might-find-useful-to-know/</guid>
       
       <description>&lt;p&gt;The syntax is simple.&lt;/p&gt;
 &lt;p&gt;Apply it with color properties like  &lt;code&gt;background-color&lt;/code&gt; or &lt;code&gt;color&lt;/code&gt;&lt;/p&gt;
@@ -1250,10 +1239,10 @@ yellowgreen
     
     <item>
       <title>Fonts 101. Meet the font typefaces and differentiate them easily!</title>
-      <link>http://localhost:1313/posts/fonts-101-meet-the-font-typefaces-and-differentiate-them-easily/</link>
+      <link>http://localhost:1315/posts/fonts-101-meet-the-font-typefaces-and-differentiate-them-easily/</link>
       <pubDate>Wed, 29 Jan 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/fonts-101-meet-the-font-typefaces-and-differentiate-them-easily/</guid>
+      <guid>http://localhost:1315/posts/fonts-101-meet-the-font-typefaces-and-differentiate-them-easily/</guid>
       
       <description>&lt;p&gt;After the monospaced fonts post, I decided that it&#39;s good to go one step
 back and clear up the misunderstandings with some of the font
@@ -1282,10 +1271,10 @@ typefaces&#34; src=&#34;http://i.imgur.com/6jIEa59.png&#34; /&gt;&lt;/a&gt;&lt;/
     
     <item>
       <title>CSS3 tip of the day: Responsive web design - Font-sizing with rem</title>
-      <link>http://localhost:1313/posts/css3-tip-of-the-day-responsive-web-design-font-sizing-with-rem/</link>
+      <link>http://localhost:1315/posts/css3-tip-of-the-day-responsive-web-design-font-sizing-with-rem/</link>
       <pubDate>Sat, 25 Jan 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/css3-tip-of-the-day-responsive-web-design-font-sizing-with-rem/</guid>
+      <guid>http://localhost:1315/posts/css3-tip-of-the-day-responsive-web-design-font-sizing-with-rem/</guid>
       
       <description>&lt;p&gt;To create good responsive web design you must use proportionally-sized
 text units like &lt;em&gt;em &lt;/em&gt;and&lt;em&gt; % (percents).&lt;/em&gt;&lt;/p&gt;
@@ -1302,10 +1291,10 @@ always 3 times the font size, wherever you apply it.&lt;/p&gt;</description>
     
     <item>
       <title>Work enhancement: Finding the right font</title>
-      <link>http://localhost:1313/posts/work-enhancement-finding-the-right-font/</link>
+      <link>http://localhost:1315/posts/work-enhancement-finding-the-right-font/</link>
       <pubDate>Fri, 24 Jan 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/work-enhancement-finding-the-right-font/</guid>
+      <guid>http://localhost:1315/posts/work-enhancement-finding-the-right-font/</guid>
       
       <description>&lt;p&gt;There are hundreds of hundreds fonts but finding the right one is hard.&lt;/p&gt;
 &lt;p&gt;However, we can narrow down the search to one certain category:
@@ -1328,10 +1317,10 @@ as &lt;em&gt;modern &lt;/em&gt;fonts.&lt;/p&gt;
     
     <item>
       <title>Python development in Visual Studio?</title>
-      <link>http://localhost:1313/posts/python-development-in-visual-studio/</link>
+      <link>http://localhost:1315/posts/python-development-in-visual-studio/</link>
       <pubDate>Thu, 23 Jan 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/python-development-in-visual-studio/</guid>
+      <guid>http://localhost:1315/posts/python-development-in-visual-studio/</guid>
       
       <description>&lt;p&gt;I wasn&#39;t very fond of Microsoft&#39;s IDE until I started writing
 HTML5/CSS3. Then I kind of fell in love with the native black theme, the

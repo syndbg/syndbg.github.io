@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pypi on Anton Antonov&#39;s mindspace</title>
-    <link>http://localhost:1313/categories/pypi/</link>
+    <link>http://localhost:1315/categories/pypi/</link>
     <description>Recent content in Pypi on Anton Antonov&#39;s mindspace</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Apr 2015 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/pypi/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Apr 2015 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1315/categories/pypi/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Publishing to PyPi Can Be A Nightmare</title>
-      <link>http://localhost:1313/posts/publishing-to-pypi-can-be-a-nightmare/</link>
+      <link>http://localhost:1315/posts/publishing-to-pypi-can-be-a-nightmare/</link>
       <pubDate>Sun, 05 Apr 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/publishing-to-pypi-can-be-a-nightmare/</guid>
+      <guid>http://localhost:1315/posts/publishing-to-pypi-can-be-a-nightmare/</guid>
       
       <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
 &lt;p&gt;Yesterday (04.04) I was having the most ridiculous issues with PyPi - from not being able to publish my package, to already publishing a version and not being able to update and at last - deleting my package from PyPi wouldn&amp;rsquo;t actually delete it.&lt;/p&gt;

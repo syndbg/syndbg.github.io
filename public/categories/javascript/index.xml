@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Javascript on Anton Antonov&#39;s mindspace</title>
-    <link>http://localhost:1313/categories/javascript/</link>
+    <link>http://localhost:1315/categories/javascript/</link>
     <description>Recent content in Javascript on Anton Antonov&#39;s mindspace</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 May 2015 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 May 2015 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1315/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AngularJS: Life cycles</title>
-      <link>http://localhost:1313/posts/angularjs-lifecycles/</link>
+      <link>http://localhost:1315/posts/angularjs-lifecycles/</link>
       <pubDate>Mon, 04 May 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/angularjs-lifecycles/</guid>
+      <guid>http://localhost:1315/posts/angularjs-lifecycles/</guid>
       
       <description>&lt;h2 id=&#34;angularjs&#34;&gt;AngularJS&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://angularjs.org/img/AngularJS-large.png&#34; alt=&#34;Angular logo&#34; title=&#34;Angular logo&#34;&gt;&lt;/p&gt;
@@ -26,10 +26,10 @@ so powerful, yet so simple to understand once you got the basics down.&lt;/p&gt;
     
     <item>
       <title>Intro AngularJS</title>
-      <link>http://localhost:1313/posts/intro-angularjs/</link>
+      <link>http://localhost:1315/posts/intro-angularjs/</link>
       <pubDate>Wed, 25 Mar 2015 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/intro-angularjs/</guid>
+      <guid>http://localhost:1315/posts/intro-angularjs/</guid>
       
       <description>&lt;p&gt;During the recent week, I had to write front-end using AngularJS.
 This is a work in progress article, as I explore different AngularJS books and resources.&lt;/p&gt;

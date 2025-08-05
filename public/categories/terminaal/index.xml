@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Terminaal on Anton Antonov&#39;s mindspace</title>
-    <link>http://localhost:1313/categories/terminaal/</link>
+    <link>http://localhost:1315/categories/terminaal/</link>
     <description>Recent content in Terminaal on Anton Antonov&#39;s mindspace</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Mar 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/terminaal/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Mar 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1315/categories/terminaal/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux: How to customize your terminal</title>
-      <link>http://localhost:1313/posts/linux-how-to-customize-your-terminal/</link>
+      <link>http://localhost:1315/posts/linux-how-to-customize-your-terminal/</link>
       <pubDate>Thu, 13 Mar 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/linux-how-to-customize-your-terminal/</guid>
+      <guid>http://localhost:1315/posts/linux-how-to-customize-your-terminal/</guid>
       
       <description>&lt;p&gt;In this short tutorial, I&#39;ll tell you how to modify your bash into
 something more useful for you.&lt;/p&gt;

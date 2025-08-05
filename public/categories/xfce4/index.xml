@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xfce4 on Anton Antonov&#39;s mindspace</title>
-    <link>http://localhost:1313/categories/xfce4/</link>
+    <link>http://localhost:1315/categories/xfce4/</link>
     <description>Recent content in Xfce4 on Anton Antonov&#39;s mindspace</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Oct 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/xfce4/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Oct 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1315/categories/xfce4/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux: How to setup the most minimalistic Xfce4 UI</title>
-      <link>http://localhost:1313/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</link>
+      <link>http://localhost:1315/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</link>
       <pubDate>Tue, 14 Oct 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</guid>
+      <guid>http://localhost:1315/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</guid>
       
       <description>&lt;p&gt;Most of us adore the minimalistic Unity. But we hate it for the memory hog it is.&lt;/p&gt;
 &lt;p&gt;So the only reasonable solution is to replace Unity with the rising in popularity, Xfce4.&lt;/p&gt;

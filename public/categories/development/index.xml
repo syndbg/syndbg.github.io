@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Development on Anton Antonov&#39;s mindspace</title>
-    <link>http://localhost:1313/categories/development/</link>
+    <link>http://localhost:1315/categories/development/</link>
     <description>Recent content in Development on Anton Antonov&#39;s mindspace</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 Aug 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Aug 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1315/categories/development/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Atom: Setting up for Python Development</title>
-      <link>http://localhost:1313/posts/atom-setting-up-for-python-development/</link>
+      <link>http://localhost:1315/posts/atom-setting-up-for-python-development/</link>
       <pubDate>Sat, 23 Aug 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/atom-setting-up-for-python-development/</guid>
+      <guid>http://localhost:1315/posts/atom-setting-up-for-python-development/</guid>
       
       <description>&lt;h2&gt;1. Installation&lt;/h2&gt;
 &lt;p&gt;Taken from &lt;a href=&#34;http://www.webupd8.org/2014/06/atom-text-editor-available-for-linux.html&#34;&gt;http://www.webupd8.org/2014/06/atom-text-editor-available-for-linux.html&lt;/a&gt;&lt;/p&gt;

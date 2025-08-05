@@ -9,12 +9,10 @@ title = "Anton Antonov's mindspace"
 [params]
   description = "Open-source developer and an eternal apprentice."
 
-    # Author configuration - matching Hugo Blog Awesome requirements
+  # Author configuration for Hugo Blog Awesome theme
   [params.author]
     name = "Anton Antonov"
-    email = "anton.synd.antonov@gmail.com"
-    link = "https://github.com/syndbg"
-    avatar = "/images/avatar.png"
+    avatar = "images/avatar.png"
 
   # Theme configuration
   [params.theme]

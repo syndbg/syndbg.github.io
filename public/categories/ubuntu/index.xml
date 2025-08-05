@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ubuntu on Anton Antonov&#39;s mindspace</title>
-    <link>http://localhost:1313/categories/ubuntu/</link>
+    <link>http://localhost:1315/categories/ubuntu/</link>
     <description>Recent content in Ubuntu on Anton Antonov&#39;s mindspace</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Feb 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Feb 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1315/categories/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ubuntu: Setting up git in under 10minutes</title>
-      <link>http://localhost:1313/posts/ubuntu-setting-up-git-in-under-10minutes/</link>
+      <link>http://localhost:1315/posts/ubuntu-setting-up-git-in-under-10minutes/</link>
       <pubDate>Tue, 25 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/ubuntu-setting-up-git-in-under-10minutes/</guid>
+      <guid>http://localhost:1315/posts/ubuntu-setting-up-git-in-under-10minutes/</guid>
       
       <description>&lt;h2&gt;&lt;a href=&#34;http://cli.learncodethehardway.org/book/&#34;&gt;Become familiar with the Terminal beforehand.&lt;/a&gt;&lt;/h2&gt;
 &lt;h2&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Git_(software)&#34;&gt;What is git?&lt;/a&gt;&lt;/h2&gt;
@@ -31,10 +31,10 @@
     
     <item>
       <title>Making the switch to Ubuntu. How to install PPAs</title>
-      <link>http://localhost:1313/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</link>
+      <link>http://localhost:1315/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</link>
       <pubDate>Thu, 20 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</guid>
+      <guid>http://localhost:1315/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</guid>
       
       <description>&lt;p&gt;If you want instructions how to make a liveCD/liveUSB and how to install
 Ubuntu head -
@@ -51,10 +51,10 @@ commands: &lt;/strong&gt;&lt;/p&gt;</description>
     
     <item>
       <title>Ubuntu bug solution: Keyboard&#39;s modifier keys aren&#39;t working</title>
-      <link>http://localhost:1313/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</link>
+      <link>http://localhost:1315/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</link>
       <pubDate>Thu, 20 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</guid>
+      <guid>http://localhost:1315/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</guid>
       
       <description>&lt;h2&gt;What are modifier keys?&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Alt&lt;/strong&gt;, &lt;strong&gt;Control&lt;/strong&gt;, &lt;strong&gt;Shift&lt;/strong&gt; and&lt;strong&gt;Windows key&lt;/strong&gt; are modifier keys.
@@ -75,10 +75,10 @@ may not work for you.&lt;/p&gt;</description>
     
     <item>
       <title>Ubuntu: PPAs you should have installed or have in mind</title>
-      <link>http://localhost:1313/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</link>
+      <link>http://localhost:1315/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</link>
       <pubDate>Thu, 20 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</guid>
+      <guid>http://localhost:1315/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</guid>
       
       <description>&lt;h2&gt;&lt;a href=&#34;http://syndbg.wordpress.com/2014/02/20/making-the-switch-to-ubuntu-how-to-install-ppas/&#34;&gt;How to install PPAs&lt;/a&gt;&lt;/h2&gt;
 &lt;h2&gt;Faster updates and installs: apt-fast&lt;/h2&gt;
@@ -99,10 +99,10 @@ edit source, as in the screenshot.&lt;/p&gt;</description>
     
     <item>
       <title>Ubuntu horror stories: No headphones sound?</title>
-      <link>http://localhost:1313/posts/ubuntu-horror-stories-no-headphones-sound/</link>
+      <link>http://localhost:1315/posts/ubuntu-horror-stories-no-headphones-sound/</link>
       <pubDate>Tue, 11 Feb 2014 11:21:29 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/ubuntu-horror-stories-no-headphones-sound/</guid>
+      <guid>http://localhost:1315/posts/ubuntu-horror-stories-no-headphones-sound/</guid>
       
       <description>&lt;p&gt;I&#39;ll be starting this series of blog posts about my horrible experiences
 with Ubuntu.&lt;br /&gt;
