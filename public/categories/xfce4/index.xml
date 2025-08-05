@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xfce4 on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/xfce4/</link>
+    <description>Recent content in Xfce4 on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Oct 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/xfce4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux: How to setup the most minimalistic Xfce4 UI</title>
+      <link>http://localhost:1313/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</link>
+      <pubDate>Tue, 14 Oct 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</guid>
+      
+      <description>&lt;p&gt;Most of us adore the minimalistic Unity. But we hate it for the memory hog it is.&lt;/p&gt;
+&lt;p&gt;So the only reasonable solution is to replace Unity with the rising in popularity, Xfce4.&lt;/p&gt;
+&lt;p&gt;Xfce is a lightweight desktop environment and that&amp;rsquo;s all we need to know for this article. &lt;a href=&#34;http://www.xfce.org/&#34;&gt;(Read here)&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;xfce-4latest-installation&#34;&gt;Xfce 4/latest installation:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;It comes preinstalled with &lt;a href=&#34;http://www.linuxmint.com/download.php&#34;&gt;Mint Xfce&lt;/a&gt; and &lt;a href=&#34;http://xubuntu.org/&#34;&gt;Xubuntu&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;If you already have an Ubuntu you can&amp;rsquo;t let go of, just &lt;code&gt;sudo apt-get install xubuntu-desktop&lt;/code&gt;. It will install all the xfce4 candy and widgets you&amp;rsquo;ll need.&lt;/li&gt;
+&lt;li&gt;If you come from an other distro, please check the packages you have available and search for &lt;code&gt;xfce4*&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-problem&#34;&gt;The problem:&lt;/h2&gt;
+&lt;p&gt;Apps neatly hide their app bar and integrate their menu with Unity&amp;rsquo;s top bar.
+However this is not the same for other desktop environments.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>101 on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/101/</link>
+    <description>Recent content in 101 on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Jan 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/101/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fonts 101. Meet the font typefaces and differentiate them easily!</title>
+      <link>http://localhost:1313/posts/fonts-101-meet-the-font-typefaces-and-differentiate-them-easily/</link>
+      <pubDate>Wed, 29 Jan 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/fonts-101-meet-the-font-typefaces-and-differentiate-them-easily/</guid>
+      
+      <description>&lt;p&gt;After the monospaced fonts post, I decided that it&#39;s good to go one step
+back and clear up the misunderstandings with some of the font
+typefaces(families).&lt;/p&gt;
+&lt;p&gt;The more common typefaces are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;serif&lt;/li&gt;
+&lt;li&gt;sans-serif&lt;/li&gt;
+&lt;li&gt;monospace&lt;/li&gt;
+&lt;li&gt;cursive&lt;/li&gt;
+&lt;li&gt;fantasy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The differences can be easily seen with this (Credits &lt;a href=&#34;http://shop.oreilly.com/product/0636920023494.do&#34;&gt;Learning Web
+Design, 4th Edition&lt;/a&gt;,
+great image!)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://syndbg.files.wordpress.com/2014/01/learningwebdesign4thed-typefaaces.png&#34;&gt;&lt;img alt=&#34;Image to help differentiate font
+typefaces&#34; src=&#34;http://i.imgur.com/6jIEa59.png&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The &#34;weirder&#34; ones&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;script/calligraphy&lt;/li&gt;
+&lt;li&gt;symbol/icon&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;calligraphy is self-explanatory, but here&#39;s an example symbol font&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

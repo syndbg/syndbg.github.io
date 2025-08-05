@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sublime on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/sublime/</link>
+    <description>Recent content in Sublime on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 20 May 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/sublime/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Atom: a potential replacement of Sublime Text 2/3</title>
+      <link>http://localhost:1313/posts/atom-a-potential-replacement-of-sublime-text-2-3/</link>
+      <pubDate>Tue, 20 May 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/atom-a-potential-replacement-of-sublime-text-2-3/</guid>
+      
+      <description>&lt;h3&gt;&lt;strong&gt;&lt;a href=&#34;https://atom.io/&#34;&gt;Github Atom&#39;s website&lt;/a&gt; and &lt;a href=&#34;www.webupd8.org/2014/05/atom-text-editor-ubuntu-ppa-update.html&#34;&gt;How to get Atom for Linux&lt;/a&gt;&lt;/strong&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;a href=&#34;http://www.sublimetext.com/3&#34;&gt;&lt;strong&gt;Sublime Text 3&#39;s website&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;http://syndbg.wordpress.com/2014/03/04/linux-setting-up-sublime-text-3-for-python-development/&#34;&gt;How to get Sublime Text 3 for Linux&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer: Atom still has to live through the v1.0 release. It&#39;s
+still in a beta (sort of), so there could be bugs&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;I&#39;ll start with a  list the problems I see in Sublime Text 3 and Atom&#39;s solution.&lt;/h2&gt;
+&lt;h3&gt;1) Contributing is hard&lt;/h3&gt;
+&lt;p&gt;However Atom is open sourced under MIT license and you can directly
+contribute through the &lt;a href=&#34;https://github.com/atom/atom&#34;&gt;atom github repo&lt;/a&gt;.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Linux: Setting up Sublime Text 3 for Python development</title>
+      <link>http://localhost:1313/posts/linux-setting-up-sublime-text-3-for-python-development/</link>
+      <pubDate>Tue, 04 Mar 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/linux-setting-up-sublime-text-3-for-python-development/</guid>
+      
+      <description>&lt;h2&gt;I assume you have already installed Sublime Text 3, if not:&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;sudo add-apt-repository ppa:webupd8team/sublime-text-3 sudo apt-get update sudo apt-get install sublime-text-installer&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Packages you&#39;ll definitely need to do Python development&lt;/h2&gt;
+&lt;h3&gt;First of all install Package Control (mandatory)&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://sublime.wbond.net/installation&#34;&gt;How to install ST3 Package
+Control&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&#34;https://github.com/DamnWidget/anaconda&#34;&gt;Anaconda&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Does all the linting, auto-correction and etc. you&#39;ll need for Python
+development.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CTRL+SHIFT+P and write Install Package, Enter&lt;/li&gt;
+&lt;li&gt;Write Anaconda, Enter. Done!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Optional, but useful packages&lt;/h2&gt;
+&lt;h3&gt;&lt;a href=&#34;https://github.com/facelessuser/BracketHighlighter&#34;&gt;BracketHighlighter&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Highlight free spaces (%20) in highlighted text.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

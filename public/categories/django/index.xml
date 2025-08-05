@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Django on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/django/</link>
+    <description>Recent content in Django on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Mar 2015 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/django/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learning Django</title>
+      <link>http://localhost:1313/posts/learning-django/</link>
+      <pubDate>Thu, 26 Mar 2015 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/learning-django/</guid>
+      
+      <description>&lt;p&gt;Django is the go-to batteries included web framework for Pythonista.&lt;/p&gt;
+&lt;p&gt;However starting to create web apps with Django is a bit rough,
+if you don&amp;rsquo;t have the comfort of someone mentoring you.&lt;/p&gt;
+&lt;p&gt;From my experience as a Django developer for 1 year, 3-4 projects and close to 3 versions of the framework,
+I will share the materials that helped me start with Django without
+prior web and MVC pattern experience.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Linux: Python(Django) Provisioning and Deployment</title>
+      <link>http://localhost:1313/posts/linux-python-provisioning-and-deployment/</link>
+      <pubDate>Sun, 12 Oct 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/linux-python-provisioning-and-deployment/</guid>
+      
+      <description>&lt;p&gt;In the following tutorial/guide/article I&amp;rsquo;ll explain how to provision and deploy a Django app.&lt;/p&gt;
+&lt;p&gt;Before all you should have:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A domain (GoDaddy, Namecheap, Hover, ICN.bg, superhosting and etc)&lt;/li&gt;
+&lt;li&gt;VPS/Cloud host with SSH (digitalocean.com is my pick)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;domain-vps-cloud-setup&#34;&gt;Domain, VPS, Cloud setup&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;If you bought a domain, but didn&amp;rsquo;t configure it yet:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You should change the DNS Name Servers (NS in short) to DigitalOcean&amp;rsquo;s or your VPS/Cloud provider&amp;rsquo;s (if they have such).&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

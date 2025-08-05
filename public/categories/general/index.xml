@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>General on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/general/</link>
+    <description>Recent content in General on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/general/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Welcome to My New Hugo Blog</title>
+      <link>http://localhost:1313/posts/welcome-to-hugo/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/welcome-to-hugo/</guid>
+      
+      <description>&lt;h1 id=&#34;welcome-to-my-new-hugo-blog&#34;&gt;Welcome to My New Hugo Blog!&lt;/h1&gt;
+&lt;p&gt;I&amp;rsquo;ve just migrated my blog to &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; using the fantastic &lt;a href=&#34;https://github.com/hugo-sid/hugo-blog-awesome&#34;&gt;Hugo Blog Awesome theme&lt;/a&gt;. Here&amp;rsquo;s what&amp;rsquo;s new and exciting about this setup:&lt;/p&gt;
+&lt;h2 id=&#34;why-hugo&#34;&gt;Why Hugo?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;⚡ Blazing Fast&lt;/strong&gt;: Static site generation means lightning-fast loading times&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🔧 Modern Toolchain&lt;/strong&gt;: Go-based with excellent module support&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🎨 Beautiful Themes&lt;/strong&gt;: Like this Hugo Blog Awesome theme with dark mode support&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;📱 Responsive&lt;/strong&gt;: Looks great on all devices&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;🚀 Easy Deployment&lt;/strong&gt;: Automated with GitHub Actions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;features-of-this-blog&#34;&gt;Features of This Blog&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Light/Dark Mode&lt;/strong&gt;: Toggle between themes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Responsive Design&lt;/strong&gt;: Optimized for all screen sizes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Social Integration&lt;/strong&gt;: Links to my profiles&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RSS Feed&lt;/strong&gt;: Stay updated with new posts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fast Loading&lt;/strong&gt;: Optimized for performance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;whats-coming&#34;&gt;What&amp;rsquo;s Coming&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ll be sharing thoughts on:&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

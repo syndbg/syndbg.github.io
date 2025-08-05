@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Terminaal on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/terminaal/</link>
+    <description>Recent content in Terminaal on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Mar 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/terminaal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux: How to customize your terminal</title>
+      <link>http://localhost:1313/posts/linux-how-to-customize-your-terminal/</link>
+      <pubDate>Thu, 13 Mar 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/linux-how-to-customize-your-terminal/</guid>
+      
+      <description>&lt;p&gt;In this short tutorial, I&#39;ll tell you how to modify your bash into
+something more useful for you.&lt;/p&gt;
+&lt;p&gt;You can customize your terminal&#39;s colors, background, title, cursor and
+bash prompt.&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;To customize your colors:&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;​1) Open the Terminal Menu&lt;/p&gt;
+&lt;p&gt;​2) Navigate to &lt;strong&gt;Edit Profiles&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;3 ) Create a new profile and &lt;strong&gt;Edit&lt;/strong&gt; it&lt;/p&gt;
+&lt;p&gt;​4) After you&#39;ve done editing it, make sure you set &lt;strong&gt;Profile used when
+launching a new terminal&lt;/strong&gt; to your new profile&#39;s name.&lt;strong&gt;&lt;br /&gt;
+&lt;/strong&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

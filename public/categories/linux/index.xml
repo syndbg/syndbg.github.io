@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/linux/</link>
+    <description>Recent content in Linux on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Dec 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Review: How Linux Works 2nd Edition</title>
+      <link>http://localhost:1313/posts/review-how-linux-works-2nd-edition/</link>
+      <pubDate>Wed, 17 Dec 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/review-how-linux-works-2nd-edition/</guid>
+      
+      <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/9781593275679/lrg.jpg&#34; alt=&#34;How Linux Works, 2nd Edition, What Every Superuser Should Know&#34; title=&#34;How Linux Works, 2nd Edition, What Every Superuser Should Know&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://shop.oreilly.com/product/9781593275679.do&#34;&gt;How Linux Works, 2nd Edition, What Every Superuser Should Know&lt;/a&gt; by &lt;a href=&#34;http://www.oreilly.com/pub/au/1403&#34;&gt;Brian Ward&lt;/a&gt;, is a brilliant introductionary to advanced level, book for people who want to understand Linux.&lt;/p&gt;
+&lt;p&gt;Whether you&amp;rsquo;re a enthusiast, student, employeed software developer or sys admin - this book will do you good. As a software developer, I loved the shell scripting and networking chapters. I learnt a lot in a well organized way and know what else to read, since through the chapters, you&amp;rsquo;ll find a lot of paragraphs where the author recommends books that will help you learn more about the topic(s).&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Linux: File Permissions, dead simple</title>
+      <link>http://localhost:1313/posts/linux-file-permissions-dead-simple/</link>
+      <pubDate>Sat, 29 Nov 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/linux-file-permissions-dead-simple/</guid>
+      
+      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
+&lt;p&gt;As every new Linux user may wonder, what do the file permissions means. What does file permissions as 777, 644 or 200 mean? How do I calculate that?&lt;/p&gt;
+&lt;p&gt;In this article, I&amp;rsquo;ll try to explain this, &lt;strong&gt;dead simple&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;the-bits-and-bats&#34;&gt;The bits and bats&lt;/h2&gt;
+&lt;p&gt;So file permissions as the name suggest, decide if you can &lt;strong&gt;read&lt;/strong&gt;, &lt;strong&gt;write&lt;/strong&gt; and &lt;strong&gt;execute&lt;/strong&gt; the given file. But what do the numbers and single letter characters mean, you might ask? They&amp;rsquo;re represented in bits.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Linux: How to setup the most minimalistic Xfce4 UI</title>
+      <link>http://localhost:1313/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</link>
+      <pubDate>Tue, 14 Oct 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/linux-how-to-setup-the-most-minimalistic-xfce4-ui/</guid>
+      
+      <description>&lt;p&gt;Most of us adore the minimalistic Unity. But we hate it for the memory hog it is.&lt;/p&gt;
+&lt;p&gt;So the only reasonable solution is to replace Unity with the rising in popularity, Xfce4.&lt;/p&gt;
+&lt;p&gt;Xfce is a lightweight desktop environment and that&amp;rsquo;s all we need to know for this article. &lt;a href=&#34;http://www.xfce.org/&#34;&gt;(Read here)&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;xfce-4latest-installation&#34;&gt;Xfce 4/latest installation:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;It comes preinstalled with &lt;a href=&#34;http://www.linuxmint.com/download.php&#34;&gt;Mint Xfce&lt;/a&gt; and &lt;a href=&#34;http://xubuntu.org/&#34;&gt;Xubuntu&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;If you already have an Ubuntu you can&amp;rsquo;t let go of, just &lt;code&gt;sudo apt-get install xubuntu-desktop&lt;/code&gt;. It will install all the xfce4 candy and widgets you&amp;rsquo;ll need.&lt;/li&gt;
+&lt;li&gt;If you come from an other distro, please check the packages you have available and search for &lt;code&gt;xfce4*&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-problem&#34;&gt;The problem:&lt;/h2&gt;
+&lt;p&gt;Apps neatly hide their app bar and integrate their menu with Unity&amp;rsquo;s top bar.
+However this is not the same for other desktop environments.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Linux: Python(Django) Provisioning and Deployment</title>
+      <link>http://localhost:1313/posts/linux-python-provisioning-and-deployment/</link>
+      <pubDate>Sun, 12 Oct 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/linux-python-provisioning-and-deployment/</guid>
+      
+      <description>&lt;p&gt;In the following tutorial/guide/article I&amp;rsquo;ll explain how to provision and deploy a Django app.&lt;/p&gt;
+&lt;p&gt;Before all you should have:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A domain (GoDaddy, Namecheap, Hover, ICN.bg, superhosting and etc)&lt;/li&gt;
+&lt;li&gt;VPS/Cloud host with SSH (digitalocean.com is my pick)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;domain-vps-cloud-setup&#34;&gt;Domain, VPS, Cloud setup&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;If you bought a domain, but didn&amp;rsquo;t configure it yet:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You should change the DNS Name Servers (NS in short) to DigitalOcean&amp;rsquo;s or your VPS/Cloud provider&amp;rsquo;s (if they have such).&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Linux: How to customize your terminal</title>
+      <link>http://localhost:1313/posts/linux-how-to-customize-your-terminal/</link>
+      <pubDate>Thu, 13 Mar 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/linux-how-to-customize-your-terminal/</guid>
+      
+      <description>&lt;p&gt;In this short tutorial, I&#39;ll tell you how to modify your bash into
+something more useful for you.&lt;/p&gt;
+&lt;p&gt;You can customize your terminal&#39;s colors, background, title, cursor and
+bash prompt.&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;To customize your colors:&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;​1) Open the Terminal Menu&lt;/p&gt;
+&lt;p&gt;​2) Navigate to &lt;strong&gt;Edit Profiles&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;3 ) Create a new profile and &lt;strong&gt;Edit&lt;/strong&gt; it&lt;/p&gt;
+&lt;p&gt;​4) After you&#39;ve done editing it, make sure you set &lt;strong&gt;Profile used when
+launching a new terminal&lt;/strong&gt; to your new profile&#39;s name.&lt;strong&gt;&lt;br /&gt;
+&lt;/strong&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Linux: Setting up Sublime Text 3 for Python development</title>
+      <link>http://localhost:1313/posts/linux-setting-up-sublime-text-3-for-python-development/</link>
+      <pubDate>Tue, 04 Mar 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/linux-setting-up-sublime-text-3-for-python-development/</guid>
+      
+      <description>&lt;h2&gt;I assume you have already installed Sublime Text 3, if not:&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;sudo add-apt-repository ppa:webupd8team/sublime-text-3 sudo apt-get update sudo apt-get install sublime-text-installer&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Packages you&#39;ll definitely need to do Python development&lt;/h2&gt;
+&lt;h3&gt;First of all install Package Control (mandatory)&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://sublime.wbond.net/installation&#34;&gt;How to install ST3 Package
+Control&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&#34;https://github.com/DamnWidget/anaconda&#34;&gt;Anaconda&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Does all the linting, auto-correction and etc. you&#39;ll need for Python
+development.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CTRL+SHIFT+P and write Install Package, Enter&lt;/li&gt;
+&lt;li&gt;Write Anaconda, Enter. Done!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Optional, but useful packages&lt;/h2&gt;
+&lt;h3&gt;&lt;a href=&#34;https://github.com/facelessuser/BracketHighlighter&#34;&gt;BracketHighlighter&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Highlight free spaces (%20) in highlighted text.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">Python: Introduction to working with the Bitbucket/Github API | Anton Antonov&#39;s mindspace</title>
+<meta property="og:title" content="Python: Introduction to working with the Bitbucket/Github API | Anton Antonov&#39;s mindspace" />
+<meta name="twitter:title" content="Python: Introduction to working with the Bitbucket/Github API | Anton Antonov&#39;s mindspace" />
+<meta itemprop="name" content="Python: Introduction to working with the Bitbucket/Github API | Anton Antonov&#39;s mindspace" />
+<meta name="application-name" content="Python: Introduction to working with the Bitbucket/Github API | Anton Antonov&#39;s mindspace" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="Open-source developer and an eternal apprentice.">
+<meta itemprop="description" content="Open-source developer and an eternal apprentice." />
+<meta property="og:description" content="Open-source developer and an eternal apprentice." />
+<meta name="twitter:description" content="Open-source developer and an eternal apprentice." />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="http://localhost:1313/posts/python-working-with-the-bitbucket-github-api/" title="" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2014-08-14T11:21:29Z />
+    <meta property="article:published_time" content=2014-08-14T11:21:29Z />
+    <meta property="og:url" content="http://localhost:1313/posts/python-working-with-the-bitbucket-github-api/" />
+
+    
+    <meta property="og:article:author" content="Anton Antonov" />
+    <meta property="article:author" content="Anton Antonov" />
+    <meta name="author" content="Anton Antonov" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Python: Introduction to working with the Bitbucket/Github API",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2014-08-14",
+        "description": "",
+        "wordCount":  578 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2014-08-14",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Anton Antonov\u0027s mindspace"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.148.2">
+
+    
+    <meta property="og:url" content="http://localhost:1313/posts/python-working-with-the-bitbucket-github-api/">
+  <meta property="og:site_name" content="Anton Antonov&#39;s mindspace">
+  <meta property="og:title" content="Python: Introduction to working with the Bitbucket/Github API">
+  <meta property="og:description" content="Nowdays Bitbucket and Github are the places to store your projects in an organized manner.
+They have their pros and cons but both are irreplaceable. They offer RESTful Web APIs.
+REST in fewest words posssible: you send a HTTP request to a URL, you get a HTTP response and data.
+Start with the amazing Bitbucket REST API Browser. It&#39;s the best introduction tool. You get a very good representation what kind of request you&#39;re making, where do you send it to and what response and data do you get.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2014-08-14T11:21:29+00:00">
+    <meta property="article:modified_time" content="2014-08-14T11:21:29+00:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python: Introduction to working with the Bitbucket/Github API">
+  <meta name="twitter:description" content="Nowdays Bitbucket and Github are the places to store your projects in an organized manner.
+They have their pros and cons but both are irreplaceable. They offer RESTful Web APIs.
+REST in fewest words posssible: you send a HTTP request to a URL, you get a HTTP response and data.
+Start with the amazing Bitbucket REST API Browser. It&#39;s the best introduction tool. You get a very good representation what kind of request you&#39;re making, where do you send it to and what response and data do you get.">
+
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/python-working-with-the-bitbucket-github-api/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.js"></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Python: Introduction to working with the Bitbucket/Github API</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2014-08-14T11:21:29&#43;00:00" itemprop="datePublished"> Aug 14, 2014 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>Nowdays Bitbucket and Github are the places to store your projects in an organized manner.</p>
+<p>They have their pros and cons but both are irreplaceable. They offer RESTful Web APIs.</p>
+<p>REST in fewest words posssible: you send a HTTP request to a URL, you get a HTTP response and data.</p>
+<ol>
+<li>
+<p>Start with the amazing <a href="http://restbrowser.bitbucket.org/">Bitbucket REST API Browser</a>.
+It's the best introduction tool. You get a very good representation what kind of request you're making,
+where do you send it to and what response and data do you get.</p>
+</li>
+<li>
+<p>After you feel comfortable with the use of a REST Web API, you must learn how to use it in Python.
+2.1 You can use the amazing <a href="http://docs.python-requests.org/en/latest/">requests library</a> and just send requests to the URLs you already know.
+2.2 You can use a library that wraps requests to URLs for you.</p>
+</li>
+<li>
+<p>Decision making
+I have experience with both and I can say that both have their use, depending on the complexity of your task.</p>
+</li>
+</ol>
+<p>Finding a working and up-to-date Python library for Bitbucket and Github is hard and unrealiable.
+You must trust the fellow developing the library had it all thought out, tested and documented but reality is quite different.</p>
+<p>Most of the libraries are unstable and you rarely find something that works without a problems, but that's understandable and common.</p>
+<p>You must make sacrifices and that's ok if you realize the risks or time isn't your concern.</p>
+<p>Recently my fair share with the Github API was a task that involved a lot of data fetching. Repositories info, open/clossed issues, commits count and statistics.</p>
+<p>Pretty much the whole range of Github API features. The Github devs did well with the RESTful Web API, but there wasn't an official Python Github library. Time was a concern since we had to have this feature working with our Django project in less than 5 days.</p>
+<p>However first two days had to be spent in research and testing the libraries with small scripts. The best I could find was <a href="https://github.com/jacquev6/PyGithub/">PyGithub</a> which has a rough introduction,
+but the best documentation you can wish for and the most Github API features implemented.</p>
+<p>The reason for the use of PyGithub when even though time was a concern, is that we worked with a lot of Django models and I had to parse the data. The library already does it for us and I had more time to write on the actual problem.</p>
+<h2>The testing</h2>
+<p>... is hard. Testing with requests is the easiest it could get. However testing a library is a different thing. You have to mock to make it testable and I'm no good with mocking.</p>
+<h2>The actual code</h2>
+<p>Working with the Github API with requests</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;https://api.github.com/user&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;user&#39;</span><span class="p">,</span> <span class="s">&#39;pass&#39;</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span>
+<span class="mi">200</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;content-type&#39;</span><span class="p">]</span>
+<span class="s">&#39;application/json; charset=utf8&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">encoding</span>
+<span class="s">&#39;utf-8&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span>
+<span class="s">u&#39;{&quot;type&quot;:&quot;User&quot;...&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="p">{</span><span class="s">u&#39;private_gists&#39;</span><span class="p">:</span> <span class="mi">419</span><span class="p">,</span> <span class="s">u&#39;total_private_repos&#39;</span><span class="p">:</span> <span class="mi">77</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+</pre></div>
+<p>The library equivalent</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">github</span> <span class="kn">import</span> <span class="n">Github</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">gh</span> <span class="o">=</span> <span class="n">Github</span><span class="p">(</span><span class="s">&#39;user&#39;</span><span class="p">,</span> <span class="s">&#39;pass&#39;</span><span class="p">)</span> <span class="c"># an authenticated Github instance</span>
+<span class="o">&lt;</span><span class="n">github</span><span class="o">.</span><span class="n">MainClass</span><span class="o">.</span><span class="n">Github</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f4945ee3410</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">usr</span> <span class="o">=</span> <span class="n">gh</span><span class="o">.</span><span class="n">get_user</span><span class="p">()</span> <span class="c"># returns an AuthenticatedUser</span>
+<span class="o">&lt;</span><span class="n">github</span><span class="o">.</span><span class="n">AuthenticatedUser</span><span class="o">.</span><span class="n">AuthenticatedUser</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f4942f56190</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">usr</span><span class="o">.</span><span class="n">blog</span>
+<span class="s">u&#39;syndbg.github.io&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">usr</span><span class="o">.</span><span class="n">created_at</span>
+<span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">47</span><span class="p">)</span>
+</pre></div>
+<p>As you can see the JSON is automatically parsed for you and returned as a datetime object. Such small but important features save time.</p>
+<p>You can build your own library and be confident to do so, it's a great practice!</p>
+<h2>The project feature</h2>
+<p>The custom Django to our project command - <a href="https://github.com/HackBulgaria/Odin/blob/master/students/management/commands/generate_certificates.py">here</a> and <a href="https://github.com/HackBulgaria/Odin/blob/master/students/management/commands/helpers/classes.py">the helpers classes</a>.</p>
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/syndbg" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://linkedin.com/in/syndbg" target="_blank" rel="noopener noreferrer me"
+    title="Linkedin">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Anton Antonov.
+        
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script async src="http://localhost:1313/js/main.js" ></script>
+
+    
+
+</body>
+</html>

@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Css3 on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/css3/</link>
+    <description>Recent content in Css3 on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Jan 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/css3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quick reference: CSS/CSS3 Attribute selectors</title>
+      <link>http://localhost:1313/posts/quick-reference-csscss3-attribute-selectors/</link>
+      <pubDate>Thu, 30 Jan 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/quick-reference-csscss3-attribute-selectors/</guid>
+      
+      <description>&lt;p&gt;&lt;strong&gt;The basic syntax&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code style=&#34;background-color:salmon;font-size:1.1rem;color:white;&#34;&gt;selector[attribute]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Exact match&lt;/strong&gt; - finds the exact match of the value&lt;/p&gt;
+&lt;p&gt;&lt;code style=&#34;background-color:salmon;font-size:1.1rem;color:white;&#34;&gt;selector[attribute=value]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Partial match&lt;/strong&gt; - finds a partial match of the whole word value.
+Doesn&#39;t find
+&lt;code style=&#34;background-color:salmon;font-size:1.1rem;color:white;&#34;&gt;valueExample&lt;/code&gt;
+or
+&lt;code style=&#34;background-color:salmon;font-size:1.1rem;color:white;&#34;&gt;value-Example&lt;/code&gt;
+strings&lt;/p&gt;
+&lt;p&gt;&lt;code style=&#34;background-color:salmon;font-size:1.1rem;color:white;&#34;&gt;selector[attribute~=value]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hyphen(dash) match&lt;/strong&gt; - finds a match of the value value seperated by
+dash. Doesn&#39;t matter if it&#39;s the first or last word in the string.&lt;/p&gt;
+&lt;p&gt;&lt;code style=&#34;background-color:salmon;font-size:1.1rem;color:white;&#34;&gt;selector[attribute|=value]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Start of value match&lt;/strong&gt; - finds the value match in the start of the
+string only. Includes
+&lt;code style=&#34;background-color:salmon;font-size:1.1rem;color:white;&#34;&gt;valueExample&lt;/code&gt;
+and
+&lt;code style=&#34;background-color:salmon;font-size:1.1rem;color:white;&#34;&gt;value-example&lt;/code&gt;
+strings&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>CSS3, the 147 color names you might find useful to know!</title>
+      <link>http://localhost:1313/posts/css3-the-147-color-names-you-might-find-useful-to-know/</link>
+      <pubDate>Wed, 29 Jan 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/css3-the-147-color-names-you-might-find-useful-to-know/</guid>
+      
+      <description>&lt;p&gt;The syntax is simple.&lt;/p&gt;
+&lt;p&gt;Apply it with color properties like  &lt;code&gt;background-color&lt;/code&gt; or &lt;code&gt;color&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Example:&lt;br /&gt;
+•inline&lt;br /&gt;
+&lt;code&gt;style=&#34;background-color:plum&#34;&lt;/code&gt;&lt;br /&gt;
+•style element or stylesheet&lt;br /&gt;
+&lt;code&gt;background-color:teal;&lt;/code&gt;&lt;/p&gt;
+&lt;table style=&#34;text-align:center;border-spacing:10px;font-size:1.2em;&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:aliceblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+aliceblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:antiquewhite;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+antiquewhite
+&lt;/td&gt;
+&lt;td style=&#34;background-color:aqua;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+aqua
+&lt;/td&gt;
+&lt;td style=&#34;background-color:aquamarine;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+aquamarine
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:azure;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+azure
+&lt;/td&gt;
+&lt;td style=&#34;background-color:beige;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+beige
+&lt;/td&gt;
+&lt;td style=&#34;background-color:bisque;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+bisque
+&lt;/td&gt;
+&lt;td style=&#34;background-color:black;color:white;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+black
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:blanchedalmond;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+blanchedalmond
+&lt;/td&gt;
+&lt;td style=&#34;background-color:blue;color:white;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+blue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:blueviolet;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+blueviolet
+&lt;/td&gt;
+&lt;td style=&#34;background-color:brown;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+brown
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:burlywood;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+burlywood
+&lt;/td&gt;
+&lt;td style=&#34;background-color:cadetblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+cadetblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:chartreuse;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+chartreuse
+&lt;/td&gt;
+&lt;td style=&#34;background-color:chocolate;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+chocolate
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:coral;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+coral
+&lt;/td&gt;
+&lt;td style=&#34;background-color:cornflowerblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+cornflowerblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:cornsilk;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+cornsilk
+&lt;/td&gt;
+&lt;td style=&#34;background-color:crimson;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+crimson
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:cyan;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+cyan
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkblue;color:white;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkcyan;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkcyan
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkgoldenrod;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkgoldenrod
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:darkgray;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkgray
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkgreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkgreen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkgrey;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkgrey
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkkhaki;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkkhaki
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:darkmagenta;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkmagenta
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkolivegreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkolivegreen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkorange;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkorange
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkorchid;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkorchid
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:darkred;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkred
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darksalmon;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darksalmon
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkseagreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkseagreen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkslateblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkslateblue
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:darkslategray;color:white;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkslategray
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkslategrey;color:white;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkslategrey
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkturquoise;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkturquoise
+&lt;/td&gt;
+&lt;td style=&#34;background-color:darkviolet;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+darkviolet
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:deeppink;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+deeppink
+&lt;/td&gt;
+&lt;td style=&#34;background-color:deepskyblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+deepskyblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:dimgray;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+dimgray
+&lt;/td&gt;
+&lt;td style=&#34;background-color:dimgrey;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+dimgrey
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:dodgerblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+dodgerblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:firebrick;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+firebrick
+&lt;/td&gt;
+&lt;td style=&#34;background-color:floralwhite;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+floralwhite
+&lt;/td&gt;
+&lt;td style=&#34;background-color:forestgreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+forestgreen
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:fuchsia;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+fuchsia
+&lt;/td&gt;
+&lt;td style=&#34;background-color:gainsboro;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+gainsboro
+&lt;/td&gt;
+&lt;td style=&#34;background-color:ghostwhite;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+ghostwhite
+&lt;/td&gt;
+&lt;td style=&#34;background-color:gold;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+gold
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:goldenrod;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+goldenrod
+&lt;/td&gt;
+&lt;td style=&#34;background-color:gray;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+gray
+&lt;/td&gt;
+&lt;td style=&#34;background-color:green;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+green
+&lt;/td&gt;
+&lt;td style=&#34;background-color:greenyellow;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+greenyellow
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:grey;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+grey
+&lt;/td&gt;
+&lt;td style=&#34;background-color:honeydew;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+honeydew
+&lt;/td&gt;
+&lt;td style=&#34;background-color:hotpink;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+hotpink
+&lt;/td&gt;
+&lt;td style=&#34;background-color:indianred;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+indianred
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:indigo;color:white;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+indigo
+&lt;/td&gt;
+&lt;td style=&#34;background-color:ivory;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+ivory
+&lt;/td&gt;
+&lt;td style=&#34;background-color:khaki;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+khaki
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lavender;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lavender
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:lavenderblush;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lavenderblush
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lawngreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lawngreen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lemonchiffon;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lemonchiffon
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightblue
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:lightcoral;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightcoral
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightcyan;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightcyan
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightgoldenrodyellow;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightgoldenrodyellow
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightgray;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightgray
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:lightgreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightgreen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightgrey;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightgrey
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightpink;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightpink
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightsalmon;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightsalmon
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:lightseagreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightseagreen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightskyblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightskyblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightslategray;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightslategray
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightslategrey;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightslategrey
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:lightsteelblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightsteelblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lightyellow;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lightyellow
+&lt;/td&gt;
+&lt;td style=&#34;background-color:lime;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+lime
+&lt;/td&gt;
+&lt;td style=&#34;background-color:limegreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+limegreen
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:linen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+linen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:magenta;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+magenta
+&lt;/td&gt;
+&lt;td style=&#34;background-color:maroon;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+maroon
+&lt;/td&gt;
+&lt;td style=&#34;background-color:mediumaquamarine;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mediumaquamarine
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:mediumblue;color:white;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mediumblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:mediumorchid;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mediumorchid
+&lt;/td&gt;
+&lt;td style=&#34;background-color:mediumpurple;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mediumpurple
+&lt;/td&gt;
+&lt;td style=&#34;background-color:mediumseagreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mediumseagreen
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:mediumslateblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mediumslateblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:mediumspringgreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mediumspringgreen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:mediumturquoise;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mediumturquoise
+&lt;/td&gt;
+&lt;td style=&#34;background-color:mediumvioletred;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mediumvioletred
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:midnightblue;color:white;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+midnightblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:mintcream;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mintcream
+&lt;/td&gt;
+&lt;td style=&#34;background-color:mistyrose;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+mistyrose
+&lt;/td&gt;
+&lt;td style=&#34;background-color:moccasin;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+moccasin
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:navajowhite;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+navajowhite
+&lt;/td&gt;
+&lt;td style=&#34;background-color:navy;color:white;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+navy
+&lt;/td&gt;
+&lt;td style=&#34;background-color:oldlace;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+oldlace
+&lt;/td&gt;
+&lt;td style=&#34;background-color:olive;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+olive
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:olivedrab;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+olivedrab
+&lt;/td&gt;
+&lt;td style=&#34;background-color:orange;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+orange
+&lt;/td&gt;
+&lt;td style=&#34;background-color:orangered;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+orangered
+&lt;/td&gt;
+&lt;td style=&#34;background-color:orchid;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+orchid
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:palegoldenrod;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+palegoldenrod
+&lt;/td&gt;
+&lt;td style=&#34;background-color:palegreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+palegreen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:paleturquoise;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+paleturquoise
+&lt;/td&gt;
+&lt;td style=&#34;background-color:palevioletred;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+palevioletred
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:papayawhip;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+papayawhip
+&lt;/td&gt;
+&lt;td style=&#34;background-color:peachpuff;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+peachpuff
+&lt;/td&gt;
+&lt;td style=&#34;background-color:peru;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+peru
+&lt;/td&gt;
+&lt;td style=&#34;background-color:pink;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+pink
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:plum;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+plum
+&lt;/td&gt;
+&lt;td style=&#34;background-color:powderblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+powderblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:purple;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+purple
+&lt;/td&gt;
+&lt;td style=&#34;background-color:red;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+red
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:rosybrown;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+rosybrown
+&lt;/td&gt;
+&lt;td style=&#34;background-color:royalblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+royalblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:saddlebrown;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+saddlebrown
+&lt;/td&gt;
+&lt;td style=&#34;background-color:salmon;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+salmon
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:sandybrown;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+sandybrown
+&lt;/td&gt;
+&lt;td style=&#34;background-color:seagreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+seagreen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:seashell;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+seashell
+&lt;/td&gt;
+&lt;td style=&#34;background-color:sienna;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+sienna
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:silver;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+silver
+&lt;/td&gt;
+&lt;td style=&#34;background-color:skyblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+skyblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:slateblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+slateblue
+&lt;/td&gt;
+&lt;td style=&#34;background-color:slategray;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+slategray
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:slategrey;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+slategrey
+&lt;/td&gt;
+&lt;td style=&#34;background-color:snow;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+snow
+&lt;/td&gt;
+&lt;td style=&#34;background-color:springgreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+springgreen
+&lt;/td&gt;
+&lt;td style=&#34;background-color:steelblue;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+steelblue
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:tan;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+tan
+&lt;/td&gt;
+&lt;td style=&#34;background-color:teal;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+teal
+&lt;/td&gt;
+&lt;td style=&#34;background-color:thistle;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+thistle
+&lt;/td&gt;
+&lt;td style=&#34;background-color:tomato;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+tomato
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:turquoise;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+turquoise
+&lt;/td&gt;
+&lt;td style=&#34;background-color:violet;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+violet
+&lt;/td&gt;
+&lt;td style=&#34;background-color:wheat;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+wheat
+&lt;/td&gt;
+&lt;td style=&#34;background-color:white;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+white
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:whitesmoke;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+whitesmoke
+&lt;/td&gt;
+&lt;td style=&#34;background-color:yellow;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+yellow
+&lt;/td&gt;
+&lt;td style=&#34;background-color:yellowgreen;&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt;
+yellowgreen
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>CSS3 tip of the day: Responsive web design - Font-sizing with rem</title>
+      <link>http://localhost:1313/posts/css3-tip-of-the-day-responsive-web-design-font-sizing-with-rem/</link>
+      <pubDate>Sat, 25 Jan 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/css3-tip-of-the-day-responsive-web-design-font-sizing-with-rem/</guid>
+      
+      <description>&lt;p&gt;To create good responsive web design you must use proportionally-sized
+text units like &lt;em&gt;em &lt;/em&gt;and&lt;em&gt; % (percents).&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;However, CSS3 introduces a new proportionately-sized text
+unit &lt;strong&gt;&lt;em&gt;rem&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;rem&lt;/em&gt; &lt;/strong&gt;- stands for &lt;em&gt;root em&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;1em = 1 x current font size. If current font-size is 15px. 1em = 15px
+and 2em = 30px and so on.&lt;/p&gt;
+&lt;p&gt;But! &lt;em&gt;rem &lt;/em&gt;is always calculated relative to the font size of the
+\&amp;lt;html&gt; element. Not the font size of the containing element.  3rem is
+always 3 times the font size, wherever you apply it.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

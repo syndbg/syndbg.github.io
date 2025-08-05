@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coverage on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/coverage/</link>
+    <description>Recent content in Coverage on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Apr 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/coverage/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 3 How to: Code coverage (nose way included)</title>
+      <link>http://localhost:1313/posts/python-3-how-to-code-coverage-nose-included/</link>
+      <pubDate>Tue, 15 Apr 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python-3-how-to-code-coverage-nose-included/</guid>
+      
+      <description>&lt;p&gt;&lt;strong&gt;First of all, you must download and install
+&lt;a href=&#34;https://pypi.python.org/pypi/coverage/3.7.1&#34;&gt;coverage.py&lt;/a&gt; with pip.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 style=&#34;text-align:left;&#34;&gt;The steps are:&lt;/h3&gt;
+&lt;p&gt;​1) First have written tests for the Python program you want to test
+2) Run code coverage on the unit tests you&#39;ve written.
+3) Export the report to html for better readability and more details.&lt;/p&gt;
+&lt;h4 style=&#34;text-align:left;&#34;&gt;and in code:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;coverage run test_something.py&lt;/code&gt;
+&lt;code&gt;coverage report -m&lt;/code&gt;
+&lt;code&gt;coverage html&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The code coverage can now be found in a directory htmlconv/ which is
+in the same directory where you run the coverage commands. Open
+htmlconv/index.html and see the detailed html version of the code
+coverage.&lt;/strong&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

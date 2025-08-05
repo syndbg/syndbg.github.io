@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/development/</link>
+    <description>Recent content in Development on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 Aug 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Atom: Setting up for Python Development</title>
+      <link>http://localhost:1313/posts/atom-setting-up-for-python-development/</link>
+      <pubDate>Sat, 23 Aug 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/atom-setting-up-for-python-development/</guid>
+      
+      <description>&lt;h2&gt;1. Installation&lt;/h2&gt;
+&lt;p&gt;Taken from &lt;a href=&#34;http://www.webupd8.org/2014/06/atom-text-editor-available-for-linux.html&#34;&gt;http://www.webupd8.org/2014/06/atom-text-editor-available-for-linux.html&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;apt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;repository&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ppa&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;webupd8team&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;atom&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;apt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;update&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;apt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;atom&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;2. GitHub recommended first steps&lt;/h2&gt;
+&lt;p&gt;The following guides are a must-read:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/atom/atom/blob/master/docs/getting-started.md&#34;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/atom/atom/blob/master/docs/customizing-atom.md&#34;&gt;Customizing Atom&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/atom/atom/blob/master/docs/debugging.md&#34;&gt;Debugging&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. Packages for Python development&lt;/h2&gt;
+&lt;p&gt;By default Atom has Python language syntax highlighting and snippets, but lacks a linter.
+I recommend &lt;a href=&#34;https://bitbucket.org/tarek/flake8/src&#34;&gt;flake8&lt;/a&gt;, which is a wrapper for &lt;a href=&#34;https://pypi.python.org/pypi/pyflakes&#34;&gt;pyflakes&lt;/a&gt;, &lt;a href=&#34;https://pypi.python.org/pypi/pep8&#34;&gt;pep8&lt;/a&gt; and &lt;a href=&#34;https://pypi.python.org/pypi/mccabe&#34;&gt;Ned Batchelderâs McCabe script&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;3.1. Install pypi package &lt;a href=&#34;https://pypi.python.org/pypi/flake8&#34;&gt;flake8&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: have pip pre-installed&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pip&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flake8&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;3.2. Install Atom packages - &lt;a href=&#34;https://atom.io/packages/linter&#34;&gt;linter&lt;/a&gt; and &lt;a href=&#34;https://atom.io/packages/linter-flake8&#34;&gt;linter-flake8&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;linter&lt;/code&gt; is a static code analysis tool and &lt;code&gt;linter-flake8&lt;/code&gt; is an addon to &lt;code&gt;linter&lt;/code&gt; and also an interface for &lt;a href=&#34;https://bitbucket.org/tarek/flake8/src&#34;&gt;flake8&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

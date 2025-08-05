@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/github/</link>
+    <description>Recent content in Github on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 19 Nov 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Review: Introducing Github</title>
+      <link>http://localhost:1313/posts/review-introducing-github/</link>
+      <pubDate>Wed, 19 Nov 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/review-introducing-github/</guid>
+      
+      <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/0636920033059/lrg.jpg&#34; alt=&#34;Introducing Github cover&#34; title=&#34;Introducing Github cover&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://shop.oreilly.com/product/0636920033059.do&#34;&gt;Introducing Github&lt;/a&gt; is a book by &lt;a href=&#34;http://www.oreilly.com/pub/au/6204&#34;&gt;Peter Bell&lt;/a&gt; and &lt;a href=&#34;http://www.oreilly.com/pub/au/6247&#34;&gt;Brent Beer&lt;/a&gt;, members of the &lt;a href=&#34;https://github.com/githubtraining&#34;&gt;Github Training Team&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The book is intended to be the introduction to Github and it&amp;rsquo;s explicitly said that it&amp;rsquo;s intended for developers too, but is it really?&lt;/p&gt;
+&lt;p&gt;The book suffers a lot from the authors&amp;rsquo; inexperience in writing books and keeping people&amp;rsquo;s interest (in my opinion). If you&amp;rsquo;re a newcomer to Git and Github, the first thing you would like to know is how to create your own repository and start uploading your code. However you&amp;rsquo;ll learn this only in the second-to-last chapter - fifth chapter. Before that you&amp;rsquo;ll learn how to View, Edit and Collaborate and that&amp;rsquo;s not going to keep someone&amp;rsquo;s interest. It&amp;rsquo;s well-known that developers care for their own code the most. Hence the other negative reviews have one complain in common - the create your own repository chapter is too late and almost neglected.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Python: Introduction to working with the Bitbucket/Github API</title>
+      <link>http://localhost:1313/posts/python-working-with-the-bitbucket-github-api/</link>
+      <pubDate>Thu, 14 Aug 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python-working-with-the-bitbucket-github-api/</guid>
+      
+      <description>&lt;p&gt;Nowdays Bitbucket and Github are the places to store your projects in an organized manner.&lt;/p&gt;
+&lt;p&gt;They have their pros and cons but both are irreplaceable. They offer RESTful Web APIs.&lt;/p&gt;
+&lt;p&gt;REST in fewest words posssible: you send a HTTP request to a URL, you get a HTTP response and data.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Start with the amazing &lt;a href=&#34;http://restbrowser.bitbucket.org/&#34;&gt;Bitbucket REST API Browser&lt;/a&gt;.
+It&#39;s the best introduction tool. You get a very good representation what kind of request you&#39;re making,
+where do you send it to and what response and data do you get.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

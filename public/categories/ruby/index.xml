@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/ruby/</link>
+    <description>Recent content in Ruby on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Aug 2015 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/ruby/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Review: The Well Grounded Rubyist, 2nd edition</title>
+      <link>http://localhost:1313/posts/review-the-well-grounded-rubyist-2nd-edition/</link>
+      <pubDate>Sat, 01 Aug 2015 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/review-the-well-grounded-rubyist-2nd-edition/</guid>
+      
+      <description>&lt;p&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/51qtp4NzjRL._SX397_BO1,204,203,200_.jpg&#34; alt=&#34;The Well Grounded Rubyist, 2nd edition cover&#34; title=&#34;The Well Grounded Rubyist, 2nd edition cover&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Manning - &lt;a href=&#34;http://www.manning.com/black3/&#34;&gt;http://www.manning.com/black3/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Amazon - &lt;a href=&#34;http://www.amazon.com/The-Well-Grounded-Rubyist-David-Black/dp/1617291692&#34;&gt;http://www.amazon.com/The-Well-Grounded-Rubyist-David-Black/dp/1617291692&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Goodreads - &lt;a href=&#34;https://www.goodreads.com/book/show/3892688-the-well-grounded-rubyist&#34;&gt;https://www.goodreads.com/book/show/3892688-the-well-grounded-rubyist&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;my-thoughts&#34;&gt;My thoughts&lt;/h2&gt;
+&lt;p&gt;The Well-Grounded Rubyist, 2nd edition is a great read for every aspiring Ruby developer. Not flawless, but a book that may teach you a great deal of how Ruby works.&lt;/p&gt;
+&lt;p&gt;The book is a great fountain of knowledge so to say. Reading and understanding everything may take a good while, so I&amp;rsquo;ve added a &lt;code&gt;Must-read content&lt;/code&gt; section with content that is &lt;em&gt;mostly&lt;/em&gt; not your ordinary &lt;code&gt;learn Ruby tutorial information&lt;/code&gt;.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

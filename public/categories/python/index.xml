@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/python/</link>
+    <description>Recent content in Python on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Apr 2015 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Publishing to PyPi Can Be A Nightmare</title>
+      <link>http://localhost:1313/posts/publishing-to-pypi-can-be-a-nightmare/</link>
+      <pubDate>Sun, 05 Apr 2015 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/publishing-to-pypi-can-be-a-nightmare/</guid>
+      
+      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
+&lt;p&gt;Yesterday (04.04) I was having the most ridiculous issues with PyPi - from not being able to publish my package, to already publishing a version and not being able to update and at last - deleting my package from PyPi wouldn&amp;rsquo;t actually delete it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This makes me ask why would you make PyPi so overengineered and quirky?&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;i-want-to-publish-a-package&#34;&gt;I want to publish a package&lt;/h2&gt;
+&lt;p&gt;No reliable PyPi publishing tutorial. I have to rely on users&amp;rsquo; blogs to learn how to publish my package.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Learning Django</title>
+      <link>http://localhost:1313/posts/learning-django/</link>
+      <pubDate>Thu, 26 Mar 2015 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/learning-django/</guid>
+      
+      <description>&lt;p&gt;Django is the go-to batteries included web framework for Pythonista.&lt;/p&gt;
+&lt;p&gt;However starting to create web apps with Django is a bit rough,
+if you don&amp;rsquo;t have the comfort of someone mentoring you.&lt;/p&gt;
+&lt;p&gt;From my experience as a Django developer for 1 year, 3-4 projects and close to 3 versions of the framework,
+I will share the materials that helped me start with Django without
+prior web and MVC pattern experience.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Python: Decorators gotchas</title>
+      <link>http://localhost:1313/posts/python-decorators-gotchas/</link>
+      <pubDate>Sat, 14 Mar 2015 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python-decorators-gotchas/</guid>
+      
+      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
+&lt;p&gt;In Python, decorators are one of the most misunderstood features and one of the most blogged topic,
+due to the their gotcha nature.&lt;/p&gt;
+&lt;p&gt;What&amp;rsquo;s a gotcha:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In programming, a gotcha is a feature of a system, a program or a programming language that works in the way it is
+documented but is counter-intuitive and almost invites mistakes because it is both enticingly easy to invoke and
+completely unexpected and/or unreasonable in its outcome.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Review: Introducing Python</title>
+      <link>http://localhost:1313/posts/review-introducing-python/</link>
+      <pubDate>Fri, 28 Nov 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/review-introducing-python/</guid>
+      
+      <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/0636920028659/lrg.jpg&#34; alt=&#34;Introducing Python cover&#34; title=&#34;Introducing Python cover&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The book &lt;a href=&#34;http://shop.oreilly.com/product/0636920028659.do&#34;&gt;Introducing Python&lt;/a&gt; by Bill Lubavonic, is mix between an introductionary book and a cookbook. But does it find the perfect balance? It certainly  does!&lt;/p&gt;
+&lt;p&gt;According to the description, the book is appropriate for beginning programmers, but that&amp;rsquo;s not the case. If you begin your programming journey, stop now, head to the Head First series. This is not a book for beginning programmers. You&amp;rsquo;ll find yourself googling more than reading, because the materials are harder.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Python: Modules vs Packages</title>
+      <link>http://localhost:1313/posts/python-modules-vs-packages/</link>
+      <pubDate>Thu, 27 Nov 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python-modules-vs-packages/</guid>
+      
+      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
+&lt;p&gt;Coming from different language, the definition of a module and package may get mixed up. To confirm/clear up confusion, I wrote this article for myself and others who tend to mix modules and packages.&lt;/p&gt;
+&lt;h2 id=&#34;whats-a-module&#34;&gt;What&amp;rsquo;s a module?&lt;/h2&gt;
+&lt;p&gt;In dynamic languages (ex. Python, Ruby, JS) a module is a single file&amp;rsquo;s contents - classes, functions, variables.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s look at Django&amp;rsquo;s config file for example (&lt;a href=&#34;https://docs.djangoproject.com/en/1.7/ref/settings/&#34;&gt;https://docs.djangoproject.com/en/1.7/ref/settings/&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;The Django framework utilizes every one of them, some are defaulted, some must be explicitly defined. But point is they&amp;rsquo;re a module that is read by other programs.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Review: Python for Kids</title>
+      <link>http://localhost:1313/posts/review-python-for-kids/</link>
+      <pubDate>Fri, 21 Nov 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/review-python-for-kids/</guid>
+      
+      <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/9781593274078/lrg.jpg&#34; alt=&#34;Python for Kids cover&#34; title=&#34;Python for Kids cover&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://shop.oreilly.com/product/9781593274078.do&#34;&gt;Python for Kids&lt;/a&gt; is a book by &lt;a href=&#34;https://github.com/hjwp&#34;&gt;Jason R. Briggs&lt;/a&gt;, a programmer since the age of eight, when he first learned BASIC on a Radio Shack TRS-80. Since then he has written software professionally as a developer and systems architect and served as Contributing Editor for Java Developer&amp;rsquo;s Journal.&lt;/p&gt;
+&lt;p&gt;The book is nothing less but a joy to read for grown ups and a must read for kids. It touches upon programming in such a light, colorful and enjoyable way that it makes you wish this book was around when you were a kid.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Test-Driven-Development with Python</title>
+      <link>http://localhost:1313/posts/review-test-driven-development-with-python/</link>
+      <pubDate>Sun, 16 Nov 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/review-test-driven-development-with-python/</guid>
+      
+      <description>&lt;p&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/0636920029533/lrg.jpg&#34; alt=&#34;TDD Python cover&#34; title=&#34;TDD Python cover&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://shop.oreilly.com/product/0636920029533.do#tab_03_2&#34;&gt;Test-Driven Development with Python&lt;/a&gt; is a book by &lt;a href=&#34;https://github.com/hjwp&#34;&gt;Harry J.W Percival&lt;/a&gt;, a software developer at &lt;a href=&#34;https://www.pythonanywhere.com/&#34;&gt;PythonAnywhere&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;From the start of the book, we work on a &lt;strong&gt;tdd app&lt;/strong&gt;, using what I like to call, Test-Driven Learning. We learn Django by testing with Selenium and Python&amp;rsquo;s unittest module. We get to know good practices how to test and write Functional Test &amp;lsquo;stories&amp;rsquo;. The author doesn&amp;rsquo;t start right off with Django&amp;rsquo;s best practices (as in Two Scoops of Django, for example), because it&amp;rsquo;ll be extra complexity for the reader. He starts off with small chunks of code that work and gradually explains to the reader how to do things correctly and DRY.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Linux: Python(Django) Provisioning and Deployment</title>
+      <link>http://localhost:1313/posts/linux-python-provisioning-and-deployment/</link>
+      <pubDate>Sun, 12 Oct 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/linux-python-provisioning-and-deployment/</guid>
+      
+      <description>&lt;p&gt;In the following tutorial/guide/article I&amp;rsquo;ll explain how to provision and deploy a Django app.&lt;/p&gt;
+&lt;p&gt;Before all you should have:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A domain (GoDaddy, Namecheap, Hover, ICN.bg, superhosting and etc)&lt;/li&gt;
+&lt;li&gt;VPS/Cloud host with SSH (digitalocean.com is my pick)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;domain-vps-cloud-setup&#34;&gt;Domain, VPS, Cloud setup&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;If you bought a domain, but didn&amp;rsquo;t configure it yet:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You should change the DNS Name Servers (NS in short) to DigitalOcean&amp;rsquo;s or your VPS/Cloud provider&amp;rsquo;s (if they have such).&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Atom: Setting up for Python Development</title>
+      <link>http://localhost:1313/posts/atom-setting-up-for-python-development/</link>
+      <pubDate>Sat, 23 Aug 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/atom-setting-up-for-python-development/</guid>
+      
+      <description>&lt;h2&gt;1. Installation&lt;/h2&gt;
+&lt;p&gt;Taken from &lt;a href=&#34;http://www.webupd8.org/2014/06/atom-text-editor-available-for-linux.html&#34;&gt;http://www.webupd8.org/2014/06/atom-text-editor-available-for-linux.html&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;apt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;repository&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ppa&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;webupd8team&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;atom&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;apt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;update&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;apt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;atom&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;2. GitHub recommended first steps&lt;/h2&gt;
+&lt;p&gt;The following guides are a must-read:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/atom/atom/blob/master/docs/getting-started.md&#34;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/atom/atom/blob/master/docs/customizing-atom.md&#34;&gt;Customizing Atom&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/atom/atom/blob/master/docs/debugging.md&#34;&gt;Debugging&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. Packages for Python development&lt;/h2&gt;
+&lt;p&gt;By default Atom has Python language syntax highlighting and snippets, but lacks a linter.
+I recommend &lt;a href=&#34;https://bitbucket.org/tarek/flake8/src&#34;&gt;flake8&lt;/a&gt;, which is a wrapper for &lt;a href=&#34;https://pypi.python.org/pypi/pyflakes&#34;&gt;pyflakes&lt;/a&gt;, &lt;a href=&#34;https://pypi.python.org/pypi/pep8&#34;&gt;pep8&lt;/a&gt; and &lt;a href=&#34;https://pypi.python.org/pypi/mccabe&#34;&gt;Ned Batchelderâs McCabe script&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;3.1. Install pypi package &lt;a href=&#34;https://pypi.python.org/pypi/flake8&#34;&gt;flake8&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: have pip pre-installed&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pip&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flake8&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;3.2. Install Atom packages - &lt;a href=&#34;https://atom.io/packages/linter&#34;&gt;linter&lt;/a&gt; and &lt;a href=&#34;https://atom.io/packages/linter-flake8&#34;&gt;linter-flake8&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;linter&lt;/code&gt; is a static code analysis tool and &lt;code&gt;linter-flake8&lt;/code&gt; is an addon to &lt;code&gt;linter&lt;/code&gt; and also an interface for &lt;a href=&#34;https://bitbucket.org/tarek/flake8/src&#34;&gt;flake8&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Python: Introduction to working with the Bitbucket/Github API</title>
+      <link>http://localhost:1313/posts/python-working-with-the-bitbucket-github-api/</link>
+      <pubDate>Thu, 14 Aug 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python-working-with-the-bitbucket-github-api/</guid>
+      
+      <description>&lt;p&gt;Nowdays Bitbucket and Github are the places to store your projects in an organized manner.&lt;/p&gt;
+&lt;p&gt;They have their pros and cons but both are irreplaceable. They offer RESTful Web APIs.&lt;/p&gt;
+&lt;p&gt;REST in fewest words posssible: you send a HTTP request to a URL, you get a HTTP response and data.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Start with the amazing &lt;a href=&#34;http://restbrowser.bitbucket.org/&#34;&gt;Bitbucket REST API Browser&lt;/a&gt;.
+It&#39;s the best introduction tool. You get a very good representation what kind of request you&#39;re making,
+where do you send it to and what response and data do you get.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Python 3 How to: Write Unit tests (PyUnit, pytest, nose)</title>
+      <link>http://localhost:1313/posts/python-3-how-to-write-unit-tests-unittest-pytest-nose/</link>
+      <pubDate>Sun, 20 Apr 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python-3-how-to-write-unit-tests-unittest-pytest-nose/</guid>
+      
+      <description>&lt;h3&gt;In the following blog post I&#39;ll cover the following frameworks for unit testing.&lt;/h3&gt;
+&lt;p&gt;​1) &lt;a href=&#34;http://pyunit.sourceforge.net/&#34; title=&#34;PyUnit &#34;&gt;PyUnit&lt;/a&gt;, also known as
+unittest in the Python modules.
+2) &lt;a href=&#34;http://pytest.org/latest/&#34; title=&#34;Pytest&#34;&gt;Pytest&lt;/a&gt; - a mature
+full-featured Python testing tool that helps you write better programs.
+3) &lt;a href=&#34;http://nose.readthedocs.org&#34; title=&#34;Nose&#34;&gt;Nose&lt;/a&gt; - a nicer testing for
+Python? It&#39;s more like a unit test loader since it supports all the
+above for loading.&lt;/p&gt;
+&lt;h3&gt;How to get them?&lt;/h3&gt;
+&lt;p&gt;​1) PyUnit - already installed for you. Just import unittest in your
+unit tests file&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Python 3 How to: Code coverage (nose way included)</title>
+      <link>http://localhost:1313/posts/python-3-how-to-code-coverage-nose-included/</link>
+      <pubDate>Tue, 15 Apr 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python-3-how-to-code-coverage-nose-included/</guid>
+      
+      <description>&lt;p&gt;&lt;strong&gt;First of all, you must download and install
+&lt;a href=&#34;https://pypi.python.org/pypi/coverage/3.7.1&#34;&gt;coverage.py&lt;/a&gt; with pip.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 style=&#34;text-align:left;&#34;&gt;The steps are:&lt;/h3&gt;
+&lt;p&gt;​1) First have written tests for the Python program you want to test
+2) Run code coverage on the unit tests you&#39;ve written.
+3) Export the report to html for better readability and more details.&lt;/p&gt;
+&lt;h4 style=&#34;text-align:left;&#34;&gt;and in code:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;coverage run test_something.py&lt;/code&gt;
+&lt;code&gt;coverage report -m&lt;/code&gt;
+&lt;code&gt;coverage html&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The code coverage can now be found in a directory htmlconv/ which is
+in the same directory where you run the coverage commands. Open
+htmlconv/index.html and see the detailed html version of the code
+coverage.&lt;/strong&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Python development in Visual Studio?</title>
+      <link>http://localhost:1313/posts/python-development-in-visual-studio/</link>
+      <pubDate>Thu, 23 Jan 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/python-development-in-visual-studio/</guid>
+      
+      <description>&lt;p&gt;I wasn&#39;t very fond of Microsoft&#39;s IDE until I started writing
+HTML5/CSS3. Then I kind of fell in love with the native black theme, the
+IntelliSense and most importantly - the debugger for C#.&lt;br /&gt;
+So I thought, what if it&#39;s also possible to write Python code there.
+Well, it is!&lt;/p&gt;
+&lt;p&gt;With this neat plugin called &lt;a href=&#34;http://pytools.codeplex.com/&#34;&gt;Python Tools for Visual Studio
+2.0&lt;/a&gt;. It was available for previous
+version of the VS IDE, however since the 2013 version of VS, you can
+have it a lot easier.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

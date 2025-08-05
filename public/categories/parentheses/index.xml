@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Parentheses on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/parentheses/</link>
+    <description>Recent content in Parentheses on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Feb 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/parentheses/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Programming tips: Avoiding unbalanced parentheses errors</title>
+      <link>http://localhost:1313/posts/programming-tips-avoiding-unbalanced-parentheses-errors/</link>
+      <pubDate>Sun, 09 Feb 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/programming-tips-avoiding-unbalanced-parentheses-errors/</guid>
+      
+      <description>&lt;p&gt;It&#39;s very common for people to have unbalanced parenthesis after hours
+of work and hundreds of lines of code.&lt;br /&gt;
+Also it&#39;s one of the more common questions in exams, find the
+error/errors in the following code &#34;....&#34; and they give you way too many
+parentheses.&lt;/p&gt;
+&lt;p&gt;One of the more popular solutions is to use a pencil and paper to follow
+the code and see the mistake, but this takes resources and much more
+time than it should.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

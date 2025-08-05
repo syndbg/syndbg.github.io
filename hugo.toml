@@ -1,0 +1,68 @@
+baseURL = 'https://blog.syndbg.com'
+languageCode = 'en-us'
+title = "Anton Antonov's mindspace"
+
+[module]
+  [[module.imports]]
+    path = "github.com/hugo-sid/hugo-blog-awesome"
+
+[params]
+  description = "Open-source developer and an eternal apprentice."
+
+    # Author configuration - matching Hugo Blog Awesome requirements
+  [params.author]
+    name = "Anton Antonov"
+    email = "anton.synd.antonov@gmail.com"
+    link = "https://github.com/syndbg"
+    avatar = "/images/avatar.png"
+
+  # Theme configuration
+  [params.theme]
+    color = "auto" # auto, light, dark
+    displayToggle = true
+
+  # Social icons
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/syndbg"
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/syndbg"
+
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+  # Features
+  goToTop = true
+
+  # Footer
+  footer = "&copy; [Anton Antonov](/) 2025 | [Github](https://github.com/syndbg) | [LinkedIn](https://linkedin.com/in/syndbg)"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "github"
+    lineNos = true
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 3
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"

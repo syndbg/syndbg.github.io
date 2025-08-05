@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/ubuntu/</link>
+    <description>Recent content in Ubuntu on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Feb 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu: Setting up git in under 10minutes</title>
+      <link>http://localhost:1313/posts/ubuntu-setting-up-git-in-under-10minutes/</link>
+      <pubDate>Tue, 25 Feb 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/ubuntu-setting-up-git-in-under-10minutes/</guid>
+      
+      <description>&lt;h2&gt;&lt;a href=&#34;http://cli.learncodethehardway.org/book/&#34;&gt;Become familiar with the Terminal beforehand.&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Git_(software)&#34;&gt;What is git?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/GitHub&#34;&gt;What is Github?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;Setting it up:&lt;/h2&gt;
+&lt;p&gt;​1) Register at &lt;a href=&#34;https://github.com/join‎&#34;&gt;github&lt;/a&gt; and login.&lt;br /&gt;
+2) Open the Terminal, install git&lt;br /&gt;
+&lt;code&gt;sudo apt-get install git sudo apt-get update&lt;/code&gt;&lt;br /&gt;
+3) Setup your git with your github username and email:  &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git config --global user.name &#34;Your Name&#34; git config --global user.email &#34;you@somewhere.com&#34;&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;What do you want to do?&lt;/h2&gt;
+&lt;h3&gt;Start my own repository and upload code as fast as possible:&lt;/h3&gt;
+&lt;p&gt;http://www.youtube.com/watch?v=ABYHBOE5oU4&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Making the switch to Ubuntu. How to install PPAs</title>
+      <link>http://localhost:1313/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</link>
+      <pubDate>Thu, 20 Feb 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/making-the-switch-to-ubuntu-how-to-install-ppas/</guid>
+      
+      <description>&lt;p&gt;If you want instructions how to make a liveCD/liveUSB and how to install
+Ubuntu head -
+&lt;a href=&#34;http://www.ubuntu.com/download/desktop/install-desktop-latest&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;What is a PPA?&lt;/h2&gt;
+&lt;p&gt;Personal Package Archive, stuff that isn&#39;t included by default in the
+OS, mostly developed by people not affiliated to the official developers
+of Ubuntu (in our case).  INSTALL PPAs WITH CARE! You&#39;ve been warned.&lt;/p&gt;
+&lt;p&gt;First of all open the Terminal (&lt;em&gt;CTRL + ALT + T&lt;/em&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Mostly everything you&#39;ll do in the future will involve around these
+commands: &lt;/strong&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Ubuntu bug solution: Keyboard&#39;s modifier keys aren&#39;t working</title>
+      <link>http://localhost:1313/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</link>
+      <pubDate>Thu, 20 Feb 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/ubuntu-horror-stories-keyboard-modifier-keys-solution/</guid>
+      
+      <description>&lt;h2&gt;What are modifier keys?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Alt&lt;/strong&gt;, &lt;strong&gt;Control&lt;/strong&gt;, &lt;strong&gt;Shift&lt;/strong&gt; and&lt;strong&gt;Windows key&lt;/strong&gt; are modifier keys.
+They&#39;re mostly used in combination with other keys.&lt;/p&gt;
+&lt;p&gt;Examples: Ctrl+Alt+Delete, Alt+Tab and others...&lt;/p&gt;
+&lt;h2&gt;The story:&lt;/h2&gt;
+&lt;p&gt;As an owner of &lt;a href=&#34;https://www.google.bg/search?q=zowie+celeritas&amp;amp;oq=zowie+celeritas&amp;amp;aqs=chrome.0.69i59.1229j0j4&amp;amp;sourceid=chrome&amp;amp;ie=UTF-8&#34;&gt;Zowie
+Celeritas&lt;/a&gt; I
+understood the hard way that my keyboard isn&#39;t really supported by the
+Linux kernel.&lt;/p&gt;
+&lt;p&gt;Any modifier keys combinations don&#39;t work.&lt;/p&gt;
+&lt;p&gt;The problem is &lt;strong&gt;not Ubuntu-specific, &lt;/strong&gt;I tried Mint and Debian -
+problem still persists.&lt;/p&gt;
+&lt;p&gt;This is a common problem for other keyboards too, so the solution may or
+may not work for you.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Ubuntu: PPAs you should have installed or have in mind</title>
+      <link>http://localhost:1313/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</link>
+      <pubDate>Thu, 20 Feb 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/ubuntu-ppas-you-should-have-installed-or-have-in-mind/</guid>
+      
+      <description>&lt;h2&gt;&lt;a href=&#34;http://syndbg.wordpress.com/2014/02/20/making-the-switch-to-ubuntu-how-to-install-ppas/&#34;&gt;How to install PPAs&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;Faster updates and installs: apt-fast&lt;/h2&gt;
+&lt;h3&gt;What is apt-fast:&lt;/h3&gt;
+&lt;p&gt;A script that uses command line download accelerators. It drastically
+improves updating and installing&lt;/p&gt;
+&lt;h3&gt;How to install:&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;sudo add-apt-repository ppa:apt-fast/stable sudo apt-get update sudo apt-get install apt-fast&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;In future you use apt-fast everywhere you would&#39;ve typed apt-get&lt;/p&gt;
+&lt;h3&gt;Example&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;sudo apt-fast update sudo apt-fast upgrade sudo apt-fast install sudo apt-fast autoremove&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Manage PPAs easily: y-ppa-manager&lt;/h2&gt;
+&lt;h3&gt;What is y-ppa-manager:&lt;/h3&gt;
+&lt;p&gt;A tool for easy management of PPAs. You can remove/purge, update and
+edit source, as in the screenshot.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Ubuntu horror stories: No headphones sound?</title>
+      <link>http://localhost:1313/posts/ubuntu-horror-stories-no-headphones-sound/</link>
+      <pubDate>Tue, 11 Feb 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/ubuntu-horror-stories-no-headphones-sound/</guid>
+      
+      <description>&lt;p&gt;I&#39;ll be starting this series of blog posts about my horrible experiences
+with Ubuntu.&lt;br /&gt;
+Note: of course there&#39;ll be posts about the good sides of Ubuntu, which
+are many but not easy to find at first if you&#39;re a newbie like me!&lt;/p&gt;
+&lt;p&gt;So to introduce my setup - Windows 8.1 and Ubuntu 13.10.&lt;br /&gt;
+2 partitions, no conflicts.. or so it should be.&lt;/p&gt;
+&lt;p&gt;After 7 installations of different Ubuntu isos, I settled with Ubuntu
+13.10 x64. I was getting accustomed to all the bugs in the OS, but
+suddenly I restart with &lt;strong&gt;Shutdown -&gt; Restart&lt;/strong&gt;, boot my Windows 8.1
+and I notice that I have no sound.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

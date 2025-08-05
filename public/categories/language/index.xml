@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Language on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/language/</link>
+    <description>Recent content in Language on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 21 Jan 2015 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/language/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Evaluating a Language&#39;s Teaching and Learning Worth</title>
+      <link>http://localhost:1313/posts/evaluating-a-languages-teaching-worth/</link>
+      <pubDate>Wed, 21 Jan 2015 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/evaluating-a-languages-teaching-worth/</guid>
+      
+      <description>&lt;h2 id=&#34;disclaimer&#34;&gt;Disclaimer&lt;/h2&gt;
+&lt;p&gt;This post is inspired by &lt;a href=&#34;http://prog21.dadgum.com/203.html&#34;&gt;James Hague&amp;rsquo;s Retiring Python as a Teaching Language blog post&lt;/a&gt; and it shows my opinion, not my employer&amp;rsquo;s. It isn&amp;rsquo;t a direct message to James Hague, his opinion is valid based on his long-term experience. This blog post is about helping newcomers in general.&lt;/p&gt;
+&lt;h2 id=&#34;state&#34;&gt;State&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve gone through the process of learning programming, becoming employed, becoming a mentor and lecturer myself in the past 12 months. But this is a long topic for an other blog post.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

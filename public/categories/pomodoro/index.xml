@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pomodoro on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/pomodoro/</link>
+    <description>Recent content in Pomodoro on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Nov 2014 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/pomodoro/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Review: The Pomodoro Technique</title>
+      <link>http://localhost:1313/posts/review-the-pomodoro-technique/</link>
+      <pubDate>Tue, 25 Nov 2014 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/review-the-pomodoro-technique/</guid>
+      
+      <description>&lt;p&gt;&lt;img src=&#34;http://pomodorotechnique.com/wp-content/themes/pomodoro/img/photos/book-phototop1.jpg&#34; alt=&#34;Pomodoro Technique cover&#34; title=&#34;Pomodoro Technique cover&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;http://pomodorotechnique.com/book/&#34;&gt;Pomodoro Technique&lt;/a&gt; is a book by Francesco Cirillo, who inventend the technique in the late 1980s, during his university years.&lt;/p&gt;
+&lt;p&gt;As expected, the book is all about the Pomodoro technique, but what exactly is the Pomodoro Technique? The technique is all about time-management, efficiency, self-reflection and fun. Yes, fun&amp;hellip; but self-reflection? You&amp;rsquo;ll see what I mean in the following paragraphs.&lt;/p&gt;
+&lt;p&gt;So first, what caught my eye is how easy is to get started and yet how much advanced tracking and recording you can do by mastering the technique.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

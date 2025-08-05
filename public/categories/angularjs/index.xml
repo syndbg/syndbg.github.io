@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Angularjs on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/angularjs/</link>
+    <description>Recent content in Angularjs on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 May 2015 11:21:29 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/angularjs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AngularJS: Life cycles</title>
+      <link>http://localhost:1313/posts/angularjs-lifecycles/</link>
+      <pubDate>Mon, 04 May 2015 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/angularjs-lifecycles/</guid>
+      
+      <description>&lt;h2 id=&#34;angularjs&#34;&gt;AngularJS&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://angularjs.org/img/AngularJS-large.png&#34; alt=&#34;Angular logo&#34; title=&#34;Angular logo&#34;&gt;&lt;/p&gt;
+&lt;p&gt;AngularJS is the de facto standard MVW Framework at the moment.
+ReactJS may look promising, but AngularJS is still the most used.&lt;/p&gt;
+&lt;p&gt;So what really makes AngularJS that complex? Of course it took great engineering minds to create something
+so powerful, yet so simple to understand once you got the basics down.&lt;/p&gt;
+&lt;p&gt;And in AngularJS the two most important concepts to understand is directives, since AngularJS is all about directives&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Intro AngularJS</title>
+      <link>http://localhost:1313/posts/intro-angularjs/</link>
+      <pubDate>Wed, 25 Mar 2015 11:21:29 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/intro-angularjs/</guid>
+      
+      <description>&lt;p&gt;During the recent week, I had to write front-end using AngularJS.
+This is a work in progress article, as I explore different AngularJS books and resources.&lt;/p&gt;
+&lt;p&gt;Currently, I recommend books:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://shop.oreilly.com/product/0636920033486.do&#34;&gt;&lt;img src=&#34;http://akamaicovers.oreilly.com/images/0636920033486/lrg.jpg&#34; alt=&#34;AngularJS: Up and Running&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Links:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/&#34;&gt;http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
