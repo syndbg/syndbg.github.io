@@ -70,3 +70,7 @@ title = "Anton Antonov's mindspace"
   category = "categories"
   tag = "tags"
   series = "series"
+
+[services]
+  [services.googleAnalytics]
+    id = 'G-Q5WK831V5N'
