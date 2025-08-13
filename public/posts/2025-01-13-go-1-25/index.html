@@ -1,0 +1,676 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=content-type content="text/html"><meta name=viewport content="width=device-width,initial-scale=1"><title itemprop=name>Practically, Go 1.25's Container-Aware GOMAXPROCS: What You Need to Know | Anton Antonov's mindspace</title><meta property="og:title" content="Practically, Go 1.25's Container-Aware GOMAXPROCS: What You Need to Know | Anton Antonov's mindspace"><meta name=twitter:title content="Practically, Go 1.25's Container-Aware GOMAXPROCS: What You Need to Know | Anton Antonov's mindspace"><meta itemprop=name content="Practically, Go 1.25's Container-Aware GOMAXPROCS: What You Need to Know | Anton Antonov's mindspace"><meta name=application-name content="Practically, Go 1.25's Container-Aware GOMAXPROCS: What You Need to Know | Anton Antonov's mindspace"><meta property="og:site_name" content><meta name=description content="Go 1.25 introduces container-aware GOMAXPROCS that automatically respects CPU limits in containerized environments. Learn how this changes everything for Kubernetes, Docker, and cloud deployments."><meta itemprop=description content="Go 1.25 introduces container-aware GOMAXPROCS that automatically respects CPU limits in containerized environments. Learn how this changes everything for Kubernetes, Docker, and cloud deployments."><meta property="og:description" content="Go 1.25 introduces container-aware GOMAXPROCS that automatically respects CPU limits in containerized environments. Learn how this changes everything for Kubernetes, Docker, and cloud deployments."><meta name=twitter:description content="Go 1.25 introduces container-aware GOMAXPROCS that automatically respects CPU limits in containerized environments. Learn how this changes everything for Kubernetes, Docker, and cloud deployments."><meta property="og:locale" content="en-us"><meta name=language content="en-us"><link rel=alternate hreflang=en href=https://syndbg.github.io/posts/2025-01-13-go-1-25/ title><meta property="og:type" content="article"><meta property="og:article:published_time" content=2025-01-13T03:00:00Z><meta property="article:published_time" content=2025-01-13T03:00:00Z><meta property="og:url" content="https://syndbg.github.io/posts/2025-01-13-go-1-25/"><meta property="og:article:author" content="Anton Antonov"><meta property="article:author" content="Anton Antonov"><meta name=author content="Anton Antonov"><script defer type=application/ld+json>{"@context":"http://schema.org","@type":"Article","headline":"Practically, Go 1.25's Container-Aware GOMAXPROCS: What You Need to Know","author":{"@type":"Person","name":""},"datePublished":"2025-01-13","description":"Go 1.25 introduces container-aware GOMAXPROCS that automatically respects CPU limits in containerized environments. Learn how this changes everything for Kubernetes, Docker, and cloud deployments.","wordCount":2723,"mainEntityOfPage":"True","dateModified":"2025-01-13","image":{"@type":"imageObject","url":""},"publisher":{"@type":"Organization","name":"Anton Antonov\u0027s mindspace"}}</script><meta name=generator content="Hugo 0.148.2"><meta property="og:url" content="https://syndbg.github.io/posts/2025-01-13-go-1-25/"><meta property="og:site_name" content="Anton Antonov's mindspace"><meta property="og:title" content="Practically, Go 1.25's Container-Aware GOMAXPROCS: What You Need to Know"><meta property="og:description" content="Go 1.25 introduces container-aware GOMAXPROCS that automatically respects CPU limits in containerized environments. Learn how this changes everything for Kubernetes, Docker, and cloud deployments."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-01-13T03:00:00+00:00"><meta property="article:modified_time" content="2025-01-13T03:00:00+00:00"><meta property="article:tag" content="Go"><meta property="article:tag" content="Golang"><meta property="article:tag" content="Containers"><meta property="article:tag" content="Kubernetes"><meta property="article:tag" content="Docker"><meta property="article:tag" content="Performance"><meta name=twitter:card content="summary"><meta name=twitter:title content="Practically, Go 1.25's Container-Aware GOMAXPROCS: What You Need to Know"><meta name=twitter:description content="Go 1.25 introduces container-aware GOMAXPROCS that automatically respects CPU limits in containerized environments. Learn how this changes everything for Kubernetes, Docker, and cloud deployments."><link rel=canonical href=https://syndbg.github.io/posts/2025-01-13-go-1-25/><link href=/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css rel=stylesheet><link href=/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css rel=stylesheet><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/icons/favicon-16x16.png><link rel=mask-icon href=/icons/safari-pinned-tab.svg><link rel="shortcut icon" href=/favicon.ico><link rel=manifest href=https://syndbg.github.io/site.webmanifest><meta name=msapplication-config content="/browserconfig.xml"><meta name=msapplication-TileColor content="#2d89ef"><meta name=theme-color content="#434648"><link rel=icon type=image/svg+xml href=/icons/favicon.svg></head><body data-theme class=notransition><script src=/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script><div class=navbar role=navigation><nav class=menu aria-label="Main Navigation"><a href=https://syndbg.github.io/ class=logo><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><title/><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+</a><input type=checkbox id=menu-trigger class=menu-trigger>
+<label for=menu-trigger><span class=menu-icon><svg width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7H3.40726"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M.5 12.5V1.5c0-.552285.447715-1 1-1h11C13.0523.5 13.5.947715 13.5 1.5v11C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C.947715 13.5.5 13.0523.5 12.5z"/></svg></span></label><div class=trigger><ul class=trigger-container><li><a class=menu-link href=/>Home</a></li><li><a class=menu-link href=/posts/>Posts</a></li><li><a class=menu-link href=/about/>About</a></li><li class=menu-separator><span>|</span></li></ul><a id=mode href=#><svg class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+<svg class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg></a></div></nav></div><div class="wrapper post"><main class=page-content aria-label=Content><article><header class=header><h1 class=header-title>Practically, Go 1.25's Container-Aware GOMAXPROCS: What You Need to Know</h1><div class=post-meta><time datetime=2025-01-13T03:00:00+00:00 itemprop=datePublished>Jan 13, 2025</time></div></header><div class=page-content><p>Go 1.25 just dropped with expected changes to GOMAXPROCS, which significantly change how Go applications behave in containerized environments. The runtime now <strong>automatically detects and respects container CPU limits</strong> when setting <code>GOMAXPROCS</code>. This isn&rsquo;t just a minor improvement—it&rsquo;s a shift that <strong>may</strong> dramatically improve performance for millions of containerized Go applications.</p><p>And this isn&rsquo;t the only amazing change, but this is the one I&rsquo;ll focus on in this post.</p><h2 id=the-problem-that-plagued-go-for-years>The Problem That Plagued Go for Years</h2><p>Before Go 1.25, there was a fundamental mismatch between Go&rsquo;s runtime and containerized environments:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Your Kubernetes pod with 2 CPU cores</span>
+</span></span><span class=line><span class=cl>resources:
+</span></span><span class=line><span class=cl>  limits:
+</span></span><span class=line><span class=cl>    cpu: <span class=s2>&#34;2&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># But Go saw the entire host machine</span>
+</span></span><span class=line><span class=cl>runtime.NumCPU<span class=o>()</span>    // Returns <span class=m>8</span> <span class=o>(</span>host CPUs<span class=o>)</span>
+</span></span><span class=line><span class=cl>runtime.GOMAXPROCS<span class=o>(</span>0<span class=o>)</span> // Also <span class=m>8</span> - ignoring your 2-core limit!
+</span></span></code></pre></div><p>This led to:</p><ul><li><strong>Over-scheduling</strong>: Go created 8 goroutines for CPU-bound work on a 2-core container</li><li><strong>Context switching overhead</strong>: Excessive goroutine switching degraded performance</li><li><strong>Resource contention</strong>: Multiple containers fighting for the same CPU cores</li><li><strong>Manual workarounds</strong>: Developers had to manually set <code>GOMAXPROCS</code> everywhere</li></ul><p>Popular libraries like <a href=https://github.com/uber-go/automaxprocs>uber-go/automaxprocs</a> existed solely to fix this fundamental issue, showing how widespread the problem was.</p><h2 id=what-changed-in-go-125>What Changed in Go 1.25</h2><p>Go 1.25 introduces two eatures:</p><h3 id=1-container-aware-gomaxprocs-linux>1. Container-Aware GOMAXPROCS (Linux)</h3><p>The runtime now reads cgroup CPU bandwidth limits and automatically sets <code>GOMAXPROCS</code> accordingly:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=c1>// On a container with 2 CPU cores limit:</span>
+</span></span><span class=line><span class=cl><span class=nx>runtime</span><span class=p>.</span><span class=nf>NumCPU</span><span class=p>()</span>       <span class=c1>// Still returns 8 (host CPUs)</span>
+</span></span><span class=line><span class=cl><span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>  <span class=c1>// Now returns 2 (respects container limit!)</span>
+</span></span></code></pre></div><h3 id=2-dynamic-gomaxprocs-updates>2. Dynamic GOMAXPROCS Updates</h3><p>The runtime <strong>periodically updates</strong> <code>GOMAXPROCS</code> if CPU availability changes:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=c1>// Your application automatically adapts to:</span>
+</span></span><span class=line><span class=cl><span class=c1>// - Kubernetes horizontal pod autoscaling</span>
+</span></span><span class=line><span class=cl><span class=c1>// - Container CPU limit changes</span>
+</span></span><span class=line><span class=cl><span class=c1>// - Node CPU availability changes</span>
+</span></span></code></pre></div><h2 id=seeing-it-in-action>Seeing It in Action</h2><p>Let me show you the difference with a practical example. Here&rsquo;s a test program that reveals the new behavior:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>main</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;fmt&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;runtime&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;time&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Go version: %s\n&#34;</span><span class=p>,</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>Version</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Host CPUs: %d\n&#34;</span><span class=p>,</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>NumCPU</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;GOMAXPROCS: %d\n&#34;</span><span class=p>,</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// Monitor for changes (Go 1.25 feature)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=mi>10</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>time</span><span class=p>.</span><span class=nf>Sleep</span><span class=p>(</span><span class=mi>5</span> <span class=o>*</span> <span class=nx>time</span><span class=p>.</span><span class=nx>Second</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Time %ds: GOMAXPROCS = %d\n&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=p>(</span><span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>)</span><span class=o>*</span><span class=mi>5</span><span class=p>,</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h3 id=kubernetes-results-comparison>Kubernetes Results Comparison</h3><p><strong>Go 1.24 and earlier:</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># Pod with 2 CPU cores limit</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;2&#34;</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Go version: go1.24.0
+</span></span><span class=line><span class=cl>Host CPUs: 8
+</span></span><span class=line><span class=cl>GOMAXPROCS: 8  # ❌ Ignores container limit
+</span></span></code></pre></div><p><strong>Go 1.25:</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Go version: go1.25.0
+</span></span><span class=line><span class=cl>Host CPUs: 8
+</span></span><span class=line><span class=cl>GOMAXPROCS: 2  # ✅ Respects container limit!
+</span></span></code></pre></div><h3 id=docker-results>Docker Results</h3><p>Running the same program in Docker with CPU limits:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Docker with 1.5 CPU cores</span>
+</span></span><span class=line><span class=cl>docker run --cpus<span class=o>=</span><span class=s2>&#34;1.5&#34;</span> golang:1.25 go run main.go
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Go version: go1.25.0
+</span></span><span class=line><span class=cl>Host CPUs: 8
+</span></span><span class=line><span class=cl>GOMAXPROCS: 1  # ✅ Rounds down fractional CPU limits
+</span></span></code></pre></div><h2 id=complete-examples-and-testing>Complete Examples and Testing</h2><p>I&rsquo;ve created comprehensive examples to test all scenarios. Here are the key ones:</p><h3 id=kubernetes-manifest-examples>Kubernetes Manifest Examples</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># Example 1: CPU-limited container</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app-cpu-limited</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>golang:1.25</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;2&#34;</span><span class=w>        </span><span class=c># GOMAXPROCS will be 2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;256Mi&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;go&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;run&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;/app/main.go&#34;</span><span class=p>]</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># Example 2: Manual override (disables auto-detection)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app-manual</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>golang:1.25</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;2&#34;</span><span class=w>        </span><span class=c># CPU limit is 2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>GOMAXPROCS</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;8&#34;</span><span class=w>        </span><span class=c># Manual override - will use 8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;go&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;run&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;/app/main.go&#34;</span><span class=p>]</span><span class=w>
+</span></span></span></code></pre></div><h2 id=when-the-magic-doesnt-happen>When the Magic Doesn&rsquo;t Happen</h2><p>The automatic behavior is disabled in these cases:</p><h3 id=1-manual-gomaxprocs-setting>1. Manual GOMAXPROCS Setting</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=c1>// Environment variable</span>
+</span></span><span class=line><span class=cl><span class=nx>GOMAXPROCS</span><span class=p>=</span><span class=mi>8</span> <span class=k>go</span> <span class=nx>run</span> <span class=nx>main</span><span class=p>.</span><span class=k>go</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Or in code</span>
+</span></span><span class=line><span class=cl><span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=mi>8</span><span class=p>)</span>
+</span></span></code></pre></div><h3 id=2-godebug-overrides>2. GODEBUG Overrides</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Disable container awareness</span>
+</span></span><span class=line><span class=cl><span class=nv>GODEBUG</span><span class=o>=</span><span class=nv>containermaxprocs</span><span class=o>=</span><span class=m>0</span> go run main.go
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Disable dynamic updates</span>
+</span></span><span class=line><span class=cl><span class=nv>GODEBUG</span><span class=o>=</span><span class=nv>updatemaxprocs</span><span class=o>=</span><span class=m>0</span> go run main.go
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Disable both</span>
+</span></span><span class=line><span class=cl><span class=nv>GODEBUG</span><span class=o>=</span><span class=nv>containermaxprocs</span><span class=o>=</span>0,updatemaxprocs<span class=o>=</span><span class=m>0</span> go run main.go
+</span></span></code></pre></div><h3 id=3-non-linux-platforms>3. Non-Linux Platforms</h3><p>Currently, container-aware GOMAXPROCS only works on Linux (where cgroups exist).</p><h2 id=migration-guide-for-existing-applications>Migration Guide for Existing Applications</h2><h3 id=1-remove-manual-gomaxprocs-workarounds>1. Remove Manual GOMAXPROCS Workarounds</h3><p><strong>Before (Go &lt; 1.25):</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=nx>_</span> <span class=s>&#34;go.uber.org/automaxprocs&#34;</span> <span class=c1>// Popular workaround library</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>init</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// Manual calculation based on container limits</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>cpuLimit</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>Getenv</span><span class=p>(</span><span class=s>&#34;CPU_LIMIT&#34;</span><span class=p>);</span> <span class=nx>cpuLimit</span> <span class=o>!=</span> <span class=s>&#34;&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>limit</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>strconv</span><span class=p>.</span><span class=nf>Atoi</span><span class=p>(</span><span class=nx>cpuLimit</span><span class=p>);</span> <span class=nx>err</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=nx>limit</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p><strong>After (Go 1.25):</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=c1>// Just delete all the manual workarounds!</span>
+</span></span><span class=line><span class=cl><span class=c1>// Go handles it automatically now</span>
+</span></span></code></pre></div><h3 id=2-test-thoroughly>2. Test Thoroughly</h3><p>Since this changes fundamental runtime behavior, comprehensive testing is critical:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Test your application with various CPU limits</span>
+</span></span><span class=line><span class=cl>docker run --cpus<span class=o>=</span><span class=s2>&#34;1&#34;</span> myapp:go1.25
+</span></span><span class=line><span class=cl>docker run --cpus<span class=o>=</span><span class=s2>&#34;2&#34;</span> myapp:go1.25
+</span></span><span class=line><span class=cl>docker run --cpus<span class=o>=</span><span class=s2>&#34;4&#34;</span> myapp:go1.25
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Monitor performance metrics</span>
+</span></span><span class=line><span class=cl>kubectl top pods
+</span></span></code></pre></div><h3 id=3-monitor-key-metrics>3. Monitor Key Metrics</h3><p>Watch these metrics after upgrading:</p><ul><li><strong>CPU utilization efficiency</strong></li><li><strong>Response times</strong></li><li><strong>Context switch rates</strong></li><li><strong>Memory usage patterns</strong></li><li><strong>Goroutine counts</strong></li></ul><h2 id=cloud-platform-compatibility>Cloud Platform Compatibility</h2><p>This change affects major cloud platforms:</p><h3 id=aws>AWS</h3><ul><li><strong>ECS Fargate</strong>: ✅ Respects CPU limits</li><li><strong>EKS</strong>: ✅ Works with pod CPU limits</li><li><strong>Lambda</strong>: ✅ May improve performance in custom runtimes</li></ul><h3 id=google-cloud>Google Cloud</h3><ul><li><strong>Cloud Run</strong>: ✅ Automatically optimizes for allocated CPU</li><li><strong>GKE</strong>: ✅ Full Kubernetes support</li><li><strong>Cloud Functions</strong>: ✅ Benefits custom Go runtimes</li></ul><h3 id=azure>Azure</h3><ul><li><strong>Container Instances</strong>: ✅ Respects CPU limits</li><li><strong>AKS</strong>: ✅ Full Kubernetes support</li><li><strong>Functions</strong>: ✅ Helps custom Go runtimes</li></ul><h2 id=performance-tuning-considerations>Performance Tuning Considerations</h2><h3 id=when-automatic-is-perfect>When Automatic is Perfect</h3><ul><li><strong>Standard web applications</strong>: REST APIs, microservices</li><li><strong>Data processing pipelines</strong>: ETL jobs, stream processing</li><li><strong>Background workers</strong>: Queue processors, schedulers</li></ul><h3 id=when-manual-tuning-may-be-better>When Manual Tuning May Be Better</h3><ul><li><strong>CPU-intensive algorithms</strong>: May need fine-tuning for specific workloads</li><li><strong>Memory-bound applications</strong>: GOMAXPROCS might not be the bottleneck</li><li><strong>Legacy applications</strong>: With complex custom scheduling logic</li></ul><h3 id=testing-your-specific-workload>Testing Your Specific Workload</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>benchmarkWithDifferentGOMAXPROCS</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>procs</span> <span class=o>:=</span> <span class=k>range</span> <span class=p>[]</span><span class=kt>int</span><span class=p>{</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=mi>8</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=nx>procs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>start</span> <span class=o>:=</span> <span class=nx>time</span><span class=p>.</span><span class=nf>Now</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1>// Your workload here</span>
+</span></span><span class=line><span class=cl>        <span class=nf>runYourWorkload</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;GOMAXPROCS=%d: %v\n&#34;</span><span class=p>,</span> <span class=nx>procs</span><span class=p>,</span> <span class=nx>time</span><span class=p>.</span><span class=nf>Since</span><span class=p>(</span><span class=nx>start</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h2 id=troubleshooting-common-issues>Troubleshooting Common Issues</h2><h3 id=issue-1-performance-regression>Issue 1: Performance Regression</h3><p><strong>Symptoms</strong>: Application slower after upgrading to Go 1.25
+<strong>Solution</strong>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Temporarily disable to confirm</span>
+</span></span><span class=line><span class=cl><span class=nv>GODEBUG</span><span class=o>=</span><span class=nv>containermaxprocs</span><span class=o>=</span><span class=m>0</span> go run main.go
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Or use manual setting</span>
+</span></span><span class=line><span class=cl><span class=nv>GOMAXPROCS</span><span class=o>=</span><span class=m>8</span> go run main.go
+</span></span></code></pre></div><h3 id=issue-2-gomaxprocs-not-changing>Issue 2: GOMAXPROCS Not Changing</h3><p><strong>Check</strong>: Container actually has CPU limits set</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># In container, check cgroup limits</span>
+</span></span><span class=line><span class=cl>cat /sys/fs/cgroup/cpu.max
+</span></span><span class=line><span class=cl>cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us
+</span></span></code></pre></div><h3 id=issue-3-fractional-cpu-confusion>Issue 3: Fractional CPU Confusion</h3><p><strong>Remember</strong>: Go rounds DOWN fractional CPU limits</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>CPU Limit: 1.5 → GOMAXPROCS: 1
+</span></span><span class=line><span class=cl>CPU Limit: 2.7 → GOMAXPROCS: 2
+</span></span><span class=line><span class=cl>CPU Limit: 3.9 → GOMAXPROCS: 3
+</span></span></code></pre></div><h2 id=the-bigger-picture-why-this-matters>The Bigger Picture: Why This Matters</h2><p>This change represents a fundamental shift in how Go applications integrate with modern infrastructure:</p><h3 id=1-cloud-native-by-default>1. Cloud-Native by Default</h3><p>Go applications now understand their containerized environment without additional configuration.</p><h3 id=2-better-resource-efficiency>2. Better Resource Efficiency</h3><p>Automatic optimization means better cost efficiency in cloud deployments.</p><h3 id=3-simplified-operations>3. Simplified Operations</h3><p>DevOps teams no longer need to manually tune GOMAXPROCS for every deployment.</p><h3 id=4-platform-consistency>4. Platform Consistency</h3><p>The same application binary adapts to different deployment environments automatically.</p><h2 id=future-implications>Future Implications</h2><p>This opens doors for even smarter runtime optimizations:</p><ul><li><strong>Memory-aware garbage collection tuning</strong></li><li><strong>Network buffer sizing based on container limits</strong></li><li><strong>Dynamic goroutine pool sizing</strong></li><li><strong>Automatic backpressure mechanisms</strong></li></ul><h2 id=conclusion>Conclusion</h2><p>Go 1.25&rsquo;s container-aware GOMAXPROCS is more than just a feature—it&rsquo;s a fundamental improvement that makes Go applications truly cloud-native by default. The days of manual GOMAXPROCS tuning and third-party workaround libraries are finally over.</p><p><strong>Key takeaways:</strong></p><ul><li>✅ Automatic container CPU limit detection on Linux</li><li>✅ Dynamic updates when limits change</li><li>✅ Zero configuration required</li><li>✅ Significant performance improvements in many cases</li><li>✅ Backward compatible with manual overrides</li></ul><p>If you&rsquo;re running Go applications in containers (and who isn&rsquo;t these days?), Go 1.25 should be at the top of your upgrade priority list. Test it thoroughly, but expect to see measurable performance improvements across your containerized Go workloads.</p><hr><p><em>Want to test this yourself? All the examples and code from this post are included below. Try them out in your own Kubernetes cluster or Docker environment to see the magic in action!</em></p><h2 id=complete-test-code-examples>Complete Test Code Examples</h2><h3 id=kubernetes-manifests>Kubernetes Manifests</h3><p>Here are the complete Kubernetes manifests for testing different scenarios:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># kubernetes-manifests.yaml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Example 1: CPU-limited container that will respect limits</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app-cpu-limited-1core</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>cpu-limited-1core</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>replicas</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>cpu-limited-1core</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>cpu-limited-1core</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>golang:1.25</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;1&#34;</span><span class=w>        </span><span class=c># GOMAXPROCS should be 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;256Mi&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>requests</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;500m&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;128Mi&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;sh&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;-c&#34;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          cat &gt; /tmp/main.go &lt;&lt; &#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=sd>          package main
+</span></span></span><span class=line><span class=cl><span class=sd>          import (
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;fmt&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;runtime&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;time&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          )
+</span></span></span><span class=line><span class=cl><span class=sd>          func main() {
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;=== Go 1.25 GOMAXPROCS Test (1 CPU limit) ===\n&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Go version: %s\n&#34;, runtime.Version())
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Host CPUs: %d\n&#34;, runtime.NumCPU())
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;GOMAXPROCS: %d\n&#34;, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Expected GOMAXPROCS: 1 (CPU limit)\n\n&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>              for i := 0; i &lt; 6; i++ {
+</span></span></span><span class=line><span class=cl><span class=sd>                  time.Sleep(10 * time.Second)
+</span></span></span><span class=line><span class=cl><span class=sd>                  fmt.Printf(&#34;Time %ds: GOMAXPROCS = %d\n&#34;, (i+1)*10, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>              }
+</span></span></span><span class=line><span class=cl><span class=sd>          }
+</span></span></span><span class=line><span class=cl><span class=sd>          EOF
+</span></span></span><span class=line><span class=cl><span class=sd>          cd /tmp &amp;&amp; go run main.go</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Example 2: CPU-limited container with 2 cores</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app-cpu-limited-2core</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>cpu-limited-2core</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>replicas</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>cpu-limited-2core</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>cpu-limited-2core</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>golang:1.25</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;2&#34;</span><span class=w>        </span><span class=c># GOMAXPROCS should be 2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;512Mi&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>requests</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;1&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;256Mi&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;sh&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;-c&#34;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          cat &gt; /tmp/main.go &lt;&lt; &#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=sd>          package main
+</span></span></span><span class=line><span class=cl><span class=sd>          import (
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;fmt&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;runtime&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;time&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          )
+</span></span></span><span class=line><span class=cl><span class=sd>          func main() {
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;=== Go 1.25 GOMAXPROCS Test (2 CPU limit) ===\n&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Go version: %s\n&#34;, runtime.Version())
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Host CPUs: %d\n&#34;, runtime.NumCPU())
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;GOMAXPROCS: %d\n&#34;, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Expected GOMAXPROCS: 2 (CPU limit)\n\n&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>              for i := 0; i &lt; 6; i++ {
+</span></span></span><span class=line><span class=cl><span class=sd>                  time.Sleep(10 * time.Second)
+</span></span></span><span class=line><span class=cl><span class=sd>                  fmt.Printf(&#34;Time %ds: GOMAXPROCS = %d\n&#34;, (i+1)*10, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>              }
+</span></span></span><span class=line><span class=cl><span class=sd>          }
+</span></span></span><span class=line><span class=cl><span class=sd>          EOF
+</span></span></span><span class=line><span class=cl><span class=sd>          cd /tmp &amp;&amp; go run main.go</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Example 3: Manual GOMAXPROCS override (should ignore container limits)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app-manual-override</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>manual-override</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>replicas</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>manual-override</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>manual-override</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>golang:1.25</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;1&#34;</span><span class=w>        </span><span class=c># CPU limit is 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;256Mi&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>GOMAXPROCS</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;4&#34;</span><span class=w>        </span><span class=c># Manual override - should use 4, not 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;sh&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;-c&#34;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          cat &gt; /tmp/main.go &lt;&lt; &#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=sd>          package main
+</span></span></span><span class=line><span class=cl><span class=sd>          import (
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;fmt&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;runtime&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;time&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          )
+</span></span></span><span class=line><span class=cl><span class=sd>          func main() {
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;=== Go 1.25 GOMAXPROCS Test (Manual Override) ===\n&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Go version: %s\n&#34;, runtime.Version())
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Host CPUs: %d\n&#34;, runtime.NumCPU())
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;GOMAXPROCS: %d\n&#34;, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;CPU Limit: 1, Manual GOMAXPROCS: 4\n&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Expected GOMAXPROCS: 4 (manual override)\n\n&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>              for i := 0; i &lt; 6; i++ {
+</span></span></span><span class=line><span class=cl><span class=sd>                  time.Sleep(10 * time.Second)
+</span></span></span><span class=line><span class=cl><span class=sd>                  fmt.Printf(&#34;Time %ds: GOMAXPROCS = %d\n&#34;, (i+1)*10, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>              }
+</span></span></span><span class=line><span class=cl><span class=sd>          }
+</span></span></span><span class=line><span class=cl><span class=sd>          EOF
+</span></span></span><span class=line><span class=cl><span class=sd>          cd /tmp &amp;&amp; go run main.go</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Example 4: Fractional CPU limits (should round down)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app-fractional-cpu</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>fractional-cpu</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>replicas</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>fractional-cpu</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>go-gomaxprocs-test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scenario</span><span class=p>:</span><span class=w> </span><span class=l>fractional-cpu</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>go-app</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>golang:1.25</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;1.5&#34;</span><span class=w>      </span><span class=c># GOMAXPROCS should be 1 (rounds down)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;256Mi&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>requests</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;750m&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;128Mi&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;sh&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;-c&#34;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          cat &gt; /tmp/main.go &lt;&lt; &#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=sd>          package main
+</span></span></span><span class=line><span class=cl><span class=sd>          import (
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;fmt&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;runtime&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>              &#34;time&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          )
+</span></span></span><span class=line><span class=cl><span class=sd>          func main() {
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;=== Go 1.25 GOMAXPROCS Test (1.5 CPU limit) ===\n&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Go version: %s\n&#34;, runtime.Version())
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Host CPUs: %d\n&#34;, runtime.NumCPU())
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;GOMAXPROCS: %d\n&#34;, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(&#34;Expected GOMAXPROCS: 1 (1.5 rounds down to 1)\n\n&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>              for i := 0; i &lt; 6; i++ {
+</span></span></span><span class=line><span class=cl><span class=sd>                  time.Sleep(10 * time.Second)
+</span></span></span><span class=line><span class=cl><span class=sd>                  fmt.Printf(&#34;Time %ds: GOMAXPROCS = %d\n&#34;, (i+1)*10, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>              }
+</span></span></span><span class=line><span class=cl><span class=sd>          }
+</span></span></span><span class=line><span class=cl><span class=sd>          EOF
+</span></span></span><span class=line><span class=cl><span class=sd>          cd /tmp &amp;&amp; go run main.go</span><span class=w>
+</span></span></span></code></pre></div><h3 id=docker-compose-test-scenarios>Docker Compose Test Scenarios</h3><p>Complete Docker Compose setup for testing different CPU limits:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># docker-compose.yaml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;3.8&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Test 1: 1 CPU limit</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>go-app-1cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>golang:1.25</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>go-1.25-test-1cpu</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>deploy</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>cpus</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;1.0&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=l>256M</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>reservations</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>cpus</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0.5&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=l>128M</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>&gt;</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>      sh -c &#34;
+</span></span></span><span class=line><span class=cl><span class=sd>      cat &gt; /tmp/test.go &lt;&lt; &#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=sd>      package main
+</span></span></span><span class=line><span class=cl><span class=sd>      import (
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;fmt\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;runtime\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;time\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>      )
+</span></span></span><span class=line><span class=cl><span class=sd>      func main() {
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;=== Docker Test: 1.0 CPU Limit ===\n\&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Go version: %s\n\&#34;, runtime.Version())
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Host CPUs: %d\n\&#34;, runtime.NumCPU())
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;GOMAXPROCS: %d\n\&#34;, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Expected: 1\n\n\&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          for i := 0; i &lt; 12; i++ {
+</span></span></span><span class=line><span class=cl><span class=sd>              time.Sleep(5 * time.Second)
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(\&#34;[%02d] GOMAXPROCS = %d\n\&#34;, i+1, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>          }
+</span></span></span><span class=line><span class=cl><span class=sd>      }
+</span></span></span><span class=line><span class=cl><span class=sd>      EOF
+</span></span></span><span class=line><span class=cl><span class=sd>      cd /tmp &amp;&amp; go run test.go
+</span></span></span><span class=line><span class=cl><span class=sd>      &#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Test 2: 2.5 CPU limit (should round down to 2)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>go-app-2-5cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>golang:1.25</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>go-1.25-test-2-5cpu</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>deploy</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>cpus</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;2.5&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=l>512M</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>reservations</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>cpus</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;1.0&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=l>256M</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>&gt;</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>      sh -c &#34;
+</span></span></span><span class=line><span class=cl><span class=sd>      cat &gt; /tmp/test.go &lt;&lt; &#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=sd>      package main
+</span></span></span><span class=line><span class=cl><span class=sd>      import (
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;fmt\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;runtime\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;time\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>      )
+</span></span></span><span class=line><span class=cl><span class=sd>      func main() {
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;=== Docker Test: 2.5 CPU Limit ===\n\&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Go version: %s\n\&#34;, runtime.Version())
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Host CPUs: %d\n\&#34;, runtime.NumCPU())
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;GOMAXPROCS: %d\n\&#34;, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Expected: 2 (2.5 rounds down)\n\n\&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          for i := 0; i &lt; 12; i++ {
+</span></span></span><span class=line><span class=cl><span class=sd>              time.Sleep(5 * time.Second)
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(\&#34;[%02d] GOMAXPROCS = %d\n\&#34;, i+1, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>          }
+</span></span></span><span class=line><span class=cl><span class=sd>      }
+</span></span></span><span class=line><span class=cl><span class=sd>      EOF
+</span></span></span><span class=line><span class=cl><span class=sd>      cd /tmp &amp;&amp; go run test.go
+</span></span></span><span class=line><span class=cl><span class=sd>      &#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Test 3: Manual override</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>go-app-manual</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>golang:1.25</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>go-1.25-test-manual</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>GOMAXPROCS=8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>deploy</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>cpus</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;1.0&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=l>256M</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>&gt;</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>      sh -c &#34;
+</span></span></span><span class=line><span class=cl><span class=sd>      cat &gt; /tmp/test.go &lt;&lt; &#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=sd>      package main
+</span></span></span><span class=line><span class=cl><span class=sd>      import (
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;fmt\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;runtime\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;time\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>      )
+</span></span></span><span class=line><span class=cl><span class=sd>      func main() {
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;=== Docker Test: Manual Override ===\n\&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Go version: %s\n\&#34;, runtime.Version())
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Host CPUs: %d\n\&#34;, runtime.NumCPU())
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;GOMAXPROCS: %d\n\&#34;, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;CPU Limit: 1.0, GOMAXPROCS env: 8\n\&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Expected: 8 (manual override)\n\n\&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          for i := 0; i &lt; 12; i++ {
+</span></span></span><span class=line><span class=cl><span class=sd>              time.Sleep(5 * time.Second)
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(\&#34;[%02d] GOMAXPROCS = %d\n\&#34;, i+1, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>          }
+</span></span></span><span class=line><span class=cl><span class=sd>      }
+</span></span></span><span class=line><span class=cl><span class=sd>      EOF
+</span></span></span><span class=line><span class=cl><span class=sd>      cd /tmp &amp;&amp; go run test.go
+</span></span></span><span class=line><span class=cl><span class=sd>      &#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Test 4: GODEBUG disable</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>go-app-godebug</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>golang:1.25</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>go-1.25-test-godebug</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>GODEBUG=containermaxprocs=0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>deploy</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>resources</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>limits</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>cpus</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;1.0&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class=l>256M</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>&gt;</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>      sh -c &#34;
+</span></span></span><span class=line><span class=cl><span class=sd>      cat &gt; /tmp/test.go &lt;&lt; &#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=sd>      package main
+</span></span></span><span class=line><span class=cl><span class=sd>      import (
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;fmt\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;runtime\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          \&#34;time\&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>      )
+</span></span></span><span class=line><span class=cl><span class=sd>      func main() {
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;=== Docker Test: GODEBUG Disabled ===\n\&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Go version: %s\n\&#34;, runtime.Version())
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Host CPUs: %d\n\&#34;, runtime.NumCPU())
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;GOMAXPROCS: %d\n\&#34;, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;CPU Limit: 1.0, GODEBUG=containermaxprocs=0\n\&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>          fmt.Printf(\&#34;Expected: %d (same as host CPUs)\n\n\&#34;, runtime.NumCPU())
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          for i := 0; i &lt; 12; i++ {
+</span></span></span><span class=line><span class=cl><span class=sd>              time.Sleep(5 * time.Second)
+</span></span></span><span class=line><span class=cl><span class=sd>              fmt.Printf(\&#34;[%02d] GOMAXPROCS = %d\n\&#34;, i+1, runtime.GOMAXPROCS(0))
+</span></span></span><span class=line><span class=cl><span class=sd>          }
+</span></span></span><span class=line><span class=cl><span class=sd>      }
+</span></span></span><span class=line><span class=cl><span class=sd>      EOF
+</span></span></span><span class=line><span class=cl><span class=sd>      cd /tmp &amp;&amp; go run test.go
+</span></span></span><span class=line><span class=cl><span class=sd>      &#34;</span><span class=w>
+</span></span></span></code></pre></div><h3 id=interactive-test-program>Interactive Test Program</h3><p>An interactive program to test GOMAXPROCS behavior in different scenarios:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=c1>// gomaxprocs-test.go</span>
+</span></span><span class=line><span class=cl><span class=kn>package</span> <span class=nx>main</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;fmt&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;os&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;runtime&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;strconv&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;time&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;🚀 Go 1.25 Container-Aware GOMAXPROCS Interactive Test&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;=====================================================&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>// Display current environment</span>
+</span></span><span class=line><span class=cl>	<span class=nf>showEnvironmentInfo</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>// Test scenarios</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;\n🧪 Running test scenarios...&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=nf>testScenario1_DefaultBehavior</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>	<span class=nf>testScenario2_ManualOverride</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>	<span class=nf>testScenario3_MonitorChanges</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>showEnvironmentInfo</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;\n📊 Environment Information:\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;  Go Version:      %s\n&#34;</span><span class=p>,</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>Version</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;  GOOS:           %s\n&#34;</span><span class=p>,</span> <span class=nx>runtime</span><span class=p>.</span><span class=nx>GOOS</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;  GOARCH:         %s\n&#34;</span><span class=p>,</span> <span class=nx>runtime</span><span class=p>.</span><span class=nx>GOARCH</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;  Host CPUs:      %d\n&#34;</span><span class=p>,</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>NumCPU</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;  Current GOMAXPROCS: %d\n&#34;</span><span class=p>,</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>// Check environment variables</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>gomaxprocs</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>Getenv</span><span class=p>(</span><span class=s>&#34;GOMAXPROCS&#34;</span><span class=p>);</span> <span class=nx>gomaxprocs</span> <span class=o>!=</span> <span class=s>&#34;&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;  GOMAXPROCS env: %s\n&#34;</span><span class=p>,</span> <span class=nx>gomaxprocs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>godebug</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>Getenv</span><span class=p>(</span><span class=s>&#34;GODEBUG&#34;</span><span class=p>);</span> <span class=nx>godebug</span> <span class=o>!=</span> <span class=s>&#34;&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;  GODEBUG:        %s\n&#34;</span><span class=p>,</span> <span class=nx>godebug</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>// Check cgroup information (Linux only)</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>runtime</span><span class=p>.</span><span class=nx>GOOS</span> <span class=o>==</span> <span class=s>&#34;linux&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>checkCgroupInfo</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>checkCgroupInfo</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;\n🐧 Linux cgroup Information:\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>// Check cgroup v2 CPU limits</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>data</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>ReadFile</span><span class=p>(</span><span class=s>&#34;/sys/fs/cgroup/cpu.max&#34;</span><span class=p>);</span> <span class=nx>err</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;  cpu.max:        %s&#34;</span><span class=p>,</span> <span class=nb>string</span><span class=p>(</span><span class=nx>data</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>// Check cgroup v1 CPU limits</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>data</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>ReadFile</span><span class=p>(</span><span class=s>&#34;/sys/fs/cgroup/cpu/cpu.cfs_quota_us&#34;</span><span class=p>);</span> <span class=nx>err</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;  cfs_quota_us:   %s&#34;</span><span class=p>,</span> <span class=nb>string</span><span class=p>(</span><span class=nx>data</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>data</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>ReadFile</span><span class=p>(</span><span class=s>&#34;/sys/fs/cgroup/cpu/cpu.cfs_period_us&#34;</span><span class=p>);</span> <span class=nx>err</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;  cfs_period_us:  %s&#34;</span><span class=p>,</span> <span class=nb>string</span><span class=p>(</span><span class=nx>data</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>testScenario1_DefaultBehavior</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;\n🔍 Test 1: Default Behavior\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   Expected: GOMAXPROCS should respect container CPU limits\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=nx>original</span> <span class=o>:=</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   Result: GOMAXPROCS = %d\n&#34;</span><span class=p>,</span> <span class=nx>original</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>runtime</span><span class=p>.</span><span class=nx>GOOS</span> <span class=o>==</span> <span class=s>&#34;linux&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=nx>original</span> <span class=o>&lt;=</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>NumCPU</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   ✅ Looks good! GOMAXPROCS ≤ Host CPUs\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   ❓ Unexpected: GOMAXPROCS &gt; Host CPUs\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   ℹ️  Container awareness only works on Linux\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>testScenario2_ManualOverride</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;\n🔧 Test 2: Manual Override\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   Testing manual GOMAXPROCS setting...\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=nx>original</span> <span class=o>:=</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>testValue</span> <span class=o>:=</span> <span class=nx>original</span> <span class=o>+</span> <span class=mi>2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   Setting GOMAXPROCS to %d\n&#34;</span><span class=p>,</span> <span class=nx>testValue</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=nx>testValue</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=nx>actual</span> <span class=o>:=</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   Result: GOMAXPROCS = %d\n&#34;</span><span class=p>,</span> <span class=nx>actual</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>actual</span> <span class=o>==</span> <span class=nx>testValue</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   ✅ Manual override works correctly\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   ❌ Manual override failed\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>// Restore original</span>
+</span></span><span class=line><span class=cl>	<span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=nx>original</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   Restored to original value: %d\n&#34;</span><span class=p>,</span> <span class=nx>original</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>testScenario3_MonitorChanges</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;\n⏰ Test 3: Monitor for Dynamic Changes\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   Monitoring GOMAXPROCS for 30 seconds...\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   (In Go 1.25, this should update if container limits change)\n\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=mi>6</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>time</span><span class=p>.</span><span class=nf>Sleep</span><span class=p>(</span><span class=mi>5</span> <span class=o>*</span> <span class=nx>time</span><span class=p>.</span><span class=nx>Second</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>gomaxprocs</span> <span class=o>:=</span> <span class=nx>runtime</span><span class=p>.</span><span class=nf>GOMAXPROCS</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;   [%02ds] GOMAXPROCS = %d\n&#34;</span><span class=p>,</span> <span class=p>(</span><span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>)</span><span class=o>*</span><span class=mi>5</span><span class=p>,</span> <span class=nx>gomaxprocs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;\n   ℹ️  In a real container environment with changing limits,\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;      you might see GOMAXPROCS change dynamically.\n&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h2 id=usage-instructions>Usage Instructions</h2><h3 id=running-the-kubernetes-tests>Running the Kubernetes Tests</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Apply all manifests</span>
+</span></span><span class=line><span class=cl>kubectl apply -f kubernetes-manifests.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check the results</span>
+</span></span><span class=line><span class=cl>kubectl logs deployment/go-app-cpu-limited-1core
+</span></span><span class=line><span class=cl>kubectl logs deployment/go-app-cpu-limited-2core
+</span></span><span class=line><span class=cl>kubectl logs deployment/go-app-manual-override
+</span></span><span class=line><span class=cl>kubectl logs deployment/go-app-fractional-cpu
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Clean up</span>
+</span></span><span class=line><span class=cl>kubectl delete -f kubernetes-manifests.yaml
+</span></span></code></pre></div><h3 id=running-the-docker-compose-tests>Running the Docker Compose Tests</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Run all test scenarios</span>
+</span></span><span class=line><span class=cl>docker-compose up
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Run individual tests</span>
+</span></span><span class=line><span class=cl>docker-compose up go-app-1cpu
+</span></span><span class=line><span class=cl>docker-compose up go-app-2-5cpu
+</span></span><span class=line><span class=cl>docker-compose up go-app-manual
+</span></span><span class=line><span class=cl>docker-compose up go-app-godebug
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Clean up</span>
+</span></span><span class=line><span class=cl>docker-compose down
+</span></span></code></pre></div><h3 id=running-the-interactive-tests>Running the Interactive Tests</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Save as gomaxprocs-test.go and run directly</span>
+</span></span><span class=line><span class=cl>go run gomaxprocs-test.go
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Or in a container with CPU limits</span>
+</span></span><span class=line><span class=cl>docker run --cpus<span class=o>=</span><span class=s2>&#34;2&#34;</span> golang:1.25 sh -c <span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>cat &gt; test.go &lt;&lt; &#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=s2>[paste the gomaxprocs-test.go code here]
+</span></span></span><span class=line><span class=cl><span class=s2>EOF
+</span></span></span><span class=line><span class=cl><span class=s2>go run test.go
+</span></span></span><span class=line><span class=cl><span class=s2>&#34;</span>
+</span></span></code></pre></div><h2 id=related-resources>Related Resources</h2><ul><li><a href=https://tip.golang.org/doc/go1.25>Go 1.25 Release Notes</a></li><li><a href=https://pkg.go.dev/runtime>Container-aware GOMAXPROCS Documentation</a></li><li><a href=https://www.kernel.org/doc/Documentation/cgroup-v2.txt>cgroups Documentation</a></li></ul></div></article></main></div><footer class=footer><span class=footer_item></span>&nbsp;<div class=footer_social-icons><a href=https://github.com/syndbg target=_blank rel="noopener noreferrer me" title=Github><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
+</a><a href=https://linkedin.com/in/syndbg target=_blank rel="noopener noreferrer me" title=Linkedin><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+</a><a href=/index.xml target=_blank rel="noopener noreferrer me" title=Rss><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></div><small class=footer_copyright>© 2025 Anton Antonov.</small></footer><script src=https://syndbg.github.io/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script></body></html>

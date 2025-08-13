@@ -46,7 +46,11 @@ title = "Anton Antonov's mindspace"
       unsafe = true
   [markup.highlight]
     style = "github"
-    lineNos = true
+    lineNos = false
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    tabWidth = 4
 
 [menu]
   [[menu.main]]

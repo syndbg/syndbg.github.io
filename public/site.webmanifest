@@ -1,7 +1,7 @@
 {
     "name": "Anton Antonov's mindspace",
     "short_name": "Anton Antonov's mindspace",
-    "start_url": "http://localhost:1315/",
+    "start_url": "https://syndbg.github.io/",
     "theme_color": "#434648",
     "background_color": "#ffffff",
     "display": "standalone",
