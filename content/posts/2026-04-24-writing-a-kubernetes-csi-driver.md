@@ -748,4 +748,4 @@ After all of this, what you have is:
 
 The CSI spec is verbose but consistent. Once you've implemented `CreateVolume` and `NodeStageVolume`, the pattern repeats. The hard parts are operational: idempotency under retries, async backend polling, and getting mount propagation right in the DaemonSet.
 
-The [official CSI spec](https://github.com/container-storage-interface/spec/blob/master/spec.md) and the [kubernetes-csi examples repo](https://github.com/kubernetes-csi/csi-driver-host-path) are the two references worth keeping open while building.
+The [official CSI spec](https://github.com/container-storage-interface/spec/blob/master/spec.md) and the [kubernetes-csi examples repo](https://github.com/kubernetes-csi/csi-driver-host-path) are the two references worth keeping open while building. Note, even though the examples repo says this is not a good example, it's actually a decent start to get the boilerplate and setup right.
