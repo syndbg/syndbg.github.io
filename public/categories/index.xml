@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/</link>
+    <description>Recent content in Categories on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Apr 2026 09:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>http://localhost:1313/categories/go/</link>
+      <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/go/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>http://localhost:1313/categories/kubernetes/</link>
+      <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/kubernetes/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Programming</title>
+      <link>http://localhost:1313/categories/programming/</link>
+      <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/programming/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>DevOps</title>
+      <link>http://localhost:1313/categories/devops/</link>
+      <pubDate>Mon, 13 Jan 2025 03:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/devops/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://localhost:1313/categories/docker/</link>
+      <pubDate>Mon, 13 Jan 2025 03:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/docker/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -2,9 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+You are not writing on behalf of the author, you're a researcher and assistant.
+
+
 ## Commands
 
 ```bash
+# Install hugo (no global install needed)
+go install github.com/gohugoio/hugo@latest
+
 # Serve locally with drafts
 hugo server -D
 

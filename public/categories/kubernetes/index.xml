@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/categories/kubernetes/</link>
+    <description>Recent content in Kubernetes on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Apr 2026 09:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Writing a Kubernetes CSI Driver: Controller and Node from Scratch</title>
+      <link>http://localhost:1313/posts/2026-04-24-writing-a-kubernetes-csi-driver/</link>
+      <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/2026-04-24-writing-a-kubernetes-csi-driver/</guid>
+      
+      <description>&lt;p&gt;Kubernetes storage is one of those areas that looks simple from the outside — you create a &lt;code&gt;PersistentVolumeClaim&lt;/code&gt;, a pod mounts it, done. But the moment you need to integrate your own storage backend, you&amp;rsquo;re staring at the &lt;a href=&#34;https://github.com/container-storage-interface/spec&#34;&gt;Container Storage Interface spec&lt;/a&gt;, sidecar containers you&amp;rsquo;ve never heard of, and gRPC services that have to be wired together just right.&lt;/p&gt;
+&lt;p&gt;I had the pleasure of writing and contributing to a production-grade CSI driver end-to-end. This post covers everything I wish I had in one place: what CSI actually is, how Kubernetes orchestrates it, and how to implement all three services in Go.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Practically, Go 1.25&#39;s Container-Aware GOMAXPROCS: What You Need to Know</title>
+      <link>http://localhost:1313/posts/2025-01-13-go-1-25/</link>
+      <pubDate>Mon, 13 Jan 2025 03:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/2025-01-13-go-1-25/</guid>
+      
+      <description>&lt;p&gt;Go 1.25 just dropped with expected changes to GOMAXPROCS, which significantly change how Go applications behave in containerized environments. The runtime now &lt;strong&gt;automatically detects and respects container CPU limits&lt;/strong&gt; when setting &lt;code&gt;GOMAXPROCS&lt;/code&gt;. This isn&amp;rsquo;t just a minor improvement—it&amp;rsquo;s a shift that &lt;strong&gt;may&lt;/strong&gt; dramatically improve performance for millions of containerized Go applications.&lt;/p&gt;
+&lt;p&gt;And this isn&amp;rsquo;t the only amazing change, but this is the one I&amp;rsquo;ll focus on in this post.&lt;/p&gt;
+&lt;h2 id=&#34;the-problem-that-plagued-go-for-years&#34;&gt;The Problem That Plagued Go for Years&lt;/h2&gt;
+&lt;p&gt;Before Go 1.25, there was a fundamental mismatch between Go&amp;rsquo;s runtime and containerized environments:&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

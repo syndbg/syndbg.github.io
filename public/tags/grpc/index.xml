@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Grpc on Anton Antonov&#39;s mindspace</title>
+    <link>http://localhost:1313/tags/grpc/</link>
+    <description>Recent content in Grpc on Anton Antonov&#39;s mindspace</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Apr 2026 09:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/grpc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Writing a Kubernetes CSI Driver: Controller and Node from Scratch</title>
+      <link>http://localhost:1313/posts/2026-04-24-writing-a-kubernetes-csi-driver/</link>
+      <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/2026-04-24-writing-a-kubernetes-csi-driver/</guid>
+      
+      <description>&lt;p&gt;Kubernetes storage is one of those areas that looks simple from the outside — you create a &lt;code&gt;PersistentVolumeClaim&lt;/code&gt;, a pod mounts it, done. But the moment you need to integrate your own storage backend, you&amp;rsquo;re staring at the &lt;a href=&#34;https://github.com/container-storage-interface/spec&#34;&gt;Container Storage Interface spec&lt;/a&gt;, sidecar containers you&amp;rsquo;ve never heard of, and gRPC services that have to be wired together just right.&lt;/p&gt;
+&lt;p&gt;I had the pleasure of writing and contributing to a production-grade CSI driver end-to-end. This post covers everything I wish I had in one place: what CSI actually is, how Kubernetes orchestrates it, and how to implement all three services in Go.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
