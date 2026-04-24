@@ -26,8 +26,8 @@ title = "Anton Antonov's mindspace"
 
   # Theme configuration
   [params.theme]
-    color = "auto" # auto, light, dark
-    displayToggle = true
+    color = "dark"
+    displayToggle = false
 
   # Social icons
   [[params.socialIcons]]
