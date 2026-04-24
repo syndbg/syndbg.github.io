@@ -1,0 +1,15 @@
+# Anton Antonov's mindspace
+
+> Engineering Manager & Principal Software Engineer. Writing about Go, Kubernetes, platform engineering, and distributed systems.
+
+- Homepage: {{ .Site.BaseURL }}
+- RSS: {{ .Site.BaseURL }}index.xml
+
+## Posts
+{{ range (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+- [{{ .Title }}]({{ .Permalink }}){{ with .Description }} — {{ . }}{{ end }}
+{{ end }}
+
+## About
+
+- [About]({{ .Site.BaseURL }}about/)

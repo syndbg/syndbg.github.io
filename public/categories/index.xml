@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Anton Antonov&#39;s mindspace</title>
-    <link>http://localhost:1313/categories/</link>
+    <link>https://syndbg.github.io/categories/</link>
     <description>Recent content in Categories on Anton Antonov&#39;s mindspace</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Apr 2026 09:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Apr 2026 09:00:00 +0000</lastBuildDate><atom:link href="https://syndbg.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
-      <link>http://localhost:1313/categories/go/</link>
+      <link>https://syndbg.github.io/categories/go/</link>
       <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/go/</guid>
+      <guid>https://syndbg.github.io/categories/go/</guid>
       
       <description></description>
       
@@ -20,10 +20,10 @@
     
     <item>
       <title>Kubernetes</title>
-      <link>http://localhost:1313/categories/kubernetes/</link>
+      <link>https://syndbg.github.io/categories/kubernetes/</link>
       <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/kubernetes/</guid>
+      <guid>https://syndbg.github.io/categories/kubernetes/</guid>
       
       <description></description>
       
@@ -31,10 +31,10 @@
     
     <item>
       <title>Programming</title>
-      <link>http://localhost:1313/categories/programming/</link>
+      <link>https://syndbg.github.io/categories/programming/</link>
       <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/programming/</guid>
+      <guid>https://syndbg.github.io/categories/programming/</guid>
       
       <description></description>
       
@@ -42,10 +42,10 @@
     
     <item>
       <title>DevOps</title>
-      <link>http://localhost:1313/categories/devops/</link>
+      <link>https://syndbg.github.io/categories/devops/</link>
       <pubDate>Mon, 13 Jan 2025 03:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/devops/</guid>
+      <guid>https://syndbg.github.io/categories/devops/</guid>
       
       <description></description>
       
@@ -53,10 +53,10 @@
     
     <item>
       <title>Docker</title>
-      <link>http://localhost:1313/categories/docker/</link>
+      <link>https://syndbg.github.io/categories/docker/</link>
       <pubDate>Mon, 13 Jan 2025 03:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/docker/</guid>
+      <guid>https://syndbg.github.io/categories/docker/</guid>
       
       <description></description>
       

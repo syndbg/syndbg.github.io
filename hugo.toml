@@ -2,6 +2,18 @@ baseURL = 'https://syndbg.github.io'
 languageCode = 'en-us'
 title = "Anton Antonov's mindspace"
 
+[outputFormats]
+  [outputFormats.plain]
+    mediaType = "text/plain"
+    baseName = "llms"
+    isPlainText = true
+    notAlternative = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML", "plain"]
+  section = ["HTML", "RSS"]
+
 [module]
   [[module.imports]]
     path = "github.com/hugo-sid/hugo-blog-awesome"

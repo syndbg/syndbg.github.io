@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Anton Antonov&#39;s mindspace</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://syndbg.github.io/tags/</link>
     <description>Recent content in Tags on Anton Antonov&#39;s mindspace</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Apr 2026 09:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Apr 2026 09:00:00 +0000</lastBuildDate><atom:link href="https://syndbg.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Csi</title>
-      <link>http://localhost:1313/tags/csi/</link>
+      <link>https://syndbg.github.io/tags/csi/</link>
       <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/csi/</guid>
+      <guid>https://syndbg.github.io/tags/csi/</guid>
       
       <description></description>
       
@@ -20,10 +20,10 @@
     
     <item>
       <title>Driver</title>
-      <link>http://localhost:1313/tags/driver/</link>
+      <link>https://syndbg.github.io/tags/driver/</link>
       <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/driver/</guid>
+      <guid>https://syndbg.github.io/tags/driver/</guid>
       
       <description></description>
       
@@ -31,10 +31,10 @@
     
     <item>
       <title>Go</title>
-      <link>http://localhost:1313/tags/go/</link>
+      <link>https://syndbg.github.io/tags/go/</link>
       <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/go/</guid>
+      <guid>https://syndbg.github.io/tags/go/</guid>
       
       <description></description>
       
@@ -42,10 +42,10 @@
     
     <item>
       <title>Golang</title>
-      <link>http://localhost:1313/tags/golang/</link>
+      <link>https://syndbg.github.io/tags/golang/</link>
       <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/golang/</guid>
+      <guid>https://syndbg.github.io/tags/golang/</guid>
       
       <description></description>
       
@@ -53,10 +53,10 @@
     
     <item>
       <title>Grpc</title>
-      <link>http://localhost:1313/tags/grpc/</link>
+      <link>https://syndbg.github.io/tags/grpc/</link>
       <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/grpc/</guid>
+      <guid>https://syndbg.github.io/tags/grpc/</guid>
       
       <description></description>
       
@@ -64,10 +64,10 @@
     
     <item>
       <title>Kubernetes</title>
-      <link>http://localhost:1313/tags/kubernetes/</link>
+      <link>https://syndbg.github.io/tags/kubernetes/</link>
       <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/kubernetes/</guid>
+      <guid>https://syndbg.github.io/tags/kubernetes/</guid>
       
       <description></description>
       
@@ -75,10 +75,10 @@
     
     <item>
       <title>Storage</title>
-      <link>http://localhost:1313/tags/storage/</link>
+      <link>https://syndbg.github.io/tags/storage/</link>
       <pubDate>Fri, 24 Apr 2026 09:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/storage/</guid>
+      <guid>https://syndbg.github.io/tags/storage/</guid>
       
       <description></description>
       
@@ -86,10 +86,10 @@
     
     <item>
       <title>Cgroup</title>
-      <link>http://localhost:1313/tags/cgroup/</link>
+      <link>https://syndbg.github.io/tags/cgroup/</link>
       <pubDate>Mon, 13 Jan 2025 03:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/cgroup/</guid>
+      <guid>https://syndbg.github.io/tags/cgroup/</guid>
       
       <description></description>
       
@@ -97,10 +97,10 @@
     
     <item>
       <title>Containers</title>
-      <link>http://localhost:1313/tags/containers/</link>
+      <link>https://syndbg.github.io/tags/containers/</link>
       <pubDate>Mon, 13 Jan 2025 03:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/containers/</guid>
+      <guid>https://syndbg.github.io/tags/containers/</guid>
       
       <description></description>
       
@@ -108,10 +108,10 @@
     
     <item>
       <title>Docker</title>
-      <link>http://localhost:1313/tags/docker/</link>
+      <link>https://syndbg.github.io/tags/docker/</link>
       <pubDate>Mon, 13 Jan 2025 03:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/docker/</guid>
+      <guid>https://syndbg.github.io/tags/docker/</guid>
       
       <description></description>
       
@@ -119,10 +119,10 @@
     
     <item>
       <title>Gomaxprocs</title>
-      <link>http://localhost:1313/tags/gomaxprocs/</link>
+      <link>https://syndbg.github.io/tags/gomaxprocs/</link>
       <pubDate>Mon, 13 Jan 2025 03:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/gomaxprocs/</guid>
+      <guid>https://syndbg.github.io/tags/gomaxprocs/</guid>
       
       <description></description>
       
@@ -130,10 +130,10 @@
     
     <item>
       <title>Performance</title>
-      <link>http://localhost:1313/tags/performance/</link>
+      <link>https://syndbg.github.io/tags/performance/</link>
       <pubDate>Mon, 13 Jan 2025 03:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/performance/</guid>
+      <guid>https://syndbg.github.io/tags/performance/</guid>
       
       <description></description>
       

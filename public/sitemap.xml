@@ -2,80 +2,80 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://syndbg.github.io/categories/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/csi/</loc>
+    <loc>https://syndbg.github.io/tags/csi/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/driver/</loc>
+    <loc>https://syndbg.github.io/tags/driver/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/go/</loc>
+    <loc>https://syndbg.github.io/categories/go/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/go/</loc>
+    <loc>https://syndbg.github.io/tags/go/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/golang/</loc>
+    <loc>https://syndbg.github.io/tags/golang/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/grpc/</loc>
+    <loc>https://syndbg.github.io/tags/grpc/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/kubernetes/</loc>
+    <loc>https://syndbg.github.io/categories/kubernetes/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/kubernetes/</loc>
+    <loc>https://syndbg.github.io/tags/kubernetes/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://syndbg.github.io/posts/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/programming/</loc>
+    <loc>https://syndbg.github.io/categories/programming/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/storage/</loc>
+    <loc>https://syndbg.github.io/tags/storage/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://syndbg.github.io/tags/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/2026-04-24-writing-a-kubernetes-csi-driver/</loc>
+    <loc>https://syndbg.github.io/posts/2026-04-24-writing-a-kubernetes-csi-driver/</loc>
     <lastmod>2026-04-24T09:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/cgroup/</loc>
+    <loc>https://syndbg.github.io/tags/cgroup/</loc>
     <lastmod>2025-01-13T03:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/containers/</loc>
+    <loc>https://syndbg.github.io/tags/containers/</loc>
     <lastmod>2025-01-13T03:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/devops/</loc>
+    <loc>https://syndbg.github.io/categories/devops/</loc>
     <lastmod>2025-01-13T03:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/docker/</loc>
+    <loc>https://syndbg.github.io/categories/docker/</loc>
     <lastmod>2025-01-13T03:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/docker/</loc>
+    <loc>https://syndbg.github.io/tags/docker/</loc>
     <lastmod>2025-01-13T03:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/gomaxprocs/</loc>
+    <loc>https://syndbg.github.io/tags/gomaxprocs/</loc>
     <lastmod>2025-01-13T03:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/performance/</loc>
+    <loc>https://syndbg.github.io/tags/performance/</loc>
     <lastmod>2025-01-13T03:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/2025-01-13-go-1-25/</loc>
+    <loc>https://syndbg.github.io/posts/2025-01-13-go-1-25/</loc>
     <lastmod>2025-01-13T03:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://syndbg.github.io/projects/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://syndbg.github.io/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://syndbg.github.io/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>https://syndbg.github.io/series/</loc>
   </url>
 </urlset>
