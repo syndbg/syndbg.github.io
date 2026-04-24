@@ -12,6 +12,10 @@ title = "Anton Antonov's mindspace"
 
 [params]
   description = "Open-source developer and an eternal apprentice."
+  goToTop = true
+  toc = true
+  tocOpen = true
+  footer = "&copy; [Anton Antonov](/) 2025 | [Github](https://github.com/syndbg) | [LinkedIn](https://linkedin.com/in/syndbg)"
 
   # Hugo Blog Awesome theme configuration
   [params.author]
@@ -37,14 +41,6 @@ title = "Anton Antonov's mindspace"
   [[params.socialIcons]]
     name = "rss"
     url = "/index.xml"
-
-  # Features
-  goToTop = true
-  toc = true
-  tocOpen = true
-
-  # Footer
-  footer = "&copy; [Anton Antonov](/) 2025 | [Github](https://github.com/syndbg) | [LinkedIn](https://linkedin.com/in/syndbg)"
 
 [markup]
   [markup.tableOfContents]

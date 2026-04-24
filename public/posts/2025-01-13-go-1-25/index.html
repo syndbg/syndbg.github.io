@@ -98,7 +98,7 @@
     
 
     <link rel="canonical" href="http://localhost:1313/posts/2025-01-13-go-1-25/">
-    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/style.min.2d921c18cf1ec555ffc03d59a8adc211c402c68c930c27d6a0c306ab175a8d09.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
     
@@ -201,6 +201,96 @@ stroke-linejoin="round" class="feather feather-home">
                 
             </header>
             
+    
+        
+            
+        
+    
+    <details class="toc" open>
+        <summary><b>Table of Contents</b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-problem-that-plagued-go-for-years">The Problem That Plagued Go for Years</a></li>
+    <li><a href="#what-changed-in-go-125">What Changed in Go 1.25</a>
+      <ul>
+        <li><a href="#1-container-aware-gomaxprocs-linux">1. Container-Aware GOMAXPROCS (Linux)</a></li>
+        <li><a href="#2-dynamic-gomaxprocs-updates">2. Dynamic GOMAXPROCS Updates</a></li>
+      </ul>
+    </li>
+    <li><a href="#seeing-it-in-action">Seeing It in Action</a>
+      <ul>
+        <li><a href="#kubernetes-results-comparison">Kubernetes Results Comparison</a></li>
+        <li><a href="#docker-results">Docker Results</a></li>
+      </ul>
+    </li>
+    <li><a href="#complete-examples-and-testing">Complete Examples and Testing</a>
+      <ul>
+        <li><a href="#kubernetes-manifest-examples">Kubernetes Manifest Examples</a></li>
+      </ul>
+    </li>
+    <li><a href="#when-the-magic-doesnt-happen">When the Magic Doesn&rsquo;t Happen</a>
+      <ul>
+        <li><a href="#1-manual-gomaxprocs-setting">1. Manual GOMAXPROCS Setting</a></li>
+        <li><a href="#2-godebug-overrides">2. GODEBUG Overrides</a></li>
+        <li><a href="#3-non-linux-platforms">3. Non-Linux Platforms</a></li>
+      </ul>
+    </li>
+    <li><a href="#migration-guide-for-existing-applications">Migration Guide for Existing Applications</a>
+      <ul>
+        <li><a href="#1-remove-manual-gomaxprocs-workarounds">1. Remove Manual GOMAXPROCS Workarounds</a></li>
+        <li><a href="#2-test-thoroughly">2. Test Thoroughly</a></li>
+        <li><a href="#3-monitor-key-metrics">3. Monitor Key Metrics</a></li>
+      </ul>
+    </li>
+    <li><a href="#cloud-platform-compatibility">Cloud Platform Compatibility</a>
+      <ul>
+        <li><a href="#aws">AWS</a></li>
+        <li><a href="#google-cloud">Google Cloud</a></li>
+        <li><a href="#azure">Azure</a></li>
+      </ul>
+    </li>
+    <li><a href="#performance-tuning-considerations">Performance Tuning Considerations</a>
+      <ul>
+        <li><a href="#when-automatic-is-perfect">When Automatic is Perfect</a></li>
+        <li><a href="#when-manual-tuning-may-be-better">When Manual Tuning May Be Better</a></li>
+        <li><a href="#testing-your-specific-workload">Testing Your Specific Workload</a></li>
+      </ul>
+    </li>
+    <li><a href="#troubleshooting-common-issues">Troubleshooting Common Issues</a>
+      <ul>
+        <li><a href="#issue-1-performance-regression">Issue 1: Performance Regression</a></li>
+        <li><a href="#issue-2-gomaxprocs-not-changing">Issue 2: GOMAXPROCS Not Changing</a></li>
+        <li><a href="#issue-3-fractional-cpu-confusion">Issue 3: Fractional CPU Confusion</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-bigger-picture-why-this-matters">The Bigger Picture: Why This Matters</a>
+      <ul>
+        <li><a href="#1-cloud-native-by-default">1. Cloud-Native by Default</a></li>
+        <li><a href="#2-better-resource-efficiency">2. Better Resource Efficiency</a></li>
+        <li><a href="#3-simplified-operations">3. Simplified Operations</a></li>
+        <li><a href="#4-platform-consistency">4. Platform Consistency</a></li>
+      </ul>
+    </li>
+    <li><a href="#future-implications">Future Implications</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#complete-test-code-examples">Complete Test Code Examples</a>
+      <ul>
+        <li><a href="#kubernetes-manifests">Kubernetes Manifests</a></li>
+        <li><a href="#docker-compose-test-scenarios">Docker Compose Test Scenarios</a></li>
+        <li><a href="#interactive-test-program">Interactive Test Program</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage-instructions">Usage Instructions</a>
+      <ul>
+        <li><a href="#running-the-kubernetes-tests">Running the Kubernetes Tests</a></li>
+        <li><a href="#running-the-docker-compose-tests">Running the Docker Compose Tests</a></li>
+        <li><a href="#running-the-interactive-tests">Running the Interactive Tests</a></li>
+      </ul>
+    </li>
+    <li><a href="#related-resources">Related Resources</a></li>
+  </ul>
+</nav>
+    </details>
             <div class="page-content">
                 <p>Go 1.25 just dropped with expected changes to GOMAXPROCS, which significantly change how Go applications behave in containerized environments. The runtime now <strong>automatically detects and respects container CPU limits</strong> when setting <code>GOMAXPROCS</code>. This isn&rsquo;t just a minor improvement—it&rsquo;s a shift that <strong>may</strong> dramatically improve performance for millions of containerized Go applications.</p>
 <p>And this isn&rsquo;t the only amazing change, but this is the one I&rsquo;ll focus on in this post.</p>
@@ -1051,8 +1141,15 @@ stroke-linejoin="round" class="feather feather-home">
         © 2026 Anton Antonov.
         Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
     </small>
-</footer>
+</footer><a href="#" title="Go to top" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
 
+</a>
+
+
+    
 
 
 
