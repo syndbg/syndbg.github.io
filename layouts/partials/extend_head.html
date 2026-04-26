@@ -1,23 +1,5 @@
 <meta name="google-site-verification" content="1IcXoz4emdlOVec6WBm8ILkUqjYLOYVj-Jb5FcL7n60" />
 
-<style>
-  pre.mermaid {
-    width: 100%;
-    max-width: none;
-    overflow: hidden;
-    background: transparent;
-    border: 1px solid #333;
-    border-radius: 6px;
-    padding: 1rem;
-  }
-
-  pre.mermaid svg {
-    width: 100% !important;
-    height: auto;
-    max-width: none !important;
-  }
-</style>
-
 {{ if .IsPage }}
 <script type="application/ld+json">
 {
@@ -30,12 +12,8 @@
   "url": {{ .Permalink | jsonify }},
   "author": {
     "@type": "Person",
-    "name": {{ .Site.Params.author.name | jsonify }},
+    "name": {{ site.Params.author.name | default "Anton Antonov" | jsonify }},
     "url": {{ .Site.BaseURL | jsonify }}
-  },
-  "publisher": {
-    "@type": "Person",
-    "name": {{ .Site.Params.author.name | jsonify }}
   }{{ with .Params.tags }},
   "keywords": {{ . | jsonify }}{{ end }}
 }

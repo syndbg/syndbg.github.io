@@ -1,47 +1,40 @@
-baseURL = 'https://syndbg.github.io'
+baseURL = 'https://syndbg.github.io/'
 languageCode = 'en-us'
 title = "Anton Antonov's mindspace"
-
-[outputFormats]
-  [outputFormats.plain]
-    mediaType = "text/plain"
-    baseName = "llms"
-    isPlainText = true
-    notAlternative = true
-
-[outputs]
-  home = ["HTML", "RSS"]
-  page = ["HTML", "plain"]
-  section = ["HTML", "RSS"]
+paginate = 10
 
 [module]
   [[module.imports]]
-    path = "github.com/hugo-sid/hugo-blog-awesome"
+    path = "github.com/adityatelange/hugo-PaperMod"
 
 [author]
   name = "Anton Antonov"
   email = "anton.synd.antonov@gmail.com"
 
 [params]
-  description = "Open-source developer and an eternal apprentice."
-  goToTop = true
-  toc = true
-  tocOpen = true
-  footer = "&copy; [Anton Antonov](/) 2025 | [Github](https://github.com/syndbg) | [LinkedIn](https://linkedin.com/in/syndbg)"
+  defaultTheme = "dark"
+  disableThemeToggle = true
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = true
+  enableMermaid = true
 
-  # Hugo Blog Awesome theme configuration
-  [params.author]
-    name = "Anton Antonov"
-    intro = "Anton Antonov"
-    description = "Engineering Manager & Principal Software Engineer passionate about building high-performant distributed systems, developer experience, and platform engineering."
-    avatar = "images/avatar.png"
+  [params.profileMode]
+    enabled = true
+    title = "Anton Antonov"
+    subtitle = "Engineering Manager & Principal Software Engineer. Writing about Go, Kubernetes, platform engineering, and distributed systems."
+    imageUrl = "images/avatar.png"
+    imageWidth = 120
+    imageHeight = 120
+    imageTitle = "Anton Antonov"
+    [[params.profileMode.buttons]]
+      name = "Posts"
+      url = "/posts"
 
-  # Theme configuration
-  [params.theme]
-    color = "dark"
-    displayToggle = false
-
-  # Social icons
   [[params.socialIcons]]
     name = "github"
     url = "https://github.com/syndbg"
@@ -54,6 +47,17 @@ title = "Anton Antonov's mindspace"
     name = "rss"
     url = "/index.xml"
 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+
+[outputFormats.plain]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
 [markup]
   [markup.tableOfContents]
     startLevel = 2
@@ -63,31 +67,29 @@ title = "Anton Antonov's mindspace"
     [markup.goldmark.renderer]
       unsafe = true
   [markup.highlight]
-    style = "github"
-    lineNos = false
     noClasses = false
+    style = "github-dark"
     codeFences = true
     guessSyntax = true
-    tabWidth = 4
-
-[menu]
-  [[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 1
-  [[menu.main]]
-    name = "Posts"
-    url = "/posts/"
-    weight = 2
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 3
 
 [taxonomies]
   category = "categories"
   tag = "tags"
   series = "series"
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 20
+  [[menu.main]]
+    name = "Search"
+    url = "/search/"
+    weight = 30
 
 [services]
   [services.googleAnalytics]
