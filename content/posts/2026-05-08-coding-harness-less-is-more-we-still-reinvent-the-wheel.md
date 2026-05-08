@@ -58,9 +58,6 @@ Without these wired up, the agent is flying blind every session. It compensates 
 
 Hooks also solve a problem that surfaces when running parallel workstreams with [git worktrees](https://syndbg.github.io/posts/2026-05-02-git-worktrees-parallel-development-without-cloning-everything-twice/). Each worktree is an isolated working directory — useful for running two agent sessions on different branches simultaneously without conflicts. But secrets and environment files (`.env`, credentials, tokens) do not copy across automatically. A `SessionStart` hook scoped to the worktree can detect the working directory, locate the canonical secrets from a shared location, and symlink or inject them without duplicating sensitive files across every checkout. The harness manages the plumbing so neither the developer nor the agent has to think about it.
 
-Or, you can use Claude code with `--worktree` which also invokes the `WorktreeCreate` hook, 
-as per the example in [Claude's docs](https://code.claude.com/docs/en/hooks#worktreecreate).
-
 E.g
 
 ```bash
@@ -98,6 +95,9 @@ Wire it in `.claude/settings.json`:
 ```
 
 Runs once per session. If the working directory is a worktree (not main checkout), symlinks `.env` from main. No copies, no stale secrets, no manual setup per branch.
+
+Or, you can use Claude code with `--worktree` which also invokes the `WorktreeCreate` hook, 
+as per the example in [Claude's docs](https://code.claude.com/docs/en/hooks#worktreecreate).
 
 ---
 
