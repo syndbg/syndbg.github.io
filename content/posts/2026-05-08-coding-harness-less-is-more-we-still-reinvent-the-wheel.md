@@ -127,6 +127,27 @@ graph LR
 
 *Cursor indexes without storing filenames or source code — filenames are obfuscated, chunks are encrypted. Content proofs verify the client holds the file before results are returned.*
 
+The Merkle tree + simhash combination is what makes org-wide index reuse possible. A Merkle tree hashes file content bottom-up — any change propagates to the root, so the root hash changes. Simhash produces a fingerprint of a document set where similar sets produce similar hashes. Together they let Cursor detect that your clone of a repo is 92% identical to one already indexed on the server, and skip re-embedding the matching chunks entirely.
+
+```mermaid
+graph TD
+    R["Root hash\nsha256(H_AB + H_CD)"]
+    H_AB["H_AB\nsha256(H_A + H_B)"]
+    H_CD["H_CD\nsha256(H_C + H_D)"]
+    H_A["H_A\nsha256(file_a.go)"]
+    H_B["H_B\nsha256(file_b.go)"]
+    H_C["H_C\nsha256(file_c.go)"]
+    H_D["H_D ⚠️\nsha256(file_d.go) CHANGED"]
+
+    R --> H_AB
+    R --> H_CD
+    H_AB --> H_A
+    H_AB --> H_B
+    H_CD --> H_C
+    H_CD --> H_D
+```
+*One file changes → its leaf hash changes → H_CD changes → root changes. Cursor walks the diff, re-embeds only changed leaves. Unchanged subtrees reuse the existing index via `copy_from_namespace`.*
+
 Median time-to-first-query for large repos dropped from **7.87s → 525ms** after Merkle-based index reuse shipped. ([Cursor: Secure Codebase Indexing](https://cursor.com/blog/secure-codebase-indexing)) (note: for some reason the link only redirects to the CN article, not the English one.)
 
 The vector store behind this is [Turbopuffer](https://turbopuffer.com/customers/cursor). Cursor runs one namespace per codebase — active ones stay hot in memory/NVMe, inactive ones spill to object storage. At scale: **1T+ documents across 80M+ namespaces**, 10GB/s peak ingestion. Cold namespaces resume without re-embedding via `copy_from_namespace`, which is how the 92% org-clone similarity translates into actual latency savings rather than just a stat. Cursor moved to Turbopuffer in November 2023 and cut semantic search costs by 20x. Agent accuracy improved up to **23.5%** after the switch.
@@ -194,7 +215,56 @@ Lumen is the closest thing the ecosystem has to a production-grade answer for Cl
 
 **What it does well:**
 
-- AST-aware chunking via tree-sitter — splits at function boundaries, not arbitrary character windows. A retrieved chunk is a complete function, not lines 47–89 of one.
+- AST-aware chunking via tree-sitter — splits at function boundaries, not arbitrary character windows. A retrieved chunk is a complete function, not lines 47–89 of one. An AST (Abstract Syntax Tree) is the parsed structure of source code — a tree where each node is a language construct: function, class, method, variable. Splitting at those boundaries means every retrieved chunk is a complete, meaningful unit.
+
+  ```mermaid
+  graph TD
+      A["source file"] --> B["module"]
+      B --> C["class Config"]
+      B --> D["function parse_config"]
+      B --> E["function validate"]
+      D --> F["param: path"]
+      D --> G["body: open · load · validate · return"]
+      C --> H["field: host"]
+      C --> I["field: port"]
+  ```
+  *AST of a small Python module. Each node is a language construct. Chunking at `function` or `class` nodes produces self-contained units — not mid-expression fragments.*
+
+  **Naive window chunking** (500-char sliding window) might split this Python function arbitrarily:
+
+  ```python
+  # Chunk 1 (chars 0-500) — cuts mid-function
+  def parse_config(path: str) -> Config:
+      """Load and validate config from disk."""
+      with open(path) as f:
+          raw = yaml.safe_load(f)
+      if "database" not in raw:
+          raise ValueError("missing database
+  # Chunk 2 (chars 500-1000) — starts mid-expression, no context
+           key")
+      return Config(
+          host=raw["database"]["host"],
+          port=raw["database"].get("port", 5432),
+      )
+  ```
+
+  **AST-aware chunking** (tree-sitter, function boundary):
+
+  ```python
+  # Chunk: parse_config — complete, self-contained
+  def parse_config(path: str) -> Config:
+      """Load and validate config from disk."""
+      with open(path) as f:
+          raw = yaml.safe_load(f)
+      if "database" not in raw:
+          raise ValueError("missing database key")
+      return Config(
+          host=raw["database"]["host"],
+          port=raw["database"].get("port", 5432),
+      )
+  ```
+
+  The second chunk is retrievable, understandable, and embeds with full semantic context. The first produces garbage embeddings for the second half.
 - Code-optimized embeddings: `jina-embeddings-v2-base-code` (512-dim), trained on code rather than general text.
 - SQLite-vec as the vector store — embedded, zero infrastructure, single file on disk.
 - `SessionStart` hook auto-wired on install. Index is fresh at the start of every session.
@@ -225,7 +295,58 @@ Overall, I'll be running this for hours and I am, when I want to capture the ful
 
 SQLite-vec works well for a single focused codebase. For local, single-machine use it is a reasonable embedded choice — zero infrastructure, single file. But the HNSW implementation it provides is a single-node, in-process index. No concurrent writers, no on-disk persistence separate from the SQLite file, no incremental segment merges.
 
-Dedicated vector stores built around HNSW — purpose-built for the algorithm — handle graph construction and search on separate threads, persist the graph independently from the payload store, and support filtered search without degrading ANN recall. SQLite-vec serialises everything through SQLite's WAL. At small scale the difference is invisible. Across a large monorepo (thousands of files, millions of chunks), query latency climbs.
+HNSW (Hierarchical Navigable Small World) is the dominant algorithm for approximate nearest-neighbor vector search — it builds a multi-layer graph where each layer skips further ahead, letting queries find close vectors in O(log n) rather than scanning everything.
+
+```mermaid
+graph TD
+    subgraph "Layer 2 (coarse)"
+        L2A((A)) --- L2E((E))
+    end
+    subgraph "Layer 1"
+        L1A((A)) --- L1C((C))
+        L1C --- L1E((E))
+    end
+    subgraph "Layer 0 (all nodes)"
+        L0A((A)) --- L0B((B))
+        L0B --- L0C((C))
+        L0C --- L0D((D))
+        L0D --- L0E((E))
+    end
+    L2A -.-> L1A
+    L2E -.-> L1E
+    L1C -.-> L0C
+```
+*HNSW graph layers. Query enters at the top (coarsest), greedily descends to the nearest node, then refines at each lower layer. Search cost is O(log n) instead of O(n).*
+
+Dedicated vector stores built around HNSW handle graph construction and search on separate threads, persist the graph independently from the payload store, and support filtered search without degrading ANN recall — how many of the true nearest neighbors the approximate search actually returns (filters discard candidates before graph traversal completes, shrinking recall).
+
+```mermaid
+graph LR
+    subgraph "ANN recall example"
+        T["True top-5 neighbors\n[A, B, C, D, E]"]
+        R["Returned by HNSW\n[A, B, C, D, F]"]
+        T -->|"recall = 4/5 = 80%"| R
+    end
+```
+*Recall@5 = 80% here. E was a true neighbor; F was not. Filtered search (e.g. kind=function only) shrinks the candidate set, making misses more likely.*
+
+SQLite-vec serialises everything through SQLite's WAL (Write-Ahead Log) — providing crash safety but queuing concurrent writers behind each other.
+
+```mermaid
+sequenceDiagram
+    participant W1 as Writer 1
+    participant W2 as Writer 2
+    participant WAL as WAL file
+    participant DB as Main DB file
+
+    W1->>WAL: append write
+    W2->>WAL: wait (locked)
+    WAL->>DB: checkpoint flush
+    W2->>WAL: append write (now unblocked)
+```
+*SQLite WAL serialises concurrent writers. Fine for single-process use; degrades when indexer and query server write simultaneously at scale.*
+
+At small scale the difference is invisible. Across a large monorepo (thousands of files, millions of chunks), query latency climbs.
 
 **The macOS MCP server is currently broken.**
 
@@ -283,6 +404,27 @@ The tooling exists. The patterns are proven. But the current state of the ecosys
 
 **Chunking is still mostly naive.** Most open-source indexers use sliding character windows. Lumen's AST-aware approach is the exception. Function-level chunks that respect language syntax are meaningfully better for code retrieval — a grep that returns the full function body outperforms one that returns lines 47–89 of an arbitrary split.
 
+Tree shaking is a related but distinct idea from frontend build tooling — it eliminates dead code at bundle time by statically analyzing the import graph. Same goal (less junk in the output), different target: the compiled bundle, not the retrieval index. Worth naming because the terms get conflated when people discuss "pruning" what the agent sees.
+
+```mermaid
+graph LR
+    subgraph "Before tree shaking"
+        E[entry.js] --> A[utils/format.js]
+        E --> B[utils/parse.js]
+        E --> C[utils/deadcode.js]
+        A --> D[lib/core.js]
+        B --> D
+        C --> D
+    end
+    subgraph "After tree shaking"
+        E2[entry.js] --> A2[utils/format.js]
+        E2 --> B2[utils/parse.js]
+        A2 --> D2[lib/core.js]
+        B2 --> D2
+    end
+```
+*Tree shaking removes `utils/deadcode.js` — never called from the entry point. The bundler traces imports statically and drops unreachable modules. This is compile-time pruning, not retrieval-time pruning.*
+
 **No standard MCP schema for code search.** Every indexer invents its own tool names and return shapes. `search_code`, `find_symbol`, `semantic_search` — same operation, different contracts. The LSP standardization moment for AI tools has not happened yet.
 
 **Index drift under heavy editing.** PostToolUse hooks sync one file at a time. A large refactor touching 40 files leaves the index inconsistent until the next SessionStart re-index. Background file watchers (like Lumen's daemon) solve this but add process complexity.
@@ -295,7 +437,18 @@ The tooling exists. The patterns are proven. But the current state of the ecosys
 
 Before concluding that the harness is the answer, it is worth holding the contrarian position: [subQ](https://subq.ai/introducing-subq) argues the harness is a workaround for an architectural defect, not a solution.
 
-Their thesis: RAG pipelines, chunking strategies, and retrieval systems exist because transformer attention is quadratic — every token against every token, cost exploding as context grows. The industry adapted by building retrieval *around* the model rather than fixing the model. As they put it: "Developers and investors spend more of their time and money on workarounds than on the problem itself."
+Their thesis: RAG pipelines, chunking strategies, and retrieval systems exist because transformer attention is quadratic — every token compared against every token, cost exploding as context grows. In a sequence of N tokens, standard attention computes N² comparisons per layer. Double the context, quadruple the cost. At 100K tokens that's 10 billion operations per layer.
+
+```mermaid
+xychart-beta
+    title "Attention compute vs context length"
+    x-axis ["1K", "4K", "16K", "32K", "64K", "100K"]
+    y-axis "Relative compute (×)" 0 --> 10000
+    line [1, 16, 256, 1024, 4096, 10000]
+```
+*Quadratic scaling. 1K tokens = 1× baseline. 100K tokens = 10,000× baseline. This is why RAG exists — it keeps the effective context small.*
+
+The industry adapted by building retrieval *around* the model rather than fixing the model. As they put it: "Developers and investors spend more of their time and money on workarounds than on the problem itself."
 
 ![subQ workaround stack](https://subq.ai/images/workaround_stack_bw.svg)
 *The workaround stack. Source: [subQ — Introducing subQ](https://subq.ai/introducing-subq)*
