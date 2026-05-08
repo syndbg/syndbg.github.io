@@ -103,7 +103,7 @@ as per the example in [Claude's docs](https://code.claude.com/docs/en/hooks#work
 
 ## Cursor: Where Codebase Indexing Comes Built-In
 
-Cursor does not make you wire this up yourself. It ships with persistent, background codebase indexing as a first-class feature. On session open, it alrleady knows your symbols, your imports, your function signatures. Retrieval is a lookup, not an exploration.
+Cursor does not make you wire this up yourself. It ships with persistent, background codebase indexing as a first-class feature. On session open, it already knows your symbols, your imports, your function signatures. Retrieval is a lookup, not an exploration.
 
 This creates a felt difference in terms of accuracy, speed and cost-efficiency. Cursor doesn't, based on my experience, significantly regress to greping and bisecting for repetitive work. This cuts token usage quite significantly.
 
@@ -127,7 +127,7 @@ graph LR
 
 *Cursor indexes without storing filenames or source code — filenames are obfuscated, chunks are encrypted. Content proofs verify the client holds the file before results are returned.*
 
-Median time-to-first-query for large repos dropped from **7.87s → 525ms** after Merkle-based index reuse shipped. ([Cursor: Secure Codebase Indexing](https://cursor.com/blog/secure-codebase-indexing))
+Median time-to-first-query for large repos dropped from **7.87s → 525ms** after Merkle-based index reuse shipped. ([Cursor: Secure Codebase Indexing](https://cursor.com/blog/secure-codebase-indexing)) (note: for some reason the link only redirects to the CN article, not the English one.)
 
 The vector store behind this is [Turbopuffer](https://turbopuffer.com/customers/cursor). Cursor runs one namespace per codebase — active ones stay hot in memory/NVMe, inactive ones spill to object storage. At scale: **1T+ documents across 80M+ namespaces**, 10GB/s peak ingestion. Cold namespaces resume without re-embedding via `copy_from_namespace`, which is how the 92% org-clone similarity translates into actual latency savings rather than just a stat. Cursor moved to Turbopuffer in November 2023 and cut semantic search costs by 20x. Agent accuracy improved up to **23.5%** after the switch.
 
@@ -147,7 +147,9 @@ Last but not least, Claude Code on the other hand has the more pluggable system,
 
 Here is the part that should sting: none of this is new.
 
-**ctags** (1978) built symbol indexes so editors could jump to definitions without reading every file. **cscope** (1985) did cross-reference search across C codebases. **Language servers** (LSP, 2016) gave every editor a real-time semantic model of the code — go-to-definition, find-references, hover docs — without re-parsing anything.
+**ctags** (1978) built symbol indexes so editors could jump to definitions without reading every file. 
+**cscope** (1985) did cross-reference search across C codebases. 
+**Language servers** (LSP, 2016) gave every editor a real-time semantic model of the code — go-to-definition, find-references, hover docs — without re-parsing anything.
 
 The entire Language Server Protocol exists because editors kept re-implementing the same code intelligence in isolation. Microsoft proposed a standard. The ecosystem converged. Problem solved for the editor layer.
 
