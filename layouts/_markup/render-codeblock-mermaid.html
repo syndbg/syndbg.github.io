@@ -1,2 +1,2 @@
-<pre class="mermaid">{{- .Inner | safeHTML }}</pre>
+<div class="mermaid-wrap"><pre class="mermaid">{{- .Inner | safeHTML }}</pre><button type="button" class="mermaid-expand-btn" aria-label="View fullscreen">⤢</button></div>
 {{ .Page.Store.Set "hasMermaid" true }}

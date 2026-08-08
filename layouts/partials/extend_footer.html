@@ -1,6 +1,110 @@
 {{ if eq .Kind "page" }}
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  import svgPanZoom from 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.2/+esm';
+
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'dark',
+    flowchart: { useMaxWidth: false },
+    sequence: { useMaxWidth: false },
+    gantt: { useMaxWidth: false },
+    class: { useMaxWidth: false },
+    state: { useMaxWidth: false },
+  });
+
+  function openMermaidLightbox(pristineSvg) {
+    const overlay = document.createElement('div');
+    overlay.className = 'mermaid-lightbox';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'mermaid-lightbox-close';
+    closeBtn.setAttribute('aria-label', 'Close');
+    closeBtn.innerHTML = '&times;';
+
+    const canvas = document.createElement('div');
+    canvas.className = 'mermaid-lightbox-canvas';
+    // Clone from a copy captured before the inline svg-pan-zoom instance instrumented
+    // it (control icons, extra <g> wrappers) — otherwise a second init here would
+    // double up the +/-/reset controls on top of the ones already baked in.
+    const clone = pristineSvg.cloneNode(true);
+    clone.removeAttribute('style');
+    canvas.appendChild(clone);
+
+    overlay.append(closeBtn, canvas);
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden'; // no page scroll while the lightbox owns the viewport
+
+    const panZoom = svgPanZoom(clone, {
+      zoomEnabled: true,
+      controlIconsEnabled: true, // on-screen +/- /reset, same as mermaid.live
+      fit: true,
+      center: true,
+      minZoom: 0.1,
+      maxZoom: 15,
+    });
+
+    requestAnimationFrame(() => {
+      panZoom.resize();
+      panZoom.fit();
+      panZoom.center();
+    });
+
+    function close() {
+      panZoom.destroy();
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+      overlay.remove();
+    }
+
+    function onKey(e) {
+      if (e.key === 'Escape') close();
+    }
+
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) close(); // backdrop only, not the diagram itself (that's for panning)
+    });
+    document.addEventListener('keydown', onKey);
+  }
+
+  mermaid.run().then(() => {
+    document.querySelectorAll('.mermaid-wrap').forEach((wrap) => {
+      const svg = wrap.querySelector('.mermaid svg');
+      const expandBtn = wrap.querySelector('.mermaid-expand-btn');
+      if (!svg) return;
+
+      // Captured before svg-pan-zoom mutates `svg` below — the lightbox always
+      // clones from this clean copy instead of the live, already-instrumented one.
+      const pristineSvg = svg.cloneNode(true);
+      expandBtn?.addEventListener('click', () => openMermaidLightbox(pristineSvg));
+
+      try {
+        // Give the container its final bounded size BEFORE initializing, so fit/center
+        // measure against the real canvas box instead of the pre-canvas natural size.
+        wrap.classList.add('mermaid-panzoom-ready');
+
+        const panZoom = svgPanZoom(svg, {
+          zoomEnabled: true,
+          controlIconsEnabled: true,
+          fit: true,
+          center: true,
+          minZoom: 0.1,
+          maxZoom: 15,
+        });
+
+        // Belt and suspenders: re-fit once the browser has actually painted the new
+        // layout (fonts/webfont swaps etc. can still nudge box sizes after this tick).
+        requestAnimationFrame(() => {
+          panZoom.resize();
+          panZoom.fit();
+          panZoom.center();
+        });
+      } catch (err) {
+        wrap.classList.remove('mermaid-panzoom-ready');
+        console.error('svg-pan-zoom failed to initialize, leaving diagram scrollable', err);
+      }
+    });
+  });
 </script>
 {{ end }}
