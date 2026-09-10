@@ -20,7 +20,7 @@ paginate = 10
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
   ShowToc = true
-  TocOpen = true
+  TocOpen = false
   enableMermaid = true
 
   [params.profileMode]
@@ -32,7 +32,7 @@ paginate = 10
     imageHeight = 120
     imageTitle = "Anton Antonov"
     [[params.profileMode.buttons]]
-      name = "Posts"
+      name = "Read the posts"
       url = "/posts"
 
   [[params.socialIcons]]

@@ -5,7 +5,19 @@
 
   mermaid.initialize({
     startOnLoad: false,
-    theme: 'dark',
+    theme: 'base',
+    themeVariables: {
+      background: '#161e27',
+      primaryColor: '#2d3f50',
+      primaryTextColor: '#d3e2ec',
+      primaryBorderColor: '#8bbbd9',
+      lineColor: '#aec3d3',
+      secondaryColor: '#243746',
+      tertiaryColor: '#1c2a35',
+      clusterBkg: '#243746',
+      clusterBorder: '#4e677e',
+      edgeLabelBackground: '#161e27',
+    },
     flowchart: { useMaxWidth: false },
     sequence: { useMaxWidth: false },
     gantt: { useMaxWidth: false },

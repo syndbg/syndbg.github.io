@@ -1,0 +1,158 @@
+/* Readability-first refinements for the dark PaperMod palette. */
+:root[data-theme="dark"] {
+  --theme: rgb(22, 30, 39);
+  --entry: rgb(32, 45, 58);
+  --primary: rgb(226, 236, 244);
+  --secondary: rgb(174, 195, 211);
+  --tertiary: rgb(72, 97, 120);
+  --content: rgb(211, 226, 236);
+  --code-block-bg: rgb(20, 29, 38);
+  --code-bg: rgb(45, 63, 80);
+  --border: rgb(78, 103, 126);
+  --accent: rgb(139, 187, 217);
+}
+
+body {
+  font-size: 19px;
+}
+
+.logo a {
+  color: var(--primary);
+}
+
+.menu a {
+  color: var(--secondary);
+}
+
+.menu a:hover,
+.menu .active {
+  color: var(--primary);
+}
+
+.md-content a:not(.anchor),
+.post-tags a,
+.related-posts a {
+  color: var(--accent);
+}
+
+.footer a {
+  color: var(--secondary);
+}
+
+.profile .profile_inner {
+  gap: 1.25rem;
+}
+
+.profile .profile_inner > span {
+  max-width: 48rem;
+  line-height: 1.7;
+}
+
+.post-content {
+  margin: 36px 0;
+}
+
+.post-content p,
+.post-content li {
+  line-height: 1.7;
+}
+
+.post-content p:not(:last-child),
+.post-content ul:not(:last-child),
+.post-content ol:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+.post-content h2 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-left: 12px;
+  border-left: 3px solid var(--accent);
+}
+
+.post-content h3,
+.post-content h4 {
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.post-entry {
+  margin-bottom: 28px;
+  padding: 28px;
+  border-width: 2px;
+}
+
+.post-entry:hover,
+.post-entry:focus-within {
+  border-color: var(--accent);
+}
+
+.entry-content {
+  margin: 12px 0;
+}
+
+.button {
+  min-height: 44px;
+  padding: 10px 16px;
+  display: inline-flex;
+  align-items: center;
+  color: rgb(18, 31, 43);
+  background: var(--accent);
+  font-weight: 700;
+}
+
+.button:hover {
+  color: rgb(18, 31, 43);
+  background: rgb(165, 207, 230);
+}
+
+.searchbox input {
+  min-height: 44px;
+}
+
+.related-posts {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.related-posts h2 {
+  margin: 0 0 16px;
+  font-size: 24px;
+}
+
+.related-posts ul {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.related-posts li {
+  padding: 14px 16px;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.related-posts a {
+  font-weight: 700;
+}
+
+.related-posts time {
+  display: block;
+  margin-top: 4px;
+  color: var(--secondary);
+  font-size: 14px;
+}
+
+:where(a, button, input, summary):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-entry {
+    padding: 20px;
+  }
+}

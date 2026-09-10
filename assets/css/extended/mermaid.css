@@ -53,8 +53,8 @@
   height: 2rem;
   border: none;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: rgba(139, 187, 217, 0.18);
+  color: #d3e2ec;
   font-size: 1.1rem;
   line-height: 1;
   cursor: pointer;
@@ -67,14 +67,14 @@
 }
 
 .mermaid-expand-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(139, 187, 217, 0.32);
 }
 
 .mermaid-lightbox {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(11, 19, 27, 0.94);
   overflow: hidden;
 }
 
@@ -104,13 +104,13 @@
   height: 2.5rem;
   border: none;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: rgba(139, 187, 217, 0.18);
+  color: #d3e2ec;
   font-size: 1.75rem;
   line-height: 1;
   cursor: pointer;
 }
 
 .mermaid-lightbox-close:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(139, 187, 217, 0.32);
 }

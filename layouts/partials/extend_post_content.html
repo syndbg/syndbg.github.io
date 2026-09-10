@@ -1,0 +1,14 @@
+{{- $related := site.RegularPages.Related . | first 3 -}}
+{{- with $related }}
+<section class="related-posts" aria-labelledby="related-posts-title">
+  <h2 id="related-posts-title">Keep reading</h2>
+  <ul>
+    {{- range . }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min</time>
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}
