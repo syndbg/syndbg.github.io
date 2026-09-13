@@ -1,11 +1,9 @@
 {{ if eq .Kind "page" }}
 <script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-  import svgPanZoom from 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.2/+esm';
-
-  mermaid.initialize({
+  const mermaidConfig = {
     startOnLoad: false,
     theme: 'base',
+    fontFamily: 'system-ui, sans-serif',
     themeVariables: {
       background: '#161e27',
       primaryColor: '#2d3f50',
@@ -23,100 +21,197 @@
     gantt: { useMaxWidth: false },
     class: { useMaxWidth: false },
     state: { useMaxWidth: false },
-  });
+  };
 
-  function openMermaidLightbox(pristineSvg) {
+  const mermaidModuleUrl = 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+  const panZoomModuleUrl = 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.2/+esm';
+  const frameScript = `
+    import mermaid from "${mermaidModuleUrl}";
+    const config = ${JSON.stringify(mermaidConfig)};
+    window.addEventListener('message', async (event) => {
+      if (event.source !== parent || event.data?.type !== 'render-mermaid') return;
+
+      const { source, interactive } = event.data;
+      const diagram = document.querySelector('#diagram');
+      diagram.textContent = source;
+
+      try {
+        await document.fonts.ready;
+        const isFlowchart = /^\\s*(?:flowchart|graph)\\b/m.test(source);
+        mermaid.initialize({
+          ...config,
+          ...(isFlowchart ? { htmlLabels: false } : {}),
+        });
+        await mermaid.run({ nodes: [diagram] });
+        const svg = diagram.querySelector('svg');
+        if (!svg) throw new Error('Mermaid did not produce an SVG');
+
+        if (interactive) {
+          document.documentElement.classList.add('interactive');
+          if (!svg.hasAttribute('viewBox')) {
+            const width = Number.parseFloat(svg.getAttribute('width'));
+            const height = Number.parseFloat(svg.getAttribute('height'));
+            if (width > 0 && height > 0) svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+          }
+          svg.setAttribute('width', '100%');
+          svg.setAttribute('height', '100%');
+          const { default: svgPanZoom } = await import("${panZoomModuleUrl}");
+          const panZoom = svgPanZoom(svg, {
+            zoomEnabled: true,
+            controlIconsEnabled: true,
+            minZoom: 0.1,
+            maxZoom: 15,
+          });
+          requestAnimationFrame(() => {
+            panZoom.resize();
+            panZoom.fit();
+            panZoom.center();
+            panZoom.zoomBy(0.9);
+            panZoom.center();
+          });
+          window.addEventListener('resize', () => {
+            panZoom.resize();
+            panZoom.fit();
+            panZoom.center();
+            panZoom.zoomBy(0.9);
+            panZoom.center();
+          });
+        } else {
+          const reportHeight = () => parent.postMessage({
+            type: 'mermaid-height',
+            height: document.documentElement.scrollHeight,
+          }, '*');
+          new ResizeObserver(reportHeight).observe(svg);
+          requestAnimationFrame(() => requestAnimationFrame(reportHeight));
+        }
+
+        parent.postMessage({ type: 'mermaid-rendered' }, '*');
+      } catch (error) {
+        parent.postMessage({ type: 'mermaid-error', message: String(error) }, '*');
+      }
+    });
+
+    parent.postMessage({ type: 'mermaid-ready' }, '*');
+  `;
+  const closingScript = '<' + '/script>';
+  const frameDocument = `<!doctype html>
+    <html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      html, body { margin: 0; width: 100%; min-height: 0; background: #161e27; color: #d3e2ec; font-family: system-ui, sans-serif; }
+      body { overflow: hidden; }
+      #diagram { width: 100%; }
+      #diagram svg { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+      html.interactive, html.interactive body, html.interactive #diagram { width: 100%; height: 100%; overflow: hidden; }
+      html.interactive #diagram svg { max-width: none; width: 100%; height: 100%; }
+    </style></head><body><div id="diagram"></div>
+    <script type="module">${frameScript}${closingScript}</body></html>`;
+
+  function createMermaidFrame(source, interactive = false, onRendered = () => {}, onError = () => {}) {
+    const frame = document.createElement('iframe');
+    frame.title = interactive ? 'Expanded Mermaid diagram' : 'Mermaid diagram';
+    frame.setAttribute('sandbox', 'allow-scripts');
+    if (!interactive) frame.style.height = '280px';
+
+    const onMessage = (event) => {
+      if (event.source !== frame.contentWindow) return;
+      if (event.data?.type === 'mermaid-ready') {
+        frame.contentWindow.postMessage({
+          type: 'render-mermaid',
+          source,
+          interactive,
+        }, '*');
+      }
+      if (event.data?.type === 'mermaid-height' && !interactive) {
+        const height = Number(event.data.height);
+        if (Number.isFinite(height)) frame.style.height = `${Math.max(100, Math.ceil(height))}px`;
+      }
+      if (event.data?.type === 'mermaid-rendered') onRendered();
+      if (event.data?.type === 'mermaid-error') onError(event.data.message);
+    };
+
+    window.addEventListener('message', onMessage);
+    frame.srcdoc = frameDocument;
+    return {
+      frame,
+      dispose: () => window.removeEventListener('message', onMessage),
+    };
+  }
+
+  function openMermaidLightbox(source, expandButton) {
     const overlay = document.createElement('div');
     overlay.className = 'mermaid-lightbox';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Expanded Mermaid diagram');
 
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'mermaid-lightbox-close';
-    closeBtn.setAttribute('aria-label', 'Close');
-    closeBtn.innerHTML = '&times;';
+    const closeButton = document.createElement('button');
+    closeButton.className = 'mermaid-lightbox-close';
+    closeButton.setAttribute('aria-label', 'Close diagram');
+    closeButton.innerHTML = '&times;';
 
-    const canvas = document.createElement('div');
-    canvas.className = 'mermaid-lightbox-canvas';
-    // Clone from a copy captured before the inline svg-pan-zoom instance instrumented
-    // it (control icons, extra <g> wrappers) — otherwise a second init here would
-    // double up the +/-/reset controls on top of the ones already baked in.
-    const clone = pristineSvg.cloneNode(true);
-    clone.removeAttribute('style');
-    canvas.appendChild(clone);
-
-    overlay.append(closeBtn, canvas);
+    const { frame, dispose } = createMermaidFrame(source, true);
+    frame.className = 'mermaid-lightbox-frame';
+    overlay.append(closeButton, frame);
     document.body.appendChild(overlay);
-    document.body.style.overflow = 'hidden'; // no page scroll while the lightbox owns the viewport
-
-    const panZoom = svgPanZoom(clone, {
-      zoomEnabled: true,
-      controlIconsEnabled: true, // on-screen +/- /reset, same as mermaid.live
-      fit: true,
-      center: true,
-      minZoom: 0.1,
-      maxZoom: 15,
-    });
-
-    requestAnimationFrame(() => {
-      panZoom.resize();
-      panZoom.fit();
-      panZoom.center();
-    });
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    closeButton.focus();
 
     function close() {
-      panZoom.destroy();
+      dispose();
       document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = '';
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
       overlay.remove();
+      expandButton.focus();
     }
 
-    function onKey(e) {
-      if (e.key === 'Escape') close();
+    function onKey(event) {
+      if (event.key === 'Escape') close();
     }
 
-    closeBtn.addEventListener('click', close);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) close(); // backdrop only, not the diagram itself (that's for panning)
+    closeButton.addEventListener('click', close);
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) close();
     });
     document.addEventListener('keydown', onKey);
   }
 
-  mermaid.run().then(() => {
-    document.querySelectorAll('.mermaid-wrap').forEach((wrap) => {
-      const svg = wrap.querySelector('.mermaid svg');
-      const expandBtn = wrap.querySelector('.mermaid-expand-btn');
-      if (!svg) return;
+  document.querySelectorAll('.mermaid-wrap').forEach((wrap) => {
+    const source = wrap.querySelector('.mermaid-source')?.content.querySelector('pre')?.textContent ?? '';
+    const fallback = wrap.querySelector('.mermaid-fallback');
+    const expandButton = wrap.querySelector('.mermaid-expand-btn');
+    if (!source || !fallback || !expandButton) return;
 
-      // Captured before svg-pan-zoom mutates `svg` below — the lightbox always
-      // clones from this clean copy instead of the live, already-instrumented one.
-      const pristineSvg = svg.cloneNode(true);
-      expandBtn?.addEventListener('click', () => openMermaidLightbox(pristineSvg));
-
-      try {
-        // Give the container its final bounded size BEFORE initializing, so fit/center
-        // measure against the real canvas box instead of the pre-canvas natural size.
-        wrap.classList.add('mermaid-panzoom-ready');
-
-        const panZoom = svgPanZoom(svg, {
-          zoomEnabled: true,
-          controlIconsEnabled: true,
-          fit: true,
-          center: true,
-          minZoom: 0.1,
-          maxZoom: 15,
-        });
-
-        // Belt and suspenders: re-fit once the browser has actually painted the new
-        // layout (fonts/webfont swaps etc. can still nudge box sizes after this tick).
-        requestAnimationFrame(() => {
-          panZoom.resize();
-          panZoom.fit();
-          panZoom.center();
-        });
-      } catch (err) {
-        wrap.classList.remove('mermaid-panzoom-ready');
-        console.error('svg-pan-zoom failed to initialize, leaving diagram scrollable', err);
-      }
+    let rendered = false;
+    let disposeFrame = () => {};
+    const { frame, dispose } = createMermaidFrame(source, false, () => {
+      rendered = true;
+      wrap.classList.add('mermaid-rendered');
+      fallback.hidden = true;
+    }, (message) => {
+      disposeFrame();
+      frame.remove();
+      wrap.classList.add('mermaid-error');
+      console.error('Mermaid diagram failed to render', message);
     });
+    disposeFrame = dispose;
+    const host = wrap.querySelector('.mermaid-frame-host');
+    host.appendChild(frame);
+    frame.addEventListener('load', () => {
+      // The opaque sandbox may finish without loading Mermaid (for example, offline).
+      window.setTimeout(() => {
+        if (!rendered) {
+          disposeFrame();
+          frame.remove();
+          wrap.classList.add('mermaid-error');
+        }
+      }, 10000);
+    }, { once: true });
+
+    expandButton.addEventListener('click', () => openMermaidLightbox(source, expandButton));
   });
 </script>
 {{ end }}

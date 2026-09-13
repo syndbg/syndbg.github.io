@@ -7,48 +7,32 @@
   justify-content: center;
 }
 
-/* Base state: no JS, or svg-pan-zoom failed to load — a plain scrollable diagram. */
-.mermaid {
-  max-width: min(1400px, 96vw);
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  padding-bottom: 0.5rem;
-}
-
-.mermaid svg {
-  display: block;
-  margin: 0 auto;
-}
-
-/* Once svg-pan-zoom initializes, the diagram becomes a bounded, draggable/zoomable canvas.
-   .mermaid gets a concrete width of its own (not 100%) so it stays centered by the wrap's
-   flex + justify-content instead of fighting the wrap's own breakout margin math. */
-.mermaid-wrap.mermaid-panzoom-ready .mermaid {
+.mermaid-frame-host {
   width: min(1400px, 96vw);
   max-width: min(1400px, 96vw);
-  height: min(65vh, 520px);
-  overflow: hidden;
-  touch-action: none; /* let svg-pan-zoom own drag/pinch instead of the browser */
-  cursor: grab;
 }
 
-.mermaid-wrap.mermaid-panzoom-ready .mermaid:active {
-  cursor: grabbing;
-}
-
-.mermaid-wrap.mermaid-panzoom-ready .mermaid svg {
+.mermaid-frame-host iframe {
+  display: block;
   width: 100%;
-  height: 100%;
+  min-height: 100px;
+  border: 0;
+  background: #161e27;
+}
+
+.mermaid-fallback {
+  width: min(1400px, 96vw);
+  max-width: min(1400px, 96vw);
   margin: 0;
+  overflow-x: auto;
+  white-space: pre;
 }
 
 .mermaid-expand-btn {
   position: absolute;
   top: 0.5rem;
-  right: 0.5rem;
-  z-index: 10;
+  right: max(2vw, calc((100% - 1400px) / 2));
+  z-index: 1;
   width: 2rem;
   height: 2rem;
   border: none;
@@ -58,11 +42,10 @@
   font-size: 1.1rem;
   line-height: 1;
   cursor: pointer;
-  /* hidden until svg-pan-zoom is confirmed working, so it never opens a broken lightbox */
   display: none;
 }
 
-.mermaid-wrap.mermaid-panzoom-ready .mermaid-expand-btn {
+.mermaid-wrap.mermaid-rendered .mermaid-expand-btn {
   display: block;
 }
 
@@ -78,28 +61,20 @@
   overflow: hidden;
 }
 
-.mermaid-lightbox-canvas {
+.mermaid-lightbox-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   width: 100%;
   height: 100%;
-  touch-action: none; /* let svg-pan-zoom own drag/pinch instead of the browser */
-  cursor: grab;
-}
-
-.mermaid-lightbox-canvas:active {
-  cursor: grabbing;
-}
-
-.mermaid-lightbox-canvas svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+  border: 0;
 }
 
 .mermaid-lightbox-close {
   position: fixed;
   top: 1rem;
   right: 1.25rem;
-  z-index: 10000;
+  z-index: 2;
   width: 2.5rem;
   height: 2.5rem;
   border: none;

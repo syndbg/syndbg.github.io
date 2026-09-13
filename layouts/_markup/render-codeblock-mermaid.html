@@ -1,2 +1,7 @@
-<div class="mermaid-wrap"><pre class="mermaid">{{- .Inner | safeHTML }}</pre><button type="button" class="mermaid-expand-btn" aria-label="View fullscreen">⤢</button></div>
+<div class="mermaid-wrap">
+  <template class="mermaid-source"><pre>{{- .Inner | safeHTML -}}</pre></template>
+  <pre class="mermaid-fallback">{{- .Inner | safeHTML -}}</pre>
+  <div class="mermaid-frame-host"></div>
+  <button type="button" class="mermaid-expand-btn" aria-label="Expand diagram">⤢</button>
+</div>
 {{ .Page.Store.Set "hasMermaid" true }}
