@@ -27,11 +27,11 @@ Turned out well, since I use it for a few years now.
 
 ## The end result
 
-zjyo is under 800 lines of Rust across five files. `database.rs` handles persistence and matching. `entry.rs` is a plain struct with a frecency calculation. `cli.rs` wires up `clap` and dispatches. That's the whole surface area, and most of what maintaining a small tool actually looks like: not new features, but noticing the gap between what you assumed was true and what was actually happening.
+`zjyo` is under 800 lines of Rust across five files. `database.rs` handles persistence and matching. `entry.rs` is a plain struct with a frecency calculation. `cli.rs` wires up `clap` and dispatches. That's the whole surface area, and most of what maintaining a small tool actually looks like: not new features, but noticing the gap between what you assumed was true and what was actually happening.
 
 ## The bug that mattered most
 
-The tmux bug I hit while using tmux-continuum is worth mentioning. First, using tmux and tmux-continuum is something that I don't plan to change in the next 10 years too. It just works. The issue is when you make an assumption that cd is going to always work and wondering hey why does "rupa/z" do it differently, some things start to make sense, because it's a class of bug that's easy to dismiss as "user error" and hard to find by reading code. The database *was* updating, for every shell session I'd opened since editing `.zshrc`. But `tmux-continuum` restores sessions across machine restarts, and panes that survive a restore don't re-source your rc files. Config and cd-wrapper are two different things, and only one of them updates when you edit a file.
+The tmux bug I hit while using tmux-continuum is worth mentioning. First, using tmux and tmux-continuum is something that I don't plan to change in the next 10 years too. It just works. The issue is when you make an assumption that `cd` is going to always work and wondering hey why does `zjyo` do it differently, some things start to make sense, because it's a class of bug that's easy to dismiss as "user error" and hard to find by reading code. The database *was* updating, for every shell session I'd opened since editing `.zshrc`. But `tmux-continuum` restores sessions across machine restarts, and panes that survive a restore don't re-source your rc files. Config and the `cd` wrapper are two different things, and only one of them updates when you edit a file.
 
 The fix, using `precmd_functions` instead of overriding `cd`, happens to also route around the entire class of bug, since it's additive rather than a redefinition. It doesn't fix stale shells. Nothing can fix a process that's already running with old code loaded. But it means the next time something like this happens, at least new panes won't diverge from what you think your shell does without you noticing.
 
@@ -81,6 +81,6 @@ precmd_functions+=(_zjyo_precmd)
 
 ## Why keep doing this
 
-There's no ecosystem reason to prefer zjyo over `zoxide`. Zoxide has more users, more contributors. The reason to maintain your own small thing isn't that it's objectively better. It's that you understand every line of it, you can fix what actually bothers you instead of filing an issue and waiting, and the maintenance itself is quite lean when there's not much functionality and need for it, to begin with.
+There's no ecosystem reason to prefer `zjyo` over `zoxide`. `zoxide` has more users, more contributors. The reason to maintain your own small thing isn't that it's objectively better. It's that you understand every line of it, you can fix what actually bothers you instead of filing an issue and waiting, and the maintenance itself is quite lean when there's not much functionality and need for it, to begin with.
 
 800 lines and a decade-old database format don't need a roadmap. They need someone willing to keep them that small.
