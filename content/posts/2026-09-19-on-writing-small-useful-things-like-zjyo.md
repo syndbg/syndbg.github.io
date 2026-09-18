@@ -1,7 +1,7 @@
 ---
 title: "On writing small useful things like zjyo"
 date: 2026-09-19T01:48:25+03:00
-draft: true
+draft: false
 tags: ["rust", "cli", "tooling", "developer-tools", "z", "frecency"]
 categories: ["Programming", "Developer Tools"]
 description: "Why I rewrote rupa/z in Rust instead of switching to zoxide or jump, and why the smallest tool I've written is my most useful one to me."
