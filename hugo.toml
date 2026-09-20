@@ -22,6 +22,21 @@ paginate = 10
   ShowToc = true
   TocOpen = false
   enableMermaid = true
+  comments = true
+
+  [params.giscus]
+    repo = "syndbg/syndbg.github.io"
+    repoId = "MDEwOlJlcG9zaXRvcnkyNTA5NzE1Ng=="
+    category = "General"
+    categoryId = "DIC_kwDOAX7zxM4DGBJd"
+    mapping = "pathname"
+    strict = "0"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "bottom"
+    theme = "dark"
+    language = "en"
+    loading = "lazy"
 
   [params.profileMode]
     enabled = true
