@@ -141,9 +141,9 @@ A `Request` goes out, a `Page` or a `ConnectionStatus` comes back on a channel, 
 
 Consistency doesn't mean the tool has to look the same for everyone. OneTUI ships ten built-in color themes you can switch between, so the shell that's identical across every data source doesn't have to be visually dull across every terminal.
 
-![Catppuccin theme](https://raw.githubusercontent.com/syndbg/onetui/main/docs/assets/themes/catppuccin.svg)
+![Catppuccin theme](https://raw.githubusercontent.com/syndbg/onetui/v0.1.0/docs/assets/themes/catppuccin.svg)
 
-![Gruvbox theme](https://raw.githubusercontent.com/syndbg/onetui/main/docs/assets/themes/gruvbox.svg)
+![Gruvbox theme](https://raw.githubusercontent.com/syndbg/onetui/v0.1.0/docs/assets/themes/gruvbox.svg)
 
 Plus Solarized, Nord, Dracula, Tokyo Night, One Dark, Rosé Pine, Monokai, and Flexoki.
 
@@ -151,15 +151,15 @@ Custom keybinds aren't there yet. The current set is fixed. But the architecture
 
 Where this gets fun to use: Kafka messages encoded in Protobuf or Avro, decoded live against a schema registry, with the schema auto-detected. No manual schema picking, no separate deserializer bolted on the side.
 
-![Inspect decoded Avro and its schema](https://raw.githubusercontent.com/syndbg/onetui/main/docs/assets/demo/avro.svg)
+![Inspect decoded Avro and its schema](https://raw.githubusercontent.com/syndbg/onetui/v0.1.0/docs/assets/demo/avro.svg)
 
-![Inspect decoded Protobuf and its schema](https://raw.githubusercontent.com/syndbg/onetui/main/docs/assets/demo/protobuf.svg)
+![Inspect decoded Protobuf and its schema](https://raw.githubusercontent.com/syndbg/onetui/v0.1.0/docs/assets/demo/protobuf.svg)
 
 Auto-detection works well. Rendering still has minor rough edges I haven't polished out yet, worth saying plainly rather than glossing over. But this is the part that turns the "consistent TUI across data sources" pitch into something I can point at and say: it already works.
 
 Qdrant's consensus state, in the same resource browser used for a Postgres table:
 
-![Inspect Qdrant consensus state](https://raw.githubusercontent.com/syndbg/onetui/main/docs/assets/demo/qdrant-consensus.svg)
+![Inspect Qdrant consensus state](https://raw.githubusercontent.com/syndbg/onetui/v0.1.0/docs/assets/demo/qdrant-consensus.svg)
 
 ## Where it stands, and where it's going
 
