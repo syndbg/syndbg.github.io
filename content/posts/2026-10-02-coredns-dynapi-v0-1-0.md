@@ -38,6 +38,8 @@ We ran it in production from a little before 20 May 2018. A small daemon read DH
 
 The maintainers had a fair question. [Miek Gieben](https://github.com/miekg) asked why CoreDNS should provision records at all. Access control, users and permissions grow out of every API like this. The advice was to build it as an external plugin and put it at `coredns/dynapi`. [John Belamaric](https://github.com/johnbelamaric) suggested a different split: a Go "Writable" interface that plugins can implement, and separate plugins for the write protocols (DDNS, HTTPS, gRPC).
 
+The same request was already open in [#522](https://github.com/coredns/coredns/issues/522) ("provide an API to manage host records", 2017). In 2020 John Belamaric listed what a proper solution needs: a "writable" interface for backends, a plugin that exposes the REST API, and authentication that works across API plugins. [#2073](https://github.com/coredns/coredns/issues/2073) asked for the same thing from the Ansible side, and [#2517](https://github.com/coredns/coredns/issues/2517) was closed as unsupported, although a maintainer later said DNS UPDATE is "hard to do right, but I'm not against it".
+
 The repository was created in September 2018 and the PR was closed. Then my part stalled. COVID happened, I am bad at GitHub notifications, and I decided nobody needed the project. I never moved the code.
 
 I was wrong about the last part. For years, people kept asking in the closed PR. Some found the empty repository. Some asked why CoreDNS has no REST API. Some discussed which record types to support and whether Envoy's [xDS](https://www.envoyproxy.io/docs/envoy/latest/api-docs/xds_protocol) is a better model.
@@ -71,7 +73,7 @@ curl -X PUT http://127.0.0.1:8080/v1/zones/example.org/records/host.example.org/
 
 ## dynupdate: the piece that showed up while I was away
 
-In 2018 CoreDNS had no way to change records at runtime, and I wrote my own. In 2026 it has one. The [`dynupdate`](https://github.com/coredns/coredns/tree/master/plugin/dynupdate) plugin landed in CoreDNS itself in [PR #8520](https://github.com/coredns/coredns/pull/8520). Contributor houyuwushang wrote it and Yong Tang merged it in September 2026. It speaks the standard protocol for this job, RFC 2136 DNS UPDATE, so `nsupdate` and DHCP servers such as Kea can already talk to it.
+In 2018 CoreDNS had no way to change records at runtime, and I wrote my own. In 2026 it has one. The [`dynupdate`](https://github.com/coredns/coredns/tree/master/plugin/dynupdate) plugin landed in CoreDNS itself in [PR #8520](https://github.com/coredns/coredns/pull/8520). Contributor houyuwushang wrote it and Yong Tang merged it in September 2026. It speaks the standard protocol for this job, RFC 2136 DNS UPDATE, so `nsupdate` and DHCP servers such as Kea can already talk to it. The work started from [#6254](https://github.com/coredns/coredns/issues/6254) ("Support DDNS", open since 2023), and two core changes came first: [#8469](https://github.com/coredns/coredns/pull/8469) lets the server accept UPDATE messages and [#8471](https://github.com/coredns/coredns/pull/8471) exposes the validated TSIG identity to plugins.
 
 How it works:
 
@@ -166,7 +168,9 @@ The loopback DNS bridge works, but it is a detour. An HTTP request turns into a 
 
 [ADR 0002](https://github.com/coredns/dynapi/blob/v0.1.0/docs/adr/0002-add-a-coredns-record-management-interface.md) proposes the fix for 0.2.0. dynapi would call the zone provider directly. That removes the TCP hop, the full-zone reads and the TSIG key from dynapi. It is also the "Writable" interface John Belamaric described in 2018.
 
-It needs a change in CoreDNS first, because today plugins have no shared way to be written to:
+I am not the first to ask. [#7259](https://github.com/coredns/coredns/issues/7259) is an open proposal for a REST API plugin with a backend-agnostic `api.Backend` interface. Its author argues that the interface should live in the main CoreDNS project and that backends such as etcd should implement it. [#7858](https://github.com/coredns/coredns/issues/7858) asks for a plugin that manages records through API or gRPC. Both point at the same gap.
+
+The change in CoreDNS is needed first, because today plugins have no shared way to be written to:
 
 - **A Go interface** to read, replace and delete stored record sets, with explicit errors. It starts with exact A and AAAA sets.
 - **Provider lookup by zone.** CoreDNS would find the writable provider for a zone and manage its startup and shutdown.
