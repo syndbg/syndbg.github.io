@@ -1,0 +1,20 @@
+{{- $url := "https://raw.githubusercontent.com/syndbg/syndbg/main/README.md" -}}
+{{- $cacheKey := print $url (now.Format "2006-01-02-15") -}}
+{{- with try (resources.GetRemote $url (dict "key" $cacheKey "timeout" "15s")) -}}
+  {{- with .Err -}}
+    {{- errorf "Unable to fetch projects from the profile README: %s" . -}}
+  {{- else with .Value -}}
+    {{- $headings := findRE `(?m)^## Projects[ \t]*$` .Content 1 -}}
+    {{- if not $headings -}}
+      {{- errorf "The profile README at %s has no ## Projects section" $url -}}
+    {{- else -}}
+      {{- $afterHeading := index (split .Content (index $headings 0)) 1 -}}
+      {{- $markdown := index (split $afterHeading "\n## ") 0 | strings.TrimSpace -}}
+      <div class="profile-projects">
+        {{- $.Page.RenderString $markdown -}}
+      </div>
+    {{- end -}}
+  {{- else -}}
+    {{- errorf "Unable to fetch projects from the profile README at %s" $url -}}
+  {{- end -}}
+{{- end -}}

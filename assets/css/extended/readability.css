@@ -1,19 +1,27 @@
 /* Readability-first refinements for the dark PaperMod palette. */
+:root {
+  --content-width: 1200px;
+}
+
 :root[data-theme="dark"] {
-  --theme: rgb(22, 30, 39);
-  --entry: rgb(32, 45, 58);
-  --primary: rgb(226, 236, 244);
-  --secondary: rgb(174, 195, 211);
-  --tertiary: rgb(72, 97, 120);
-  --content: rgb(211, 226, 236);
-  --code-block-bg: rgb(20, 29, 38);
-  --code-bg: rgb(45, 63, 80);
-  --border: rgb(78, 103, 126);
-  --accent: rgb(139, 187, 217);
+  --theme: #1e1e2e;
+  --entry: #313244;
+  --primary: #cdd6f4;
+  --secondary: #a6adc8;
+  --tertiary: #6c7086;
+  --content: #cdd6f4;
+  --code-block-bg: #181825;
+  --code-bg: #313244;
+  --border: #45475a;
+  --accent: #ff9900;
 }
 
 body {
   font-size: 19px;
+}
+
+.main {
+  max-width: min(1800px, calc(100vw - 48px));
 }
 
 .logo a {
@@ -49,7 +57,51 @@ body {
 }
 
 .post-content {
+  max-width: min(var(--content-width), 100%);
   margin: 36px 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-header,
+.page-header {
+  max-width: min(var(--content-width), 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toc {
+  max-width: min(var(--content-width), 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-entry {
+  max-width: min(var(--content-width), 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-content .highlight {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-content p > img {
+  display: block;
+  width: auto;
+  max-width: min(var(--content-width), calc(100vw - 48px));
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+}
+
+.post-content p > img[src*="shields.io"] {
+  display: inline-block;
+  margin: 0;
+  vertical-align: middle;
 }
 
 .post-content p,
@@ -96,14 +148,14 @@ body {
   padding: 10px 16px;
   display: inline-flex;
   align-items: center;
-  color: rgb(18, 31, 43);
+  color: #1e1e2e;
   background: var(--accent);
   font-weight: 700;
 }
 
 .button:hover {
-  color: rgb(18, 31, 43);
-  background: rgb(165, 207, 230);
+  color: #1e1e2e;
+  background: #fab387;
 }
 
 .searchbox input {
@@ -111,9 +163,21 @@ body {
 }
 
 .related-posts {
+  max-width: min(var(--content-width), 100%);
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 48px;
   padding-top: 24px;
   border-top: 1px solid var(--border);
+}
+
+.post-footer,
+.paginav,
+#comments,
+.giscus {
+  max-width: min(var(--content-width), 100%);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .related-posts h2 {
