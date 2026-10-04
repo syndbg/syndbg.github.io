@@ -8,7 +8,7 @@ description: "A complete guide to building a Kubernetes Cloud Controller Manager
 featured_image: ""
 ---
 
-A Cloud Controller Manager is a bridge. On one side: a Kubernetes cluster that thinks in Nodes, Services, and Routes. On the other: whatever actually runs your machines and network - a hyperscaler like AWS, GCP, or Azure, or just as often a private cloud, a colocated rack, or a home lab. The CCM's whole job is translation - when a Node joins, ask the infrastructure what it knows about that machine and translate it onto the Node object; when a `Service` wants a load balancer, go create one and wire the ingress IP back into `status`. Without it, `kubectl get nodes` never gets a region label and `type: LoadBalancer` never gets an IP - Kubernetes has no idea any of that infrastructure exists.
+A Cloud Controller Manager (CCM) connects Kubernetes to cloud or private-infrastructure APIs. Its controllers add provider-specific node data and manage services or routes the cluster cannot create itself. Without a cloud provider that supports them, Kubernetes cannot populate some cloud-specific node fields or provision a cloud load balancer for `type: LoadBalancer`.
 
 I've spent a good chunk of time in this code, both building on top of [kubernetes/cloud-provider](https://github.com/kubernetes/cloud-provider) directly and reading through what Hetzner's and DigitalOcean's CCMs do differently. This post covers the interface, the four control loops that drive it, the full node/route/service lifecycle, and the patterns worth stealing once you've got the basics working.
 
@@ -18,7 +18,7 @@ I've spent a good chunk of time in this code, both building on top of [kubernete
 
 Cloud providers used to be compiled directly into `kube-controller-manager` - the same coupling problem CSI solved for storage. If you've ever run a non-cloud cluster and watched the logs fill up with a cloud provider that isn't even yours failing to authenticate, that's the symptom. The [Kubernetes docs on cloud controller manager architecture](https://kubernetes.io/docs/concepts/architecture/cloud-controller/) cover the history in more depth, but the short version is the same as CSI: in-tree providers moved out-of-tree, and `--cloud-provider=external` is how a cluster says "ask a separate binary."
 
-That separate binary runs as a Deployment, leader-elected, watching the Kubernetes API and calling out to your infrastructure's API:
+The CCM commonly runs as a leader-elected Deployment. It watches Kubernetes state and calls the infrastructure API:
 
 ```mermaid
 graph TB
@@ -42,7 +42,7 @@ graph TB
     IF -->|create, attach, delete| CLOUD
 ```
 
-Everything downstream of that diagram is one interface and four controllers that call into it.
+The standard CCM starts four cloud-specific controllers that call the provider interface. Providers can also start custom controllers through `Initialize`.
 
 ---
 
@@ -91,9 +91,7 @@ All four are workqueue-based `client-go` controllers under the hood - same `info
 
 ## The CCM as a Client, Not a Controller
 
-It's easy to mistake "watches the Kubernetes API, reacts to changes" with "operator." A CCM does watch and react, but the write side of that loop is much narrower than an Operator's or a Cluster API infrastructure provider's. An Operator (or a Cluster API provider) typically owns one or more CRDs: it defines the schema, runs a reconcile loop that drives observed state toward spec, and both reads and writes its own custom resources, sometimes provisioning infrastructure as a result. A CCM does none of that. It defines no CRDs, runs no admission webhook for custom types, and your own `cloudprovider.Interface` implementation never touches a `kubeClient` at all.
-
-Look back at the four-controllers table above: every Kubernetes write (patching a Node's labels, removing a taint, deleting a Node, patching `Service.status`) happens inside the four controllers `k8s.io/cloud-provider` already ships, not in code you write. Your job is answering their questions (does this instance exist, what's its zone, does this Service have a load balancer yet), and every answer you give is a call to somebody else's API, not a write to Kubernetes:
+The stock CCM controllers read Kubernetes objects and write the resulting node, route, and service state back to the API server. Your provider implementation usually answers those controllers by calling the infrastructure API. This is not a hard boundary: `Initialize` gives a provider a client builder, which it can use to start additional controllers or access Kubernetes state. The examples below describe the standard controllers, not every possible CCM extension:
 
 ```mermaid
 graph LR
@@ -116,7 +114,7 @@ graph LR
     YourCode -->|answer, via HTTP/gRPC| CLOUD
 ```
 
-That narrow footprint is also why a CCM's consistency model can afford to be "best-effort sync" instead of exactly-once. Each controller runs its own question on its own fixed period (`MonitorNodes` on `nodeMonitorPeriod`, service syncs pulled off a workqueue by N workers) instead of as one atomic transaction across Kubernetes and your cloud. A failed `EnsureLoadBalancer` this cycle isn't a lost transaction that needs a saga to unwind; it's a workqueue item that gets requeued and tried again next resync.
+Kubernetes and the cloud API do not share one transaction. Controllers retry from observed state: a failed load-balancer update can be tried again on a later sync. That makes provider operations safe to repeat more important than pretending a cross-system call happens exactly once. Node lifecycle scans and service workqueues do not all run on the same schedule.
 
 That's a deliberate simplification. It's why the sequential, hand-rolled orchestration from the reconcile-in-the-backend section is unnecessary, and it's why the best-effort retry pattern in the concurrency section above is safe: "retry next cycle" is a far more forgiving contract than "must not partially apply."
 
@@ -578,7 +576,7 @@ If you're targeting a third-party cloud's API, you don't get this choice - AWS, 
 
 ## Deployment
 
-A CCM is a single Deployment, not a DaemonSet - there's no per-node privileged work, everything routes through the cloud API:
+The example below uses a Deployment, a common shape for a leader-elected CCM. Some providers use other deployment models:
 
 ```yaml
 apiVersion: apps/v1
@@ -618,13 +616,13 @@ Two things worth calling out:
 1. **The CCM itself must tolerate the taint it's responsible for removing.** Skip the toleration and it can never schedule in the first place - a bootstrapping deadlock.
 2. **`replicas: 2` with leader election**, not 1 - the node-initialization deadlock above is the reason.
 
-RBAC needs `get`/`list`/`watch`/`patch`/`update` on `nodes`, `services`, `endpoints`, and `events`, plus `create`/`update` on `nodes/status` and `services/status`. `leases.coordination.k8s.io` for leader election.
+RBAC depends on which controllers and provider extensions are enabled. The example needs permissions to watch and update nodes and services, record events, and manage leader-election leases. Start from the provider's manifest and remove permissions only after checking the controller code.
 
 ---
 
-## Patterns from Production CCMs
+## Patterns to inspect in production CCMs
 
-Once the four controllers and the basic interface implementation work, the interesting decisions are in the details. A few worth stealing, pulled from [Hetzner's](https://github.com/hetznercloud/hcloud-cloud-controller-manager) and [DigitalOcean's](https://github.com/digitalocean/digitalocean-cloud-controller-manager) CCMs:
+The examples I read from [Hetzner](https://github.com/hetznercloud/hcloud-cloud-controller-manager) and [DigitalOcean](https://github.com/digitalocean/digitalocean-cloud-controller-manager) are useful for seeing how providers handle API limits, cached metadata, and cloud-specific behavior. Check the current implementation before copying a pattern; provider code changes over time.
 
 **Rate-limit circuit breaker.** Wrap your cloud API client so a `429`/rate-limit response sets a local "exceeded until T" flag, and short-circuit every subsequent call against that flag until it expires - instead of hammering an already-rate-limited API with retries from every controller simultaneously.
 
@@ -646,7 +644,7 @@ Once the four controllers and the basic interface implementation work, the inter
 
 If you're moving a cluster from a built-in cloud provider to an external CCM, the sequencing matters more than the CCM code itself:
 
-1. Set `--cloud-provider=external` on the kubelet **and** `kube-apiserver`/`kube-controller-manager` - this disables the in-tree provider and starts tainting new Nodes `uninitialized`.
+1. Follow the Kubernetes migration guide for your version. Depending on the version and migration path, set `--cloud-provider=external` on the kubelet, kube-apiserver, and kube-controller-manager. Components using the external setting taint newly registered Nodes as uninitialized.
 2. Deploy the CCM before any Node restarts, or joins with the new flag - otherwise Nodes sit tainted with nothing to untaint them.
 3. **Never run the in-tree provider and an external CCM against the same cluster simultaneously.** Both will try to reconcile the same Services and routes, and you'll get flapping load balancer state as they fight over target lists.
 4. Existing Nodes don't automatically get the taint retroactively - only newly-registered Nodes do. A rolling node replacement (not an in-place kubelet flag flip) is the safer migration path for that reason.
@@ -699,4 +697,4 @@ For the controllers themselves - node, node lifecycle, route, service - `envtest
 - `type: LoadBalancer` Services that provision real infrastructure and get a real IP back
 - Optionally, pod-network routes reconciled at the cloud level instead of by your CNI
 
-The interface is small - six methods, most of which you'll return `(nil, false)` from. The actual complexity is entirely in the reconciliation logic behind the two or three you do implement: idempotency under repeated calls, distinguishing "gone" from "stopped," and not letting one function grow to do everything at once. [kubernetes/cloud-provider](https://github.com/kubernetes/cloud-provider) is the right starting point - the `sample` package in that repo and the Hetzner/DigitalOcean CCMs linked above are worth having open while you build.
+The top-level interface is a set of optional capabilities, so a small provider can implement only node metadata or load balancing. The hard work is in making those operations safe to retry, distinguishing an instance that is stopped from one that is gone, and keeping each reconciliation path understandable. [kubernetes/cloud-provider](https://github.com/kubernetes/cloud-provider) is the right starting point - the `sample` package in that repo and the Hetzner/DigitalOcean CCMs linked above are worth having open while you build.
