@@ -47,8 +47,14 @@ paginate = 10
     imageHeight = 120
     imageTitle = "Anton Antonov"
     [[params.profileMode.buttons]]
-      name = "Read the posts"
+      name = "See all posts"
       url = "/posts"
+    [[params.profileMode.buttons]]
+      name = "Projects"
+      url = "/projects"
+    [[params.profileMode.buttons]]
+      name = "More about me"
+      url = "/about"
 
   [[params.socialIcons]]
     name = "github"

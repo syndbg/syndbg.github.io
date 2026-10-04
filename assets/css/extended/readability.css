@@ -56,6 +56,23 @@ body {
   line-height: 1.7;
 }
 
+.main .profile {
+  min-height: 0;
+  padding: clamp(2rem, 5vh, 4rem) 10px 2rem;
+}
+
+.buttons {
+  flex-wrap: nowrap;
+  max-width: none;
+  gap: 0.6rem;
+}
+
+.profile .button {
+  min-height: 38px;
+  padding: 7px 12px;
+  font-size: 0.9rem;
+}
+
 .post-content {
   max-width: min(var(--content-width), 100%);
   margin: 36px 0;
@@ -156,6 +173,12 @@ body {
 .button:hover {
   color: #1e1e2e;
   background: #fab387;
+}
+
+@media (max-width: 420px) {
+  .buttons {
+    flex-wrap: wrap;
+  }
 }
 
 .searchbox input {
