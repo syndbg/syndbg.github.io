@@ -4,23 +4,13 @@ date: 2026-05-02T09:00:00Z
 draft: false
 tags: ["git", "worktrees", "ai-agents", "developer-tools", "workflow"]
 categories: ["Programming", "Developer Tools"]
-description: "A practical guide to Git worktrees: what they are, when developers should use them, how they help with reviews and debugging, and why AI coding agents made them essential."
+description: "A practical guide to Git worktrees for branch reviews, debugging, and isolated coding-agent sessions."
 featured_image: ""
 ---
 
-It's 2026, and everyone is claiming to run parallel agents through one harness or another: Claude Code, Cursor, Aider, and whatnot.
+I knew about Git worktrees for years before I used them regularly. I reached for them when switching branches started costing more than opening another directory: a server was running, generated files had changed, or a review arrived in the middle of unfinished work.
 
-Still, I think we need to understand how these tools work underneath, and even use the same primitives ourselves in the old and boring way: manually.
-
-That was my experience with Git worktrees. I knew about them for more than 10 years, but only started using them seriously last year.
-
-The goal of this post is to share my experience with Git worktrees from a developer perspective: how they help in normal day-to-day work, how AI agents use them, what CLI tools are available, and where it makes sense to use `git worktree` instead of something like `git bisect`, which is what I used to reach for first. You can read the official Linux `man` page-style documentation too, but this post is usage-centered, not a CLI reference.
-
-That changes when local state starts to matter. You have a server running, generated files, uncommitted debugging changes, a database migration half-tested, and three editor tabs open in the middle of a problem. Then someone asks you to review a PR, or a production bug appears, or you want to run an AI coding agent on a separate task.
-
-This is the point where branch switching stops being cheap.
-
-Worktrees solve the problem at the right layer: one repository, multiple working directories, each on its own branch. No duplicate clone, no shared working directory, no stash dance.
+A worktree gives a branch its own working directory while reusing the repository's Git object database. You still get a separate checkout and separate build artifacts. You avoid cloning the full Git history again or stashing work just to inspect another branch. The same setup also gives a coding agent an isolated directory to change.
 
 ---
 
@@ -43,13 +33,7 @@ repo-hotfix-worker/
 
 Instead of changing the branch inside one directory, you change directories.
 
-Git added worktrees in Git 2.5, released in 2015. This is not a new experimental feature. It has been sitting there quietly for almost a decade, mostly used by people who got tired of stashing at exactly the wrong time or running `git bisect` to oblivion to catch issues.
-
-The important rule:
-
-**One branch can only be checked out in one worktree at a time.**
-
-Git will not let you check out the same branch in two directories simultaneously. That is a feature, not a limitation. It prevents two working directories from trying to mutate the same branch state.
+Git worktrees have been part of Git since version 2.5 (2015). By default, Git will not check out the same branch in two worktrees at once. That prevents both directories from updating the same branch reference. Detached worktrees and the explicit `--ignore-other-worktrees` option are exceptions.
 
 ---
 
@@ -440,9 +424,7 @@ There is a small but growing ecosystem around this because the primitive is simp
 | [**Superset**](https://github.com/superset-sh/superset)              | IDE          | Full multi-agent orchestration with a dashboard           |
 | [**gwq**](https://github.com/d-kuro/gwq)                             | CLI          | Lightweight status dashboard with tmux integration        |
 
-My default is still a terminal-first workflow, complimented with more and more usage of `wt`. So, to understand what these CLI tools abstract away, start with native `git worktree` for a few days. If you find yourself repeating setup and cleanup steps, add `wt`. If you are running enough agents that you no longer know which one is waiting for input, add a visibility layer.
-
-Cursor and Claude Code also have first-class worktree now. That is the important shift: the old Git feature became a normal part of the AI coding toolchain.
+My workflow is terminal-first, with more use of `wt` when I repeat setup and cleanup. Start with native `git worktree`. Add a wrapper when the commands you repeat are the part getting in your way. The tools in the table reflect what I was comparing in May 2026; their features change quickly.
 
 ---
 
@@ -482,18 +464,6 @@ Remove the branches you no longer need.
 
 ---
 
-## What You End Up With
+## The boundary
 
-After adopting worktrees, what you have is:
-
-- A stable main development directory that does not get interrupted by every review or hotfix
-- Clean checkouts for PR reviews and release branches
-- A practical way to compare two versions of the same service side by side
-- Isolated directories for debugging multi-repo problems
-- A safe filesystem boundary for running multiple AI agents in parallel
-
-The feature itself is small. The workflow change is not. You stop treating the working directory as the only place work can happen.
-
-For developers, that means fewer stashes, cleaner reviews, and less context loss. For AI agents, it means parallel work without pretending one mutable directory can safely host multiple writers.
-
-Start with [`git worktree add`](https://git-scm.com/docs/git-worktree#Documentation/git-worktree.txt-add). Use it for your next local PR review or urgent bugfix. Once the pattern sticks, add tooling around the lifecycle.
+A worktree isolates a checkout and its Git branch. It does not copy local secrets, start dependencies, choose a port, or validate an agent's changes. Automate the setup you repeat, then review each branch like any other contribution.
