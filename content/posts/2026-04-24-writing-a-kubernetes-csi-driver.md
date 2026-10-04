@@ -1,25 +1,22 @@
 ---
-title: "Writing a Kubernetes CSI Driver: Controller and Node from Scratch"
+title: "Building a Kubernetes CSI Driver: Services, Sidecars, and Volume Flow"
 date: 2026-04-24T09:00:00Z
 draft: false
 tags: ["go", "golang", "kubernetes", "csi", "storage", "grpc", "driver"]
 categories: ["Go", "Kubernetes", "Programming"]
-description: "A complete guide to building a Kubernetes CSI driver in Go — covering the CSI spec, IdentityService, ControllerService, NodeService, sidecar containers, and the full volume lifecycle."
+description: "A practical guide to the CSI gRPC services, Kubernetes sidecars, volume lifecycle, and common implementation traps in Go."
 featured_image: ""
 ---
 
-Kubernetes storage is one of those areas that looks simple from the outside — you create a `PersistentVolumeClaim`, a pod mounts it, done. But the moment you need to integrate your own storage backend, you're staring at the [Container Storage Interface spec](https://github.com/container-storage-interface/spec), sidecar containers you've never heard of, and gRPC services that have to be wired together just right.
+Kubernetes does not call a storage vendor directly when a pod mounts a volume. The Container Storage Interface (CSI) defines the gRPC boundary between Kubernetes and the driver that talks to the storage system.
 
-I had the pleasure of writing and contributing to a production-grade CSI driver end-to-end. This post covers everything I wish I had in one place: what CSI actually is, how Kubernetes orchestrates it, and how to implement all three services in Go.
+I contributed to a production CSI driver and wrote this guide to explain the services, sidecars, and volume calls that are easiest to mix up. The code blocks show focused patterns. They are not a complete, copy-and-run driver.
 
 ---
 
 ## What is CSI?
 
-CSI (Container Storage Interface) is a standardized gRPC API between Kubernetes and storage providers. Before CSI existed, storage drivers were compiled directly into Kubernetes — adding a new one meant patching the Kubernetes tree.
- If you remember a few Kubernetes versions ago where your non-Azure Kubernetes is actually logging non-stop that Azure is not working? Yeah, that kind of problem due to coupling.
-
-CSI moved drivers out-of-tree: your storage backend ships its own binary, Kubernetes talks to it over a Unix socket.
+CSI is a standard gRPC API between a container orchestrator and a storage provider. Moving drivers out of Kubernetes core lets storage vendors build and release drivers separately. Kubernetes and the driver communicate over a Unix-domain socket.
 
 The spec defines three gRPC services:
 
@@ -65,7 +62,7 @@ graph TB
     REG -->|registers socket path| KBL
 ```
 
-The controller pod runs centrally and manages volume lifecycle against your storage backend API. The node pod runs on every machine and handles the actual OS-level work: formatting disks, mounting filesystems, bind-mounting into pods.
+The controller pod runs centrally and manages volume lifecycle against your storage backend API. The node plugin runs on nodes where workloads may use the driver. It handles node-local work such as mounting or publishing volumes. Formatting and device setup depend on the access mode and the driver.
 
 They communicate via **Unix domain sockets**, not TCP. Each sidecar and the driver share an `emptyDir` (controller) or `hostPath` (node) volume where the socket lives.
 
@@ -77,7 +74,7 @@ The sidecars are the glue. You don't call your driver directly — the sidecars 
 
 | Sidecar | Watches | Triggers RPC |
 |---|---|---|
-| `csi-provisioner` | PersistentVolumeClaim | `CreateVolume` / `DeleteVolume` |
+| `external-provisioner` | PersistentVolumeClaim | `CreateVolume` / `DeleteVolume` |
 | `csi-attacher` | VolumeAttachment | `ControllerPublishVolume` / `ControllerUnpublishVolume` |
 | `csi-snapshotter` | VolumeSnapshot | `CreateSnapshot` / `DeleteSnapshot` |
 | `csi-resizer` | PVC resize | `ControllerExpandVolume` |
@@ -140,7 +137,7 @@ Three distinct paths to understand here:
 2. **Attach** (`csi-attacher` → `ControllerPublishVolume`) — attaches the block device to the VM running the pod. Returns the device path (e.g. `/dev/vdb`) in `PublishContext`.
 3. **Stage + Publish** (kubelet → `NodeStageVolume` + `NodePublishVolume`) — formats and mounts the device to a staging path, then bind-mounts that into the pod's specific target path.
 
-The staging/publish split exists so multiple pods on the same node can share one formatted device via bind mounts, rather than formatting once per pod.
+When the driver advertises the `STAGE_UNSTAGE_VOLUME` capability, kubelet stages a volume once per node with `NodeStageVolume`. It then calls `NodePublishVolume` for each pod target path. That keeps device setup separate from publishing the mount into a pod.
 
 ### Unmount → Delete
 
@@ -628,16 +625,16 @@ spec:
           path: /dev
 ```
 
-Two things that catch people out:
+Two deployment details need to match the driver:
 
-1. **`mountPropagation: Bidirectional`** on the kubelet dir — without this, mounts made inside the node container aren't visible to the host, so the pod never sees the volume.
-2. **`privileged: true`** — the node driver calls `mount(2)`, which requires root. There's no way around it.
+1. **Mount propagation.** If the driver creates mounts inside the node container that must appear on the host, the host-path mount needs the required propagation mode. Without it, kubelet cannot see the mount.
+2. **Privileges.** Many node drivers need `CAP_SYS_ADMIN` or a privileged container for mount operations. The exact permissions depend on the driver and its mount design. Grant only what the implementation needs.
 
 ---
 
 ## Error Handling and Idempotency
 
-The CSI spec requires every RPC to be idempotent. Kubernetes retries. You will receive `CreateVolume` twice with the same name. You will receive `ControllerPublishVolume` for an already-attached volume. Handle this by checking state before acting:
+Kubernetes may retry operations after a timeout, so the driver must honor each RPC's idempotency rules. For example, repeated `CreateVolume` calls with the same name must not create duplicate storage. `ControllerPublishVolume` must also handle a retry for a volume that is already attached. Check the requested and existing state before changing the backend:
 
 ```go
 // CreateVolume — return existing volume if found by name.
