@@ -19,9 +19,7 @@ What's missing across all of them isn't features or polish. It's one interaction
 
 ## Standing on prior tools
 
-OneTUI isn't a from-scratch idea and I don't want to pretend it is. It borrows on purpose: [K9s](https://k9scli.io/)'s resource and navigation model and adds a thin TUI layer over the raw protocol. DBeaver and DataGrip's breadth of data source support (minus the inconsistency), the Kafka/Redpanda support and expectations for various schema sources and decoding - Buf, Proto, Avro, Schema Registry. The point isn't novelty. It's picking the parts that already proved themselves and dropping the parts that didn't, inside one consistent shell.
-
-Most useful tools work this way. Few are invented whole.
+OneTUI borrows K9s's resource navigation model and aims for the breadth of database support I use in DBeaver and DataGrip. For Kafka, that includes the schema and decoding workflows I expect from Redpanda, Buf, Protobuf, Avro, and Schema Registry. I am not trying to invent a new protocol. I want one interface around the ones I already use.
 
 ## K9s, and why it's the reference point
 
@@ -45,27 +43,19 @@ Today that's Postgres, Kafka, NATS, and Qdrant, each with a working provider:
 None of these get a separate UI, all are integrated in the same consistent TUI. 
 They all sit behind the same keybinds, the same panel layout, the same way of drilling from a resource list into a single item. That's the entire goal: the tool underneath can be anything, as long as what you see and press stays the same.
 
-Right now, that consistency is easiest to hold onto in read-only mode. So that's where OneTUI starts.
+At the 0.1.0 release, OneTUI was read-only. That kept the first release focused on navigation and the shared interaction model.
 
-## Why read-only first
+## Why 0.1.0 started read-only
 
-Write support raises the stakes immediately: wrong target, wrong environment, data loss. None of that is worth risking before the UI and the connection model have proven themselves. Read-only keeps the scope small on purpose. It's a starting constraint, not a missing feature. Once the core model is solid, write support has a foundation to build on instead of a rushed one to patch.
+At 0.1.0, I kept the interface read-only while I tested navigation and the connection model. Writes can change real data, so I wanted that shared workflow to feel solid first. Version 0.2.0 added provider-specific writes with a confirmation step.
 
-**One of my immediate next goals is, unless there's my personal interest of supporting ScyllaDB/Cassandra first, to add auto-complete for the editor and that'll be a prerequisite for writing.**
+At 0.1.0, I expected autocomplete to come before writes. Version 0.2.0 took a different route: it added provider-specific write operations, a multi-line editor, and query history. Autocomplete is still open work. [Read the 0.2.0 notes](/posts/2026-09-28-onetui-0-2-0/).
 
 ## Tech and architecture
 
 OneTUI is written in Rust, using [ratatui](https://ratatui.rs/) for the terminal UI.
 
-The Rust pick has two reasons. Personally, I want to learn something new. Been writing Go for 12 years, so it's enough for me to look at a different language for a while. No need for me to tell you why Rust over Go, etc.
-
-Rust, Ratatui, Tokio, plus all the necessary dependencies to make a data source connection work.
-
-While I am quite proficient with Go, I am writing production Rust code outside of OneTUI too. 
-I am far from calling myself proficient at the same level and that's why I use LLMs to help write the Rust.
-
-Language-aside, the code is always human reviewed. Guardrails this, guard rails that, it's human reviewed. No skipping that part.
-I carry my expertise using all these databases and message queues too.
+I chose Rust partly because I wanted to learn a new language after twelve years of writing Go. OneTUI uses Ratatui for the interface and Tokio for asynchronous work. I also use LLMs to help with Rust, where I have less experience than I do with Go and the data systems OneTUI connects to. I review the generated code before it stays.
 
 ### Adding a data source
 
@@ -163,17 +153,13 @@ Qdrant's consensus state, in the same resource browser used for a Postgres table
 
 ## Where it stands, and where it's going
 
-OneTUI is publicly released as I write this blog post. 
-This is not a big deal, it's just another tool, I only want to make something useful.
-
-I've been sharing it with a few colleagues and friends. The feedback is positive.
-Any feedback, GitHub issue or time spent using it is greatly appreciated. 
+OneTUI 0.1.0 is released. I want it to be useful, not to claim it replaces the tools people already trust. I have shared it with colleagues and friends, and their feedback is helping me decide what to build next.
 
 
 Now where it is going? The architecture leaves room to grow: new data sources, new resource types. In practice that means almost any data source is fair game, whatever exposes rows, records, or resources through some protocol fits the same provider shape. As I mentioned earlier ScyllaDB/Cassandra makes sense for the sake of supporting the most popular protocols.
 
 Still. the shared goal across all of it isn't the count of features. It's a TUI people actually want to reach for, the same reason K9s wins over raw `kubectl` for a lot of people day to day: not more power, just less friction to use the functionality that's already there.
 
-Will OneTUI replace psql and active tools used to query and modify data sourecs? Not today. psql has decades of trust and a query editor good developers already know from muscle memory. But that gap is closable: real autocomplete against the live schema, a proper multi-line editor instead of a single input line, history that's searchable instead of scrollback. None of that requires reinventing the protocol underneath, it's interface work. I think a TUI can beat a REPL at its own game if it takes the editing experience as seriously as the data browsing.
+I do not expect OneTUI 0.1.0 to replace `psql`. The protocol is not the gap. The editor is. A TUI needs multiline editing, searchable history, and schema-aware completion before I would reach for it over a mature REPL. The first two arrived in 0.2.0; autocomplete remains unfinished.
 
-Code is at [github.com/syndbg/onetui](https://github.com/syndbg/onetui). If the idea of one consistent TUI across your databases and queues sounds useful to you too, I'd like to hear about it.
+The code is at [github.com/syndbg/onetui](https://github.com/syndbg/onetui).
