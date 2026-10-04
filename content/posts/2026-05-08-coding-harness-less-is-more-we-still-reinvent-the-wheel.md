@@ -1,10 +1,10 @@
 ---
-title: "Coding Harness, Less Is More, We Still Re-invent the Wheel inefficiently"
+title: "Coding Harnesses: Less Is More"
 date: 2026-05-08T00:00:00Z
 draft: false
 tags: ["ai", "tooling", "code", "harness", "claude-code", "cursor", "rag", "codebase-indexing"]
 categories: ["Engineering"]
-description: "The AI coding agent era demands harnesses. The tools exist. The patterns existed long before. We keep finding new ways to avoid the old tried methods."
+description: "Why coding agents need project context, code search, and feedback, and what existing tools can already do."
 ---
 
 ## What Is a Coding Harness?
@@ -37,7 +37,7 @@ The vocabulary here is not new. Russell & Norvig’s *AI: A Modern Approach* (19
 
 The naming changed. The pattern did not.
 
-Most developers using Claude Code today have the tool layer (built-in) and partial context injection (CLAUDE.md). Almost nobody has the indexing layer wired up. That gap is where the performance falls off a cliff.
+Most Claude Code users already have tools and project instructions. Code indexing is less common, and it may help when repeated repository searches slow the work down.
 
 ---
 
@@ -52,13 +52,11 @@ Claude Code exposes four hook events:
 | `PostToolUse` | After Write/Edit | Sync modified file back to index |
 | `Stop` | Agent finishes | Run validators, emit summaries |
 
-These hooks are the harness attachment points. A `SessionStart` hook that runs incremental re-indexing means the agent starts every session with a fresh semantic map of the codebase. A `PostToolUse` hook on Write/Edit means the index never drifts more than one file behind reality.
+Hooks can connect an agent session to project state and run checks around tool calls. A `SessionStart` hook can refresh an index, and a `PostToolUse` hook can ask it to update after a file changes. Neither guarantees that the index is complete or current. Keep ordinary search and validation available.
 
-Without these wired up, the agent is flying blind every session. It compensates by grepping. A lot.
+Git worktrees give parallel sessions separate working directories, but they do not copy local environment files. This example links `.env` into another worktree. Use it only for credentials you are willing to expose to that coding session; it is not a general secrets-management boundary.
 
-Hooks also solve a problem that surfaces when running parallel workstreams with [git worktrees](/posts/2026-05-02-git-worktrees-parallel-development-without-cloning-everything-twice/). Each worktree is an isolated working directory — useful for running two agent sessions on different branches simultaneously without conflicts. But secrets and environment files (`.env`, credentials, tokens) do not copy across automatically. A `SessionStart` hook scoped to the worktree can detect the working directory, locate the canonical secrets from a shared location, and symlink or inject them without duplicating sensitive files across every checkout. The harness manages the plumbing so neither the developer nor the agent has to think about it.
-
-E.g
+For example:
 
 ```bash
 #!/usr/bin/env bash
@@ -94,10 +92,9 @@ Wire it in `.claude/settings.json`:
 }
 ```
 
-Runs once per session. If the working directory is a worktree (not main checkout), symlinks `.env` from main. No copies, no stale secrets, no manual setup per branch.
+The hook runs once per session and links `.env` from the main worktree into a secondary worktree. It avoids a copy, but it does not ensure that the file is current or safe to expose to the agent.
 
-Or, you can use Claude code with `--worktree` which also invokes the `WorktreeCreate` hook, 
-as per the example in [Claude's docs](https://code.claude.com/docs/en/hooks#worktreecreate).
+Claude Code also provides a `WorktreeCreate` hook for its `--worktree` workflow. See the [hook reference](https://code.claude.com/docs/en/hooks#worktreecreate).
 
 ---
 
@@ -105,7 +102,7 @@ as per the example in [Claude's docs](https://code.claude.com/docs/en/hooks#work
 
 Cursor does not make you wire this up yourself. It ships with persistent, background codebase indexing as a first-class feature. On session open, it already knows your symbols, your imports, your function signatures. Retrieval is a lookup, not an exploration.
 
-This creates a felt difference in terms of accuracy, speed and cost-efficiency. Cursor doesn't, based on my experience, significantly regress to greping and bisecting for repetitive work. This cuts token usage quite significantly.
+In my experience, Cursor's index helps with repetitive repository searches. I have not measured a general improvement in accuracy or token use, so treat that as a workflow observation rather than a benchmark.
 
 How Cursor's indexing pipeline ([docs](https://cursor.com/blog/secure-codebase-indexing)) works:
 
@@ -160,7 +157,7 @@ From [entire.io's analysis](https://entire.io/blog/improving-agentic-search-in-c
 ![Agent loop bottleneck diagram](https://entire.io/blog/improving-agentic-search-in-coding-agents/agent_loop_bottleneck.svg)
 *Tool execution is only 0.4% of wall-clock time. The bottleneck is model inference and planning, not search speed. Source: [entire.io — Improving Agentic Search in Coding Agents](https://entire.io/blog/improving-agentic-search-in-coding-agents)*
 
-Last but not least, Claude Code on the other hand has the more pluggable system, but completely lacks in this department, resorting to third-party tools we'll see in a bit.
+Claude Code offers more ways to connect external tools, but it does not provide the same built-in persistent codebase index described above. The next section looks at third-party options.
 
 ---
 
@@ -293,7 +290,7 @@ Overall, I'll be running this for hours and I am, when I want to capture the ful
 
 **Where it struggles:**
 
-SQLite-vec works well for a single focused codebase. For local, single-machine use it is a reasonable embedded choice — zero infrastructure, single file. But the HNSW implementation it provides is a single-node, in-process index. No concurrent writers, no on-disk persistence separate from the SQLite file, no incremental segment merges.
+`sqlite-vec` is an embedded vector-search extension for SQLite. It needs no separate service, but its current search path scans candidate vectors rather than using the HNSW graph described below. SQLite allows only one writer at a time, which can matter if indexing and querying both write concurrently.
 
 HNSW (Hierarchical Navigable Small World) is the dominant algorithm for approximate nearest-neighbor vector search — it builds a multi-layer graph where each layer skips further ahead, letting queries find close vectors in O(log n) rather than scanning everything.
 
@@ -378,7 +375,7 @@ The signal worth watching: Ruflo benchmarks well on SWE-Bench (84.8%). The appro
 
 I'm currently experimenting with a MacBook Pro M5 pro with 48GB unified memory, you do not need to call an external API for embeddings. You can run better models locally than what most hosted RAG stacks use by default.
 
-[mlx-openai-server](https://github.com/cubist38/mlx-openai-server) is the right tool here. Standard GGUF runners (Ollama, llama.cpp) are 3–5× slower on M-series chips than MLX-native execution, which maps directly to the Neural Engine and unified memory. This specific server provides an Embeddings endpoint in an OpenAI API compatible structure. I'd use `mlx-lm` directly, but this actually worked.
+[mlx-openai-server](https://github.com/cubist38/mlx-openai-server) is the right tool here. MLX is designed for Apple silicon and uses its unified memory architecture. I did not benchmark it against Ollama or llama.cpp here, and using MLX does not mean a model runs on the Neural Engine. This specific server provides an Embeddings endpoint in an OpenAI API compatible structure. I'd use `mlx-lm` directly, but this actually worked.
 
 ```bash
 uv tool install mlx-openai-server
@@ -390,7 +387,7 @@ mlx-openai-server launch \
   --model-path mlx-community/Qwen3-Embedding-8B-4bit-DWQ
 ```
 
-Then point your indexer at `http://localhost:8080/v1/embeddings` using the OpenAI-compatible endpoint. `Qwen3-8B` in 4-bit DWQ fits in ~6GB of unified memory and produces 4096-dimension embeddings — substantially richer than nomic's 768 dimensions.
+Then point your indexer at `http://localhost:8080/v1/embeddings`. In my setup, the quantized Qwen3 embedding model used about 6 GB of unified memory and returned 4096-dimensional vectors. A larger vector is not automatically better; compare retrieval quality on your own code questions.
 
 The catch: **many tools misidentify hybrid decoder models as chat-only**. LM Studio, for instance, will not expose the embeddings endpoint for models it classifies as "LLM" rather than "Embedding Model." Had this issue with Qwen3-embeddings.
 
@@ -402,7 +399,7 @@ The tooling exists. The patterns are proven. But the current state of the ecosys
 
 **Model classification is broken.** Hybrid models that function as both chat and embedding models get misclassified by most GUI tools. There is no standard signal for "this model supports `/v1/embeddings`." You discover it by trying and failing.
 
-**Chunking is still mostly naive.** Most open-source indexers use sliding character windows. Lumen's AST-aware approach is the exception. Function-level chunks that respect language syntax are meaningfully better for code retrieval — a grep that returns the full function body outperforms one that returns lines 47–89 of an arbitrary split.
+**Chunking needs care.** A chunk that splits a function mid-expression can lose useful context. Syntax-aware chunking may help, but it does not guarantee better retrieval. Check whether results include the surrounding code needed to understand callers and data flow.
 
 Tree shaking is a related but distinct idea from frontend build tooling — it eliminates dead code at bundle time by statically analyzing the import graph. Same goal (less junk in the output), different target: the compiled bundle, not the retrieval index. Worth naming because the terms get conflated when people discuss "pruning" what the agent sees.
 
@@ -427,7 +424,7 @@ graph LR
 
 **No standard MCP schema for code search.** Every indexer invents its own tool names and return shapes. `search_code`, `find_symbol`, `semantic_search` — same operation, different contracts. The LSP standardization moment for AI tools has not happened yet.
 
-**Index drift under heavy editing.** PostToolUse hooks sync one file at a time. A large refactor touching 40 files leaves the index inconsistent until the next SessionStart re-index. Background file watchers (like Lumen's daemon) solve this but add process complexity.
+**Index drift under heavy editing.** A hook that updates one file at a time may leave a multi-file refactor only partly indexed. An indexer should report when it is rebuilding and whether results match the current checkout. File watchers can help, but they add another process to maintain.
 
 **Cost of the first index.** On a large monorepo, initial indexing is slow and can be expensive if using a hosted embedding API. Local MLX models eliminate the API cost but the wall-clock time remains. There is no good incremental-from-scratch story yet.
 
