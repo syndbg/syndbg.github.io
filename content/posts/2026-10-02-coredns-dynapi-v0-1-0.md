@@ -71,29 +71,31 @@ curl -X PUT http://127.0.0.1:8080/v1/zones/example.org/records/host.example.org/
   -d '{"ttl":60,"addresses":["192.0.2.10","192.0.2.11"]}'
 ```
 
-## dynupdate: the piece that showed up while I was away
+## dynupdate: the proposal I found while I was away
 
-In 2018 CoreDNS had no way to change records at runtime, and I wrote my own. In 2026 it has one. The [`dynupdate`](https://github.com/coredns/coredns/tree/master/plugin/dynupdate) plugin landed in CoreDNS itself in [PR #8520](https://github.com/coredns/coredns/pull/8520). Contributor houyuwushang wrote it and Yong Tang merged it in September 2026. It speaks the standard protocol for this job, RFC 2136 DNS UPDATE, so `nsupdate` and DHCP servers such as Kea can already talk to it. The work started from [#6254](https://github.com/coredns/coredns/issues/6254) ("Support DDNS", open since 2023), and two core changes came first: [#8469](https://github.com/coredns/coredns/pull/8469) lets the server accept UPDATE messages and [#8471](https://github.com/coredns/coredns/pull/8471) exposes the validated TSIG identity to plugins.
+In 2018 CoreDNS had no way to change records at runtime, and I wrote my own. In 2026, an upstream proposal is trying to fill that gap. The [`dynupdate` proposal in PR #8520](https://github.com/coredns/coredns/pull/8520) is still open as of this article. It is not part of a released CoreDNS version. The proposal adds an RFC 2136 writable zone, authenticated with TSIG, and describes interoperability with `nsupdate` and DHCP software such as Kea.
 
-How it works:
+The proposal follows [#6254](https://github.com/coredns/coredns/issues/6254) ("Support DDNS", opened in 2023) and builds on two earlier changes: [#8469](https://github.com/coredns/coredns/pull/8469) lets the server accept UPDATE messages, and [#8471](https://github.com/coredns/coredns/pull/8471) exposes validated TSIG identity to plugins.
+
+The proposal works like this:
 
 - **One writable zone per server block.** You give it a seed zone file. The plugin never modifies that file.
 - **Persistence is optional.** With `database`, every update goes to an embedded [bbolt](https://github.com/etcd-io/bbolt) file before the new snapshot is visible and before the client sees success. Without it, updates live in memory and a restart loses them. The first access creates the database from the seed. After that, the database is the source of truth.
 - **Authentication is TSIG.** The `tsig` plugin validates the signature. dynupdate never sees the secret.
 - **Authorization is explicit.** Every change must match an `allow KEY NAME TYPE` rule. Nothing is allowed by default.
-- **The protocol is complete enough.** It supports RFC 2136 prerequisites, add and delete operations, CNAME and apex SOA and NS rules, and automatic SOA serial updates. AXFR reads the current snapshot, and a successful change sends a best-effort NOTIFY.
+- In the proposal, RFC 2136 prerequisites and updates are checked and applied atomically. It also describes CNAME and apex SOA/NS rules, SOA serial updates, AXFR of the current snapshot, and best-effort NOTIFY.
 - **Caching is handled.** The `cache` plugin bypasses dynamic zones, so authoritative answers are always current.
-- **Limits are stated.** No DNSSEC records, no IXFR, no multi-primary replication. The README calls the plugin experimental and says it is meant for small zones that change rarely.
+- The proposed zone implementation is experimental and scoped to small, infrequently updated zones. It does not include IXFR history or multi-primary replication.
 
-That last point fits my own use case well. It also answers Miek's old worry. CoreDNS has a place for write permissions and persistence now, and the HTTP layer can stay thin.
+That scope fits my use case. If the proposal is accepted, CoreDNS would provide the write permissions and persistence layer, leaving the HTTP plugin thin.
 
 ## How it works
 
-dynapi has no record store of its own. It sends signed DNS requests to the same CoreDNS server over pooled loopback TCP connections.
+The v0.1.0 development build uses no record store in dynapi. It sends signed DNS requests over pooled loopback TCP to a CoreDNS build that includes the proposed `dynupdate` implementation.
 
 - GET is a signed AXFR (zone transfer).
 - PUT and DELETE are DNS UPDATE transactions.
-- [`dynupdate`](https://github.com/coredns/coredns/tree/master/plugin/dynupdate) owns the zone database. It handles persistence, atomic updates and write permissions.
+- The proposed `dynupdate` plugin owns the zone database, persistence, atomic updates, and write permissions. It is supplied by the CoreDNS change under review, not by a released CoreDNS build.
 - [`tsig`](https://coredns.io/plugins/tsig/) authenticates the DNS requests.
 - [`transfer`](https://coredns.io/plugins/transfer/) allows the AXFR.
 
@@ -109,7 +111,7 @@ The server applies all of it as one transaction, so readers never see a half-rep
 
 dynupdate answers are mapped to HTTP status codes. A failed prerequisite is 409, a refused update is 403, and any other rejection is 502.
 
-This is a complete Corefile:
+This Corefile is for the development build described above. It depends on the `dynupdate` proposal and is not expected to work with an unmodified CoreDNS release:
 
 ```corefile
 example.org:1053 {
@@ -142,7 +144,7 @@ example.org:1053 {
 
 ## Why signed DNS and not a record store
 
-This design answers Miek's 2018 concern. dynapi does not own users, permissions or storage. `dynupdate` and `tsig` already do that work, and dynapi only translates HTTP into signed DNS.
+This design keeps the HTTP plugin from owning a second record store. In the development build, `dynupdate` supplies zone storage and write permissions while `tsig` authenticates DNS requests. The upstream `dynupdate` implementation remains under review in [PR #8520](https://github.com/coredns/coredns/pull/8520).
 
 [ADR 0001](https://github.com/coredns/dynapi/blob/v0.1.0/docs/adr/0001-use-signed-dns-for-record-access.md) records the decision and what it rejects:
 
@@ -158,7 +160,7 @@ The design has costs. GET scans the whole zone. Connections come from a pool lim
 ## What is not done
 
 - Only A and AAAA records work. The 2018 thread asked for more types, and Miek wanted storage that does not care about record types. That is future work.
-- It needs Go 1.27 or newer. It also needs `dynupdate` and `tsig` from a pinned CoreDNS revision, so the development build is a CoreDNS binary built from the dynapi repository.
+- The development build needs Go 1.27 or newer and a pinned CoreDNS revision containing the proposed `dynupdate` plugin. This is why the v0.1.0 repository builds its own CoreDNS binary.
 - Corefile reloads are rejected. Restart CoreDNS to change the configuration.
 - Conditional writes (record revisions) are still open.
 
