@@ -1,4 +1,4 @@
-baseURL = 'https://syndbg.github.io/'
+baseURL = 'https://syndbg.dev/'
 languageCode = 'en-us'
 title = "Anton Antonov's mindspace"
 paginate = 10
