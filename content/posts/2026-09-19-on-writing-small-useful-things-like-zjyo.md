@@ -13,25 +13,21 @@ At some point I tried the newer alternatives. Each one changed something I didn'
 
 So I wrote [zjyo](https://github.com/syndbg/zjyo) a while back, a 1:1 Rust port. The only thing that changed is what's running under the hood.
 
-## Rewriting working software is proof the original design was already good
+## Rewriting a small tool showed me what was already right
 
-`rupa/z` is just good. The matching, the aging, the flags, none of it needed fixing, so I didn't touch any of it. I just moved the same design into Rust and kept my hands off the parts that were already right. rupa wrote a man page instead of a friendly README, kept the whole thing to one shell script, and never bloated it with features nobody asked for. That's taste. It's rarer than it should be.
-
-Most of the OSS I run into these days wants to be everything. Plugins, config files, a dashboard, a roadmap. `rupa/z` never went there, and it's still exactly as useful seventeen years later as it was on day one. We need more of that: people who build one small thing, get the shape of it right, and then leave it alone.
+`rupa/z` already had the behavior I wanted: matching, aging, and a small set of flags. I kept those choices and moved the implementation to Rust. Its single shell script and man page are part of the appeal. The tool does one job and has stayed useful without growing a dashboard or a plugin system. That is the kind of scope I wanted to preserve.
 
 ## Why bother
 
-A rewrite for its own sake is a waste of time. 
-At some point it was a matter of writing Rust for the fun and seeing how much handholding I need with an LLM to assist me.
-Turned out well, since I use it for a few years now.
+I started the rewrite to practice Rust and see how much help I would need from an LLM. Keeping `z`'s behavior gave me a concrete target. It turned out well enough that I still use `zjyo` years later. I review the code myself; the model helped with Rust, not with deciding what the tool should do.
 
 ## The end result
 
-`zjyo` is under 800 lines of Rust across five files. `database.rs` handles persistence and matching. `entry.rs` is a plain struct with a frecency calculation. `cli.rs` wires up `clap` and dispatches. That's the whole surface area, and most of what maintaining a small tool actually looks like: not new features, but noticing the gap between what you assumed was true and what was actually happening.
+At the time I wrote this, `zjyo` was under 800 lines of Rust across five files. `database.rs` handles persistence and matching. `entry.rs` stores a path and its frecency score. `cli.rs` wires up `clap` and dispatches commands. Most maintenance has been checking assumptions against what the shell and database actually do.
 
 ## The bug that mattered most
 
-The tmux bug I hit while using tmux-continuum is worth mentioning. First, using tmux and tmux-continuum is something that I don't plan to change in the next 10 years too. It just works. The issue is when you make an assumption that `cd` is going to always work and wondering hey why does `zjyo` do it differently, some things start to make sense, because it's a class of bug that's easy to dismiss as "user error" and hard to find by reading code. The database *was* updating, for every shell session I'd opened since editing `.zshrc`. But `tmux-continuum` restores sessions across machine restarts, and panes that survive a restore don't re-source your rc files. Config and the `cd` wrapper are two different things, and only one of them updates when you edit a file.
+At the time, I was using tmux with tmux-continuum. I have since moved my dotfiles to Zellij, but the bug was in the restored shell process. Continuum brought panes back after a restart without re-reading `.zshrc`. Fresh panes used the new `cd` wrapper and updated the database. Restored panes still had the old function definitions.
 
 The fix, using `precmd_functions` instead of overriding `cd`, happens to also route around the entire class of bug, since it's additive rather than a redefinition. It doesn't fix stale shells. Nothing can fix a process that's already running with old code loaded. But it means the next time something like this happens, at least new panes won't diverge from what you think your shell does without you noticing.
 
@@ -47,7 +43,7 @@ cd() {
 
 Redefining `cd` as a shell function is the obvious approach, anyone who has skimmed a `z` integration script has seen this pattern. It works, right up until something else in your shell startup also defines `cd`. Whichever definition loads last wins, with no error and no warning. The earlier one just stops existing.
 
-That wasn't actually my bug though, no other plugin was fighting for `cd` in my case. The real problem was simpler and harder to see: some of my `zjyo`-tracked directories just weren't showing up in `z -l`, despite me having `cd`'d into them dozens of times that day. The database file (`~/.z`) was clearly being written to. `stat ~/.z` showed a recent mtime, other directories were tracked fine, and `zjyo --add` worked perfectly when I ran it by hand in the same pane. So the binary was fine, the wrapper function was fine when invoked, and yet specific panes weren't invoking it.
+No other plugin was replacing `cd`. The database file (`~/.z`) had a recent modification time, other directories appeared in `z -l`, and `zjyo --add` worked when run by hand in the suspect pane. The binary and database were fine. That shell simply had not loaded the wrapper.
 
 The panes in question all had one thing in common: they were tmux panes that survived a `tmux-continuum` restore, meaning they were spawned before I'd last edited `.zshrc` to add the `zjyo` integration. A shell process reads its rc file once, at startup. Editing `~/.zshrc` after the fact does nothing to a shell that's already running. The function definitions it loaded at spawn time are the only ones it has. `tmux-continuum` is built to survive machine restarts by serializing pane state and restoring it later, so a pane you're typing into today can be running a shell process that's been alive, uninterrupted, since before a config change you made weeks ago.
 
@@ -66,7 +62,7 @@ type cd
 # cd is a shell function from /Users/syndbg/.zshrc
 ```
 
-If `cd` reports as a builtin instead of a function, that pane never picked up the wrapper. No amount of retrying `z --add` in that shell fixes it, because the function it would need to call doesn't exist there.
+If `cd` reports as a builtin instead of a function, that shell never loaded the wrapper. Running `zjyo --add` by hand can update the database, but it does not install the missing function. Source `~/.zshrc` or open a fresh pane.
 
 `precmd_functions` gets around this. Every zsh prompt draw runs every function registered in that array:
 
@@ -81,6 +77,4 @@ precmd_functions+=(_zjyo_precmd)
 
 ## Why keep doing this
 
-There's no ecosystem reason to prefer `zjyo` over `zoxide`. `zoxide` has more users, more contributors. The reason to maintain your own small thing isn't that it's objectively better. It's that you understand every line of it, you can fix what actually bothers you instead of filing an issue and waiting, and the maintenance itself is quite lean when there's not much functionality and need for it, to begin with.
-
-800 lines and a decade-old database format don't need a roadmap. They need someone willing to keep them that small.
+There is no ecosystem reason to choose `zjyo` over `zoxide`; `zoxide` has more users and contributors. I keep `zjyo` because I know its code and can change the behavior I rely on. A small tool stays small when I resist adding features that do not solve a problem I have.
