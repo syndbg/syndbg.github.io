@@ -245,33 +245,6 @@ Thanks to the maintainers who keep goenv going, and for the move to Go. I will a
 
 `z <pattern>` jumps to the best match among the directories I have visited. [zjyo](/posts/2026-09-19-on-writing-small-useful-things-like-zjyo/) is the small tool I wrote for this, and the GIF shows it. `z -l` lists the tracked directories.
 
-A child process cannot change the shell's directory, so a shell function asks `zjyo -e` for the best match and does the `cd` itself. A `precmd` hook records every directory I enter:
-
-```zsh
-# zjyo wrapper. Flags go straight to the command; other arguments select a directory.
-z() {
-  if [[ "$*" == *"--help"* || "$*" == *"-h"* || "$*" == *"--version"* || "$*" == *"-V"* || "$*" == *"-l"* || "$*" == *"-r"* || "$*" == *"-t"* || "$*" == *"-c"* || "$*" == *"-e"* || "$*" == *"-x"* || "$*" == *"--add"* || "$*" == *"--doctor"* ]]; then
-    command zjyo "$@"
-    return
-  fi
-
-  if (( $# == 0 )); then
-    command zjyo
-  else
-    local result
-    result=$(command zjyo -e "$*")
-    [[ -n "$result" ]] && cd "$result"
-  fi
-}
-
-_zjyo_precmd() {
-  (zjyo --add &)
-}
-precmd_functions+=(_zjyo_precmd)
-```
-
-Set `_Z_DATA` to change where zjyo keeps its database.
-
 ## Full path. Git on the right. No runtime versions.
 
 A compact Starship configuration using the Macchiato colors directly:
@@ -803,4 +776,3 @@ layout {
     }
 }
 ```
-
