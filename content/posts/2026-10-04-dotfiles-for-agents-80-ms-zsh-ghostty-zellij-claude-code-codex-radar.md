@@ -1,7 +1,7 @@
 ---
 title: "Dotfiles for Agents: 80 ms Zsh, Ghostty, Zellij and a Claude Code and Codex Radar"
 date: 2026-10-04T22:00:00+03:00
-draft: true
+draft: false
 tags: ["dotfiles", "macos", "chezmoi", "zsh", "zellij", "performance"]
 categories: ["Developer Tools"]
 description: "The configs behind my 80 ms Zsh startup measurement: cached completion, deferred plugins, Zellij with a zj-radar status rail for coding agents, and recoverable macOS dotfiles."
