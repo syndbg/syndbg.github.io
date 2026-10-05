@@ -1,5 +1,5 @@
 ---
-title: "Dotfiles for Agents: 80 ms Zsh, Ghostty, Zellij and a Claude Code and Codex Radar"
+title: "Dotfiles for the Agentic Developer in 2026: 80 ms Zsh, Ghostty, Zellij and a Claude Code and Codex Radar"
 date: 2026-10-04T22:00:00+03:00
 draft: false
 tags: ["dotfiles", "macos", "chezmoi", "zsh", "zellij", "performance"]
@@ -18,7 +18,7 @@ That 80 ms ends before normal prompt rendering and deferred plugin loading. It e
 
 ## What you get
 
-Copy any piece you like. Each section has the snippet, and the longer files are in collapsible blocks.
+Copy any piece you like. Each section has the snippet it explains. The [complete configuration](#complete-configuration) at the end has every file in full: `.zshrc`, Starship, Ghostty, and the Zellij config and layout.
 
 - **A fast Zsh:** cached completion, deferred plugins and a way to profile your own startup with `zprof`.
 - **Better daily tools:** fzf-tab for completion, zjyo for jumping between directories, goenv v3, and a Starship prompt with Git status on the right.
@@ -190,7 +190,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 | eza | Directory listings with icons and Git status |
 | direnv | Project environment changes |
 
-`wait"0"` moves loading after the first prompt. It also changes alias ordering: deferred Git aliases can overwrite local aliases. My own file also loads a Homebrew snippet, an appearance snippet and `async_prompt.zsh`. The last one has no demonstrated benefit with Starship and remains a cleanup candidate. A complete minimal `.zshrc` is at the end of the next section.
+`wait"0"` moves loading after the first prompt. It also changes alias ordering: deferred Git aliases can overwrite local aliases. My own file also loads a Homebrew snippet, an appearance snippet and `async_prompt.zsh`. The last one has no demonstrated benefit with Starship and remains a cleanup candidate. The [complete minimal `.zshrc`](#complete-configuration) is in the last section.
 
 ## Split .zshrc into files I can maintain
 
@@ -226,89 +226,6 @@ NVM is gone, including its duplicated Bash completion. I kept full `mise activat
 eval "$(goenv init -)"
 eval "$(mise activate zsh)"
 ```
-
-<details>
-<summary>Complete minimal <code>~/.zshrc</code></summary>
-
-This puts every piece above in order. Drop `goenv` if you do not use it, and add your own `PATH` lines.
-
-```zsh
-# History
-HISTSIZE=50000
-SAVEHIST=50000
-HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
-setopt inc_append_history share_history
-setopt HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_SAVE_NO_DUPS
-
-export LANG=en_US.UTF-8
-export EDITOR='nvim'
-bindkey -v
-
-# Homebrew installs the tools; Zinit loads the plugins.
-fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
-fpath=("$HOME/.config/zsh/completions" $fpath)
-export ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh"
-source "$HOMEBREW_PREFIX/opt/zinit/zinit.zsh"
-
-# Load plugins after the first prompt to keep them out of the startup path.
-zinit ice wait"0" lucid
-zinit snippet OMZL::git.zsh
-zinit ice wait"0" lucid
-zinit snippet OMZL::directories.zsh
-zinit ice wait"0" lucid
-zinit snippet OMZL::functions.zsh
-
-zstyle ':omz:plugins:eza' 'dirs-first' yes
-zstyle ':omz:plugins:eza' 'git-status' yes
-zstyle ':omz:plugins:eza' 'header' yes
-zstyle ':omz:plugins:eza' 'icons' yes
-
-zinit ice wait"0" lucid
-zinit snippet OMZP::git
-zinit cdclear -q
-zinit ice wait"0" lucid
-zinit snippet OMZP::direnv
-zinit ice wait"0" lucid
-zinit snippet OMZP::eza
-
-# Cached completion. Rebuild ~/.zcompdump after adding completion sources.
-autoload -Uz compinit
-compinit -C
-zinit cdreplay -q
-
-eval "$(fzf --zsh)"
-zinit ice wait"0" lucid
-zinit light Aloxaf/fzf-tab
-zinit ice wait"0" lucid
-zinit light zsh-users/zsh-history-substring-search
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-zinit ice wait"0" lucid
-zinit light zsh-users/zsh-autosuggestions
-
-[[ -r "$HOME/.config/zsh/aliases.zsh" ]] && source "$HOME/.config/zsh/aliases.zsh"
-[[ -r "$HOME/.config/zsh/functions.zsh" ]] && source "$HOME/.config/zsh/functions.zsh"
-
-eval "$(goenv init -)"
-export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
-eval "$(mise activate zsh)"
-
-[[ -r "$HOME/.zsh.secrets" ]] && source "$HOME/.zsh.secrets"
-eval "$(starship init zsh)"
-
-# Keep syntax highlighting last so it can highlight widgets from other plugins.
-zinit ice wait"0" lucid
-zinit light zsh-users/zsh-syntax-highlighting
-
-# Auto-attach to Zellij without nesting inside another multiplexer.
-if [[ -o interactive && -t 0 && -z ${ZELLIJ:-} && -z ${TMUX:-} && ${HERDR_ENV:-} != 1 && -z ${CI:-} ]] && command -v zellij >/dev/null; then
-  zellij attach -c
-fi
-```
-
-</details>
 
 ## goenv: v2 was Bash, v3 is Go
 
@@ -458,7 +375,7 @@ keybinds {
 }
 ```
 
-Press `Ctrl-a`, release, then the action key. The complete config at the end of the next section adds tabs 2–9 and these controls:
+Press `Ctrl-a`, release, then the action key. The [complete config](#complete-configuration) at the end adds tabs 2–9 and these controls:
 
 | Action key | Result |
 | --- | --- |
@@ -470,6 +387,24 @@ Press `Ctrl-a`, release, then the action key. The complete config at the end of 
 | `Shift-q` | Run `zellij kill-all-sessions` |
 
 **Different from tmux:** Escape opens an editor rather than copy mode. `q` opens the manager rather than killing the current session. Old resize and clipboard bindings are not all ported.
+
+### Search scrollback in Neovim
+
+`Ctrl-a e` and `Ctrl-a Escape` are my replacement for tmux's copy mode. Both run `EditScrollback`:
+
+```kdl
+bind "e" "Esc" { EditScrollback; SwitchToMode "Normal"; }
+```
+
+![Ctrl-a e opens the pane's scrollback in Neovim at the last line. A search for "rewrite" highlights every match, and :q returns to the shell.](/images/dotfilesworld/zellij-edit-scrollback.gif)
+
+Zellij writes the pane's scrollback to a temporary file and opens it in a new pane with your editor. The cursor starts on the last line, so everything above it is a normal Neovim buffer: search with `/`, move with the usual motions, and quit with `:q` to go back to the shell. That makes finding an old error in long output a search instead of scrolling.
+
+My config does not set an editor for this, and it works because my shell exports `EDITOR=nvim`. To pin it, add `scrollback_editor` to `config.kdl`:
+
+```kdl
+scrollback_editor "nvim"
+```
 
 `Shift-r` renames the current session directly. This is the binding in `config.kdl`:
 
@@ -490,7 +425,7 @@ bind "Shift r" {
 
 *Three agents at a glance. The rail shows done, working and needs-you without leaving the shell tab.*
 
-Ghostty hosts the terminal. Zellij uses a custom layout (shown in full below), Catppuccin Macchiato colors, the native tab bar, and zjstatus. [zj-radar](https://github.com/marktoda/zj-radar) adds the agent status rail.
+Ghostty hosts the terminal. Zellij uses a custom layout (in the [complete configuration](#complete-configuration) at the end), Catppuccin Macchiato colors, the native tab bar, and zjstatus. [zj-radar](https://github.com/marktoda/zj-radar) adds the agent status rail.
 
 zj-radar needs Zellij 0.44.3 or newer. This is the quick start from its README:
 
@@ -550,8 +485,193 @@ if [[ -o interactive && -t 0 && -z ${ZELLIJ:-} && -z ${TMUX:-} && ${HERDR_ENV:-}
 fi
 ```
 
-<details>
-<summary>Complete <code>~/.config/zellij/config.kdl</code></summary>
+## Keep the Mac reproducible
+
+chezmoi keeps the dotfiles in a Git repository and copies them into your home directory. Encrypted files need an age key:
+
+```sh
+brew install chezmoi age
+chezmoi init
+age-keygen -o ~/.config/chezmoi/key.txt   # prints the public key
+```
+
+```toml
+# ~/.config/chezmoi/chezmoi.toml
+encryption = "age"
+
+[age]
+    identity = "~/.config/chezmoi/key.txt"
+    recipient = "age1...your-public-key..."
+```
+
+```sh
+# Capture a live edit, then review it in the source repository.
+chezmoi add ~/.zshrc
+git -C "$(chezmoi source-path)" diff
+
+# Install a source edit after reviewing it.
+chezmoi diff ~/.zshrc
+chezmoi apply ~/.zshrc
+
+# Store ciphertext in the source repository.
+chezmoi add --encrypt ~/.zsh.secrets
+```
+
+Back up `~/.config/chezmoi/key.txt` separately. On a new Mac, restore it first, then run `chezmoi init <your-repo>`, review `chezmoi diff` and apply. The installed secrets are plaintext; the repository copy is encrypted.
+
+Keep the tools in a Brewfile so a new Mac gets the same ones:
+
+```ruby
+# Brewfile
+brew "chezmoi"
+brew "age"
+brew "zellij"
+brew "zinit"
+brew "fzf"
+brew "eza"
+brew "starship"
+brew "mise"
+brew "direnv"
+cask "ghostty"
+```
+
+```sh
+brew bundle check --file=Brewfile --verbose
+brew bundle install --file=Brewfile --no-upgrade
+
+# Review extra installed packages before approving removals.
+brew bundle cleanup --file=Brewfile
+```
+
+The unresolved items are alias precedence and measuring when deferred features become ready. The 80 ms result covers shell initialization followed by exit.
+
+## Complete configuration
+
+Every file below is complete, so you can copy it as is. The heading of each one is the path where it lives. The chezmoi config and the Brewfile are in full in the section above.
+
+### `~/.zshrc`
+
+This puts every piece above in order. Drop `goenv` if you do not use it, and add your own `PATH` lines.
+
+```zsh
+# History
+HISTSIZE=50000
+SAVEHIST=50000
+HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
+setopt inc_append_history share_history
+setopt HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_SAVE_NO_DUPS
+
+export LANG=en_US.UTF-8
+export EDITOR='nvim'
+bindkey -v
+
+# Homebrew installs the tools; Zinit loads the plugins.
+fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+fpath=("$HOME/.config/zsh/completions" $fpath)
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh"
+source "$HOMEBREW_PREFIX/opt/zinit/zinit.zsh"
+
+# Load plugins after the first prompt to keep them out of the startup path.
+zinit ice wait"0" lucid
+zinit snippet OMZL::git.zsh
+zinit ice wait"0" lucid
+zinit snippet OMZL::directories.zsh
+zinit ice wait"0" lucid
+zinit snippet OMZL::functions.zsh
+
+zstyle ':omz:plugins:eza' 'dirs-first' yes
+zstyle ':omz:plugins:eza' 'git-status' yes
+zstyle ':omz:plugins:eza' 'header' yes
+zstyle ':omz:plugins:eza' 'icons' yes
+
+zinit ice wait"0" lucid
+zinit snippet OMZP::git
+zinit cdclear -q
+zinit ice wait"0" lucid
+zinit snippet OMZP::direnv
+zinit ice wait"0" lucid
+zinit snippet OMZP::eza
+
+# Cached completion. Rebuild ~/.zcompdump after adding completion sources.
+autoload -Uz compinit
+compinit -C
+zinit cdreplay -q
+
+eval "$(fzf --zsh)"
+zinit ice wait"0" lucid
+zinit light Aloxaf/fzf-tab
+zinit ice wait"0" lucid
+zinit light zsh-users/zsh-history-substring-search
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+zinit ice wait"0" lucid
+zinit light zsh-users/zsh-autosuggestions
+
+[[ -r "$HOME/.config/zsh/aliases.zsh" ]] && source "$HOME/.config/zsh/aliases.zsh"
+[[ -r "$HOME/.config/zsh/functions.zsh" ]] && source "$HOME/.config/zsh/functions.zsh"
+
+eval "$(goenv init -)"
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+eval "$(mise activate zsh)"
+
+[[ -r "$HOME/.zsh.secrets" ]] && source "$HOME/.zsh.secrets"
+eval "$(starship init zsh)"
+
+# Keep syntax highlighting last so it can highlight widgets from other plugins.
+zinit ice wait"0" lucid
+zinit light zsh-users/zsh-syntax-highlighting
+
+# Auto-attach to Zellij without nesting inside another multiplexer.
+if [[ -o interactive && -t 0 && -z ${ZELLIJ:-} && -z ${TMUX:-} && ${HERDR_ENV:-} != 1 && -z ${CI:-} ]] && command -v zellij >/dev/null; then
+  zellij attach -c
+fi
+```
+
+
+### `~/.config/starship.toml`
+
+```toml
+format = "$directory$line_break$character"
+right_format = "$git_branch$git_status"
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+style = "bold #b7bdf8"
+
+[git_branch]
+style = "bold #c6a0f6"
+
+[git_status]
+style = "bold #ed8796"
+
+[character]
+success_symbol = "[❯](bold #a6da95)"
+error_symbol = "[❯](bold #ed8796)"
+```
+
+### `~/.config/ghostty/config`
+
+```ini
+# Global hotkey for the quick terminal
+keybind = global:cmd+f1=toggle_visibility
+
+# Drop down from the top and cover the whole screen, with no animation
+quick-terminal-position = top
+quick-terminal-size = 100%
+quick-terminal-animation-duration = 0
+
+cursor-style-blink = false
+
+theme = Catppuccin Macchiato
+font-size = 18
+copy-on-select = clipboard
+clipboard-trim-trailing-spaces = true
+```
+
+### `~/.config/zellij/config.kdl`
 
 ```kdl
 theme "catppuccin-macchiato"
@@ -625,12 +745,10 @@ plugins {
 }
 ```
 
-</details>
 
-<details>
-<summary>Complete layout: <code>~/.config/zellij/layouts/better-default.kdl</code></summary>
+### `~/.config/zellij/layouts/better-default.kdl`
 
-Each tab gets the native tab bar on top, the radar rail (32 columns) on the left, your panes in the middle, and a zjstatus line at the bottom.
+Each tab gets the native tab bar on top, the radar rail (32 columns) on the left, your panes in the middle, and a zjstatus line at the bottom. Zellij downloads zjstatus from GitHub's latest-release URL the first time it starts, so you need network access once and the version is not pinned. To pin it, replace `latest/download` in the URL with `download/<tag>` for a release you have tested.
 
 ```kdl
 layout {
@@ -686,64 +804,3 @@ layout {
 }
 ```
 
-</details>
-
-## Keep the Mac reproducible
-
-chezmoi keeps the dotfiles in a Git repository and copies them into your home directory. Encrypted files need an age key:
-
-```sh
-brew install chezmoi age
-chezmoi init
-age-keygen -o ~/.config/chezmoi/key.txt   # prints the public key
-```
-
-```toml
-# ~/.config/chezmoi/chezmoi.toml
-encryption = "age"
-
-[age]
-    identity = "~/.config/chezmoi/key.txt"
-    recipient = "age1...your-public-key..."
-```
-
-```sh
-# Capture a live edit, then review it in the source repository.
-chezmoi add ~/.zshrc
-git -C "$(chezmoi source-path)" diff
-
-# Install a source edit after reviewing it.
-chezmoi diff ~/.zshrc
-chezmoi apply ~/.zshrc
-
-# Store ciphertext in the source repository.
-chezmoi add --encrypt ~/.zsh.secrets
-```
-
-Back up `~/.config/chezmoi/key.txt` separately. On a new Mac, restore it first, then run `chezmoi init <your-repo>`, review `chezmoi diff` and apply. The installed secrets are plaintext; the repository copy is encrypted.
-
-Keep the tools in a Brewfile so a new Mac gets the same ones:
-
-```ruby
-# Brewfile
-brew "chezmoi"
-brew "age"
-brew "zellij"
-brew "zinit"
-brew "fzf"
-brew "eza"
-brew "starship"
-brew "mise"
-brew "direnv"
-cask "ghostty"
-```
-
-```sh
-brew bundle check --file=Brewfile --verbose
-brew bundle install --file=Brewfile --no-upgrade
-
-# Review extra installed packages before approving removals.
-brew bundle cleanup --file=Brewfile
-```
-
-The unresolved items are alias precedence and measuring when deferred features become ready. The 80 ms result covers shell initialization followed by exit.
